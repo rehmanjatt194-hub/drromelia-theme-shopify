@@ -1,0 +1,165 @@
+.before-image,
+.after-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.after-and-before-slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.7rem;
+  overflow: hidden;
+}
+/* Styling the Before/After text */
+.before-text,
+.after-text {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3a3a3a;
+  z-index: 4;
+  padding: 10px 20px;
+  background-color: #ffffff9e;
+  border-radius: 0.3rem;
+  letter-spacing: 2px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Before text */
+.before-text {
+  left: 20px; /* Position text to the left */
+  top: 20px;
+  z-index: 5;
+}
+.slider-handle {
+    display: flex!important;
+}
+/* After text */
+.after-text {
+  right: 20px; /* Position text to the right */
+  top: 20px;
+  z-index: 3;
+}
+
+/* Hide the After text initially */
+.after-image .after-text {
+  visibility: visible;
+  z-index: 3;
+}
+
+.after-image {
+  clip-path: inset(0 50% 0 0);
+}
+
+.slider-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0px;
+  height: 100%;
+  background-color: #fff;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.slider-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 1;
+}
+.pulse-container {
+  position: relative;
+  display: inline-block;
+}
+
+.pulse-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70px; /* Larger than the SVG */
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ffffff; /* Color of the pulse */
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+.slider-line svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  cursor: pointer;
+}
+/* Prevent text/image selection while dragging */
+.slider-container,
+.before-image img,
+.after-image img {
+  user-select: none; /* Disable selection on most browsers */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.slider-handle,
+.slider-line {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+
+.after-and-before-slider-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.before-text, .after-text {
+    background: var(---btn_bg);
+    color: var(---btn_color);
+    border-radius: 60px;
+    line-height: 100%;
+    font-weight: 400;
+    letter-spacing: 0;
+    font-size: 20px;
+}
+.after-image {
+    position: unset;
+}
+@media (max-width: 600px){
+  .after-and-before-slider-container {
+    height: 100%;
+  }
+  .before-text, .after-text {
+    font-size: 14px;
+  }
+}

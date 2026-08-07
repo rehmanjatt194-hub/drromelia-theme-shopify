@@ -1,0 +1,29 @@
+{% comment %}
+  Renders a header search modal. Should be used with 'header.liquid'
+
+  Accepts:
+  - input_id: {String} Id for the search input element (required)
+
+  Usage:
+  {% render 'header-search', input_id: 'My-Id'%}
+{% endcomment %}
+
+<div class="header__search">
+  <summary
+      class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
+      aria-haspopup="dialog"
+      aria-label="{{ 'general.search.search' | t }}"
+    >
+      <span>
+        {% if section.settings.search_icon != blank %}
+          <span class="custom___sr-icon">
+              <img src="{{ section.settings.search_icon | img_url:'master' }}">
+          </span>
+        {% else %}
+          <span class="svg-wrapper">
+            {{- 'icon-search.svg' | inline_asset_content -}}
+          </span>
+        {% endif %}
+      </span>
+    </summary>
+</div>

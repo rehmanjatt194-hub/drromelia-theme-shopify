@@ -1,0 +1,444 @@
+<style>
+#section-{{ section.id }} {
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+}
+@media (max-width: 750px) {
+  #section-{{ section.id }} {
+    padding-top: {{ section.settings.mobile_padding_top }}px !important;
+    padding-bottom: {{ section.settings.mobile_padding_bottom }}px !important;
+  }
+}
+.rich-text-content ul {
+    padding-left: 25px;
+}
+</style>
+<section id="section-{{ section.id }}" class="pf-split-section  color-{{ section.settings.color_scheme }} isolate gradient {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="page-width">
+    <div class="pf-row
+      {% if section.settings.image_position == 'left' %}pf-image-left{% else %}pf-image-right{% endif %}
+    ">
+      {% if section.settings.image != blank %}
+      <div class="pf-col pf-image-col" role="img" aria-label="{{ section.settings.image_alt }}">
+        {% if section.settings.enable_before_after %}
+          {% if section.settings.before_image and section.settings.after_image %}
+            {% render 'lx-before-and-after-slider' section: section  %}
+          {% endif %}
+        {% else %}
+          <div class="pf-image-wrap">
+            <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image_alt | escape }}" />
+          </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <div class="pf-col pf-content-col">
+        <div class="pf-content-inner" style="max-width: {{ section.settings.container_width }}px;">
+          {% if section.settings.kicker != blank %}
+            <div class="pf-kicker">{{ section.settings.kicker }}</div>
+          {% endif %}
+
+          {% if section.settings.heading != blank %}
+            <h2 class="pf-heading" style="
+              font-size: {{ section.settings.heading_size }}px;
+              font-weight: {{ section.settings.heading_weight }};
+              ">
+              {{ section.settings.heading | escape }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.subtext != blank %}
+            <div class="pf-subtext rich-text-content">
+              {{ section.settings.subtext }}
+            </div>
+          {% endif %}
+
+          {% if section.blocks.size > 0 %}
+            <ul class="pf-list--icon-with-text">
+              {% for block in section.blocks %}
+                {% if block.type == 'icon' %}
+                  {% if block.settings.text != blank %}
+                    <li class="pf-list-item">
+                      <div class="pf-list-icon">
+                        {% if block.settings.icon != blank %}
+                          <img src="{{ block.settings.icon | img_url: '40x40' }}" alt="icon-{{ forloop.index }}" />
+                        {% else %}
+                          <span class="pf-list-bullet" aria-hidden="true">✓</span>
+                        {% endif %}
+                      </div>
+                      <div class="pf-list-text rich-text-content">
+                        {{ block.settings.text }}
+                      </div>
+                    </li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if section.blocks.size > 0 %}
+            <ul class="pf-list">
+              {% for block in section.blocks %}
+                {% if block.type == 'feature' %}
+                  {% if block.settings.text != blank %}
+                    <li class="pf-list-item">
+                      <div class="pf-list-icon">
+                        {% if block.settings.icon != blank %}
+                          {% render 'lx-liquid-image' image: block.settings.icon %}
+                        {% else %}
+                          <span class="pf-list-bullet" aria-hidden="true">✓</span>
+                        {% endif %}
+                      </div>
+                      <div class="pf-list-text rich-text-content">
+                        {{ block.settings.text }}
+                      </div>
+                    </li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if section.settings.button_text != blank %}
+            <a href="{{ section.settings.button_link }}" class="pf-btn button lx-hover-global" data-hover="{{ settings.hover_effect }}" style="
+              font-size: {{ section.settings.button_size }}px;
+              ">
+              {{ section.settings.button_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #section-{{ section.id }} .pf-list-icon img {
+        width: 13px;
+        height: 13px;
+    }
+    #section-{{ section.id }} a.pf-btn {
+        transition: 0.5s ease;
+        border: 1px solid;
+    }
+    #section-{{ section.id }} .pf-list-icon {
+        display: flex;
+        align-items: center;
+    }
+    
+    #section-{{ section.id }} .rich-text-content p strong {
+        font-weight: 500;
+        display: flex;
+        margin-bottom: 8px;
+    }
+    #section-{{ section.id }} .pf-list-text.rich-text-content {
+        margin: 0;
+    }
+
+    #section-{{ section.id }} .pf-image-right .pf-content-inner {
+      margin-left: auto;
+  }
+
+    #section-{{ section.id }} ul.pf-list--icon-with-text {
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px 20px;
+  }
+
+  #section-{{ section.id }} .pf-list--icon-with-text li.pf-list-item {
+      width: calc(100% / 2 - 10px);
+  }
+  #section-{{ section.id }} ul.pf-list--icon-with-text .pf-list-icon img {
+      width: 100%;
+      height: 100%;
+  }
+
+  #section-{{ section.id }} ul.pf-list--icon-with-text .pf-list-icon {
+      width: 100%;
+      max-width: 54px;
+      max-height: 54px;
+  }
+
+   #section-{{ section.id }}  .pf-list-text.rich-text-content {}
+
+   #section-{{ section.id }}  .pf-list-text.rich-text-content p {
+        margin: 0;
+    }
+   #section-{{ section.id }}  .pf-row{display:flex;align-items:center;gap:40px;flex-wrap:nowrap;}
+   #section-{{ section.id }}  .pf-col{flex:1}
+   #section-{{ section.id }}  .pf-image-col{display:flex;justify-content:center;align-items:center}
+   #section-{{ section.id }}  .pf-image-wrap img{max-width:100%;height:auto;display:block;}
+   #section-{{ section.id }}  .pf-kicker{font-size:14px;color:#6b6b6b;margin-bottom:8px;}
+   #section-{{ section.id }}  .pf-heading{margin:0 0 16px 0;line-height:1.1;}
+   {% comment %} #section-{{ section.id }}  .pf-list-text p{color:{{ section.settings.body_text_color }};} {% endcomment %}
+   #section-{{ section.id }}  .rich-text-content{
+        {% comment %} color:{{ section.settings.body_text_color }}; {% endcomment %}
+        font-size:{{ section.settings.body_text_size }}px;
+        margin-bottom:16px;
+        line-height: 135%;
+        letter-spacing: 0;
+    }
+   #section-{{ section.id }} .pf-list--icon-with-text li.pf-list-item {
+        gap: 10px;
+    }
+   #section-{{ section.id }}  .pf-list{list-style:none;padding:0;margin:0 0 20px 0;display:flex;flex-direction:column;gap:12px;}
+   #section-{{ section.id }}  .pf-list-item{display:flex;align-items:center;gap:7px;}
+   #section-{{ section.id }}  .pf-list-icon img{object-fit:contain;}
+   #section-{{ section.id }}  .pf-list-bullet{display:inline-block;width:36px;height:36px;border-radius:50%;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;font-weight:700;}
+   #section-{{ section.id }}  .pf-list-text{font-size:14px;color:inherit;}
+   #section-{{ section.id }}  .pf-btn{display:inline-block;padding:12px 22px;text-decoration:none;box-shadow:none;}
+   #section-{{ section.id }}  .pf-image-left{flex-direction:row-reverse;}
+   #section-{{ section.id }}  .pf-image-right{flex-direction:row;}
+    .pf-image-wrap img {
+    border-radius: 15px;
+}
+    @media (max-width: 767px){
+    #section-{{ section.id }}   .pf-row{flex-direction:column;align-items:stretch;gap:30px;}
+    #section-{{ section.id }}   .pf-image-col{order: -1;} 
+    #section-{{ section.id }}   .pf-content-inner{padding:0 6px;}
+    #section-{{ section.id }}   .pf-heading{font-size:24px !important;}
+    #section-{{ section.id }}   .rich-text-content{font-size:15px !important;}
+    #section-{{ section.id }}   .pf-list{gap:10px;}
+    #section-{{ section.id }}   .pf-list-text{font-size:14px;}
+    #section-{{ section.id }}   .pf-container{padding:24px 16px;}
+    }
+    #section-{{ section.id }} .pf-heading em{font-style:italic;color: {{ section.settings.heading_em_color }};}
+    @media (max-width: 420px){
+    #section-{{ section.id }}   ul.pf-list--icon-with-text {
+          gap: 12px 20px;
+          flex-direction: column;
+      }
+    #section-{{ section.id }}   .pf-list--icon-with-text li.pf-list-item {
+          width: 100%;
+      }
+    }
+  </style>
+
+  {% schema %}
+  {
+    "name": "Image with info",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Color Scheme"
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "info": "t:sections.all.colors.has_cards_info",
+        "default": "scheme-1"
+      },
+      {
+        "type": "text",
+        "id": "kicker",
+        "label": "Kicker (small pre-heading)",
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Live Stronger, Think Sharper"
+      },
+      {
+        "type": "number",
+        "id": "heading_size",
+        "label": "Heading size (px)",
+        "default": 32
+      },
+      {
+        "type": "select",
+        "id": "heading_weight",
+        "label": "Heading weight",
+        "options": [
+          { "value": "400", "label": "Normal (400)" },
+          { "value": "700", "label": "Bold (700)" }
+        ],
+        "default": "400"
+      },
+      {
+        "type": "color",
+        "id": "heading_em_color",
+        "label": "Emphasized word color (em tag)",
+        "default": "#166633"
+      },
+      {
+        "type": "richtext",
+        "id": "subtext",
+        "label": "Subtext (rich text)",
+        "default": "<p>With Shilajit, you unlock all-day performance — from the gym to your daily grind.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Right/Left image",
+        "visible_if": "{{ section.settings.enable_before_after == false }}"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_before_after",
+        "label": "Enable Before / After",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "before_image",
+        "label": "Before image",
+        "visible_if": "{{ section.settings.enable_before_after }}"
+      },
+      {
+        "type": "image_picker",
+        "id": "after_image",
+        "label": "After image",
+        "visible_if": "{{ section.settings.enable_before_after }}"
+      },
+      {
+        "type": "text",
+        "id": "before_text",
+        "label": "Before button text",
+        "default": "Before ZZEN",
+        "visible_if": "{{ section.settings.enable_before_after }}"
+      },
+      {
+        "type": "text",
+        "id": "after_text",
+        "label": "After button text",
+        "default": "After ZZEN",
+        "visible_if": "{{ section.settings.enable_before_after }}"
+      },
+      {
+        "type": "color_background",
+        "id": "btns__bg",
+        "label": "buttons Background",
+        "default": "linear-gradient(93.02deg, #3A56A9 -4.46%, #172243 86.76%)",
+        "visible_if": "{{ section.settings.enable_before_after }}"
+      },
+      {
+        "type": "color",
+        "id": "btns__color",
+        "label": "Buttons text color",
+        "default": "#ffffff",
+        "visible_if": "{{ section.settings.enable_before_after }}"
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "Content position on desktop",
+        "options": [
+          { "value": "right", "label": "Right" },
+          { "value": "left", "label": "Left" }
+        ],
+        "default": "right"
+      },
+      {
+        "type": "number",
+        "id": "container_width",
+        "label": "Max content width (px)",
+        "default": 540,
+      },
+      {
+        "type": "number",
+        "id": "body_text_size",
+        "label": "Body text size (px)",
+        "default": 15,
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text",
+        "default": "Unlock Your Daily Strength"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link",
+      },
+      {
+        "type": "number",
+        "id": "button_size",
+        "label": "Button font size (px)",
+        "default": 15,
+      },
+        {
+        "type": "range",
+        "id": "desktop_padding_top",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "label": "Desktop padding top",
+        "default": 50
+        },
+        {
+        "type": "range",
+        "id": "desktop_padding_bottom",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "label": "Desktop padding bottom",
+        "default": 50
+        },
+        {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "label": "Mobile padding top",
+        "default": 30
+        },
+        {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "label": "Mobile padding bottom",
+        "default": 30
+        }
+    ],
+    "blocks": [
+      {
+        "type": "feature",
+        "name": "Feature item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon image (optional)"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Feature text (richtext)",
+            "default": "<p>100% natural energy release</p>"
+          }
+        ]
+      },
+      {
+        "type": "icon",
+        "name": "Icon with text",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon image"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Feature text (richtext)",
+            "default": "<p>porttitor eu, consequat vitae</p>"
+          }
+        ]
+      }
+    ],
+    "max_blocks": 6,
+    "presets": [
+      {
+        "name": "Image with info list",
+      }
+    ]
+  }
+  {% endschema %}
+</section>

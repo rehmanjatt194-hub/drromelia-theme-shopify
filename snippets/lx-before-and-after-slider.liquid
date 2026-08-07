@@ -1,0 +1,131 @@
+{{ 'lx-before-and-after-slider.css' | asset_url | stylesheet_tag }}
+
+
+<div class="after-and-before-slider-container" style="---btn_bg:{{ section.settings.btns__bg }};---btn_color:{{ section.settings.btns__color }};">
+  <div class="before-image">
+    {% render 'lx-liquid-image' image: section.settings.before_image %}
+    {% if section.settings.before_text != blank %}
+        <div class="before-text">{{ section.settings.before_text }}</div>
+    {% endif %}
+  </div>
+  <div class="after-image">
+    {% render 'lx-liquid-image' image: section.settings.after_image %}
+    {% if section.settings.after_text != blank %}
+        <div class="after-text">{{ section.settings.after_text }}</div>
+    {% endif %}
+  </div>
+  <div class="slider-handle" id="sliderHandle"></div>
+  <div class="slider-line">
+    <div class="pulse-container">
+        <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22.5" cy="22.5" r="22.5" fill="#D9D9D9"/>
+        <g clip-path="url(#clip0_2068_4)">
+        <path d="M28.7367 30.5003L28.7367 15.5003C28.7367 15.354 28.7618 15.2103 28.8093 15.0836C28.8569 14.957 28.9252 14.8518 29.0076 14.7786C29.0899 14.7055 29.1833 14.667 29.2784 14.667C29.3735 14.667 29.4669 14.7055 29.5492 14.7786L37.9927 22.2786C38.0701 22.3577 38.1335 22.465 38.1773 22.5909C38.2212 22.7168 38.2441 22.8575 38.2441 23.0003C38.2441 23.1432 38.2212 23.2838 38.1773 23.4097C38.1335 23.5356 38.0701 23.6429 37.9927 23.722L29.5492 31.222C29.4669 31.2951 29.3735 31.3336 29.2784 31.3336C29.1833 31.3336 29.0899 31.2951 29.0076 31.222C28.9252 31.1488 28.8569 31.0436 28.8093 30.917C28.7618 30.7903 28.7367 30.6466 28.7367 30.5003Z" fill="#172243"/>
+        </g>
+        <g clip-path="url(#clip1_2068_4)">
+        <path d="M17.2633 15.4997L17.2633 30.4997C17.2633 30.646 17.2382 30.7897 17.1907 30.9164C17.1431 31.043 17.0748 31.1482 16.9924 31.2214C16.9101 31.2945 16.8167 31.333 16.7216 31.333C16.6265 31.333 16.5331 31.2945 16.4508 31.2214L8.00725 23.7214C7.92994 23.6423 7.86653 23.535 7.82267 23.4091C7.77881 23.2832 7.75586 23.1425 7.75586 22.9997C7.75586 22.8568 7.77881 22.7162 7.82267 22.5903C7.86653 22.4644 7.92994 22.3571 8.00725 22.278L16.4508 14.778C16.5331 14.7049 16.6265 14.6664 16.7216 14.6664C16.8167 14.6664 16.9101 14.7049 16.9924 14.778C17.0748 14.8512 17.1431 14.9564 17.1907 15.083C17.2382 15.2097 17.2633 15.3534 17.2633 15.4997Z" fill="#172243"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_2068_4">
+        <rect width="20" height="13" fill="white" transform="translate(40 13) rotate(90)"/>
+        </clipPath>
+        <clipPath id="clip1_2068_4">
+        <rect width="20" height="13" fill="white" transform="translate(6 33) rotate(-90)"/>
+        </clipPath>
+        </defs>
+        </svg>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+const sliderHandle = document.querySelector("#sliderHandle");
+const sliderLine = document.querySelector(".slider-line");
+const beforeImage = document.querySelector(".before-image");
+const afterImage = document.querySelector(".after-image");
+const sliderContainer = document.querySelector(".after-and-before-slider-container");
+
+let isDragging = false;
+
+// Function to initialize the slider at the center position
+const initializeSlider = () => {
+  const containerWidth = sliderContainer.offsetWidth;
+
+  // Set slider handle and line at center with a transition for initialization
+  sliderHandle.style.transition = "left 0.3s ease";
+  sliderLine.style.transition = "left 0.3s ease";
+
+  sliderHandle.style.left = "50%";
+  sliderLine.style.left = "50%";
+
+  // Set both images' clip-path to 50% (center)
+  beforeImage.style.clipPath = `inset(0 50% 0 0)`;
+  afterImage.style.clipPath = `inset(0 0 0 50%)`;
+};
+
+// Function to move the slider based on user interaction
+const moveSlider = (clientX) => {
+  const containerRect = sliderContainer.getBoundingClientRect();
+  let offsetX = clientX - containerRect.left;
+
+  // Limit the slider movement within the full container width (0% to 100%)
+  if (offsetX < 0) offsetX = 0; // Prevent overflow on the left
+  if (offsetX > containerRect.width) offsetX = containerRect.width; // Prevent overflow on the right
+
+  const percentage = Math.round((offsetX / containerRect.width) * 100);
+
+  // Update the slider handle position and image clipping
+  sliderHandle.style.left = `${percentage}%`;
+  sliderLine.style.left = `${percentage}%`;
+
+  // Adjust the clip-path for both images
+  beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  afterImage.style.clipPath = `inset(0 0 0 ${percentage}%)`;
+};
+
+// Add event listeners for both the handle and the line (including the SVG)
+const startDragging = () => {
+  isDragging = true;
+
+  // Remove transitions while dragging for instant feedback
+  sliderHandle.style.transition = "none";
+  sliderLine.style.transition = "none";
+};
+
+const stopDragging = () => {
+  isDragging = false;
+
+  // Reapply transitions after dragging ends
+  sliderHandle.style.transition = "left 0.3s ease";
+  sliderLine.style.transition = "left 0.3s ease";
+};
+
+sliderHandle.addEventListener("mousedown", startDragging);
+sliderLine.addEventListener("mousedown", startDragging); // Make SVG and line draggable
+
+window.addEventListener("mousemove", (event) => {
+  if (isDragging) {
+    moveSlider(event.clientX);
+  }
+});
+
+window.addEventListener("mouseup", stopDragging);
+
+// For touch events on mobile
+sliderHandle.addEventListener("touchstart", startDragging);
+sliderLine.addEventListener("touchstart", startDragging); // Make SVG and line draggable
+
+window.addEventListener("touchmove", (event) => {
+  if (isDragging) {
+    moveSlider(event.touches[0].clientX);
+  }
+});
+
+window.addEventListener("touchend", stopDragging);
+
+// Initialize the slider on page load
+window.addEventListener("load", initializeSlider);
+
+</script>

@@ -1,0 +1,67 @@
+{% comment %}
+  Product Tags Snippet
+  Source:
+  - Metaobject (checkbox ON)
+  - Customizer (checkbox OFF or fallback)
+{% endcomment %}
+
+{% assign meta_tags = product.metafields.custom.product_tags.value %}
+
+{% assign show_meta_tags = false %}
+{% assign show_custom_tags = false %}
+
+{% if block.settings.use_metaobject_tags %}
+  {% if meta_tags != blank %}
+    {% assign show_meta_tags = true %}
+  {% else %}
+    {% assign show_custom_tags = true %}
+  {% endif %}
+{% else %}
+  {% assign show_custom_tags = true %}
+{% endif %}
+
+{% if show_meta_tags or show_custom_tags %}
+<div class="lx-meta-tags-row"
+  style="
+    --tags-text-color: {{ block.settings.tags_text_color }};
+    --tags-border-color: {{ block.settings.tags_border_color }};
+    --tags-font-size: {{ block.settings.tags_font_size }}px;
+    --tags-padding: {{ block.settings.tags_padding }}px;
+    --tags-border-radius: {{ block.settings.tags_border_radius }}px;
+    --tags-gap-horizontal: {{ block.settings.tags_gap_horizontal }}px;
+    --tags-gap-vertical: {{ block.settings.tags_gap_vertical }}px;
+    --tags-icon-size: {{ block.settings.tags_icon_size }}px;
+    --tags-height: {{ block.settings.tags_height }}px;
+  "
+>
+  {% if show_meta_tags %}
+    {% for tag in meta_tags %}
+      {% if tag.title != blank %}
+        <div class="lx-meta-tags-item">
+          {% if tag.icon %}
+            {% render 'lx-liquid-image', image: tag.icon %}
+          {% endif %}
+          {{ tag.title }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% for i in (1..5) %}
+      {% assign title_key = 'tag' | append: i | append: '_title' %}
+      {% assign icon_key  = 'tag' | append: i | append: '_icon' %}
+
+      {% assign tag_title = block.settings[title_key] %}
+      {% assign tag_icon  = block.settings[icon_key] %}
+
+      {% if tag_title != blank %}
+        <div class="lx-meta-tags-item">
+          {% if tag_icon %}
+            {% render 'lx-liquid-image', image: tag_icon %}
+          {% endif %}
+          {{ tag_title }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>
+{% endif %}

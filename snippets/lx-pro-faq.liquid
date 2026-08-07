@@ -1,0 +1,24 @@
+<div class="lx-pro-faq-wrapper {% if block.settings.apply %}border-top{% endif %}"
+   style="
+        --faq-question-color: {{ block.settings.question_color }};
+        --faq-question-size: {{ block.settings.question_size }}px;
+        --faq-answer-color: {{ block.settings.answer_color }};
+        --faq-answer-size: {{ block.settings.answer_size }}px;
+    "
+>
+    {% if block.settings.title != '' %}
+        <div class="lx-pro-faq-question">
+            {{ block.settings.title }}
+            <span class="lx-pro-faq-icon">
+                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.91 -3.858e-05L12.97 1.06096L7.193 6.83996C7.10043 6.93312 6.99036 7.00704 6.86911 7.05749C6.74786 7.10794 6.61783 7.13391 6.4865 7.13391C6.35517 7.13391 6.22514 7.10794 6.10389 7.05749C5.98264 7.00704 5.87257 6.93312 5.78 6.83996L2.65457e-07 1.06096L1.06 0.000960873L6.485 5.42496L11.91 -3.858e-05Z" fill="black"/>
+                </svg>
+            </span>
+        </div>
+    {% endif %}
+    {% if block.settings.text != '' %}
+        <div class="lx-pro-faq-answer">
+            {{ block.settings.text }}
+        </div>
+    {% endif %}
+</div>

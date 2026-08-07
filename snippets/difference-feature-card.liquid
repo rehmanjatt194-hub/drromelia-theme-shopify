@@ -1,0 +1,139 @@
+{%- comment -%}
+  Renders a single feature card for the Difference Features section
+  
+  Accepts:
+  - block: {Object} The block object
+  - section: {Object} The section object
+  
+  Usage:
+  {% render 'difference-feature-card', block: block, section: section %}
+{%- endcomment -%}
+
+{%- liquid
+  assign has_icon = false
+  if block.settings.icon_image != blank or block.settings.icon_svg != blank or block.settings.default_icon != 'none'
+    assign has_icon = true
+  endif
+
+  assign has_title = false
+  if block.settings.title != blank
+    assign has_title = true
+  endif
+
+  assign has_description = false
+  if block.settings.description != blank
+    assign has_description = true
+  endif
+
+  assign has_content = false
+  if has_icon or has_title or has_description
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content -%}
+  <div 
+    class="df-card" 
+    {{ block.shopify_attributes }}
+    {% if block.settings.override_card_bg != blank %}
+      style="background-color: {{ block.settings.override_card_bg }};"
+    {% endif %}
+  >
+    {%- if has_icon -%}
+      <div 
+        class="df-icon-wrapper"
+        style="
+        --desktop-size: {{ block.settings.icon_size }}px;
+        --mobile-size: {{ block.settings.icon_size_mobile }}px;
+        --bottom-space: {{ block.settings.icon_spacing }}px;
+        "
+      >
+        {%- if block.settings.icon_image != blank -%}
+          <img 
+            src="{{ block.settings.icon_image | image_url: width: 1600 }}" 
+            alt="{{ block.settings.title | default: 'Feature icon' | escape }}"
+            width="{{ section.settings.icon_size }}"
+            height="{{ section.settings.icon_size }}"
+            loading="lazy"
+          >
+        {%- elsif block.settings.icon_svg != blank -%}
+          {{ block.settings.icon_svg }}
+        {%- elsif block.settings.default_icon != 'none' -%}
+          {%- case block.settings.default_icon -%}
+            {%- when 'energy' -%}
+              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="40" cy="40" r="28" />
+                <path d="M30 52 L33 45 L38 45 L35 28 L50 38 L45 38 L48 52 Z" fill="currentColor" stroke="none"/>
+                <!-- Circular arrows -->
+                <path d="M40 8 C55 8 67 18 70 32" stroke-linecap="round"/>
+                <path d="M72 40 C72 55 62 67 48 70" stroke-linecap="round"/>
+                <path d="M40 72 C25 72 13 62 10 48" stroke-linecap="round"/>
+                <path d="M8 40 C8 25 18 13 32 10" stroke-linecap="round"/>
+                <!-- Arrow heads -->
+                <path d="M68 28 L70 32 L66 34" fill="none"/>
+                <path d="M52 68 L48 70 L50 74" fill="none"/>
+                <path d="M12 52 L10 48 L14 46" fill="none"/>
+                <path d="M28 12 L32 10 L30 6" fill="none"/>
+              </svg>
+            {%- when 'check' -%}
+              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="3">
+                <circle cx="40" cy="40" r="30"/>
+                <path d="M25 40 L35 50 L55 30" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            {%- when 'star' -%}
+              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M40 10 L46 30 L68 30 L50 44 L56 65 L40 52 L24 65 L30 44 L12 30 L34 30 Z" fill="currentColor"/>
+              </svg>
+            {%- when 'heart' -%}
+              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M40 70 C20 50 10 35 10 25 C10 15 18 8 28 8 C34 8 38 12 40 16 C42 12 46 8 52 8 C62 8 70 15 70 25 C70 35 60 50 40 70 Z" fill="currentColor"/>
+              </svg>
+            {%- when 'shield' -%}
+              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M40 8 L68 18 L68 40 C68 58 55 70 40 75 C25 70 12 58 12 40 L12 18 L40 8 Z"/>
+                <path d="M28 40 L36 48 L52 32" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              </svg>
+            {%- when 'leaf' -%}
+              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 65 C15 40 25 20 55 10 C55 35 45 55 20 65" fill="currentColor"/>
+                <path d="M20 60 C25 45 35 30 55 15" stroke-width="2"/>
+              </svg>
+            {%- when 'clock' -%}
+              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="40" cy="40" r="30"/>
+                <path d="M40 20 L40 40 L55 50" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              </svg>
+            {%- when 'refresh' -%}
+              <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M60 25 A25 25 0 1 0 65 45" stroke-linecap="round"/>
+                <path d="M60 15 L60 28 L47 28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+          {%- endcase -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if has_title -%}
+      <h3 
+        class="df-card-title"
+        {% if block.settings.override_title_color != blank %}
+          style="color: {{ block.settings.override_title_color }};"
+        {% endif %}
+      >
+        {{ block.settings.title }}
+      </h3>
+    {%- endif -%}
+
+    {%- if has_description -%}
+      <p 
+        class="df-card-text"
+        {% if block.settings.override_text_color != blank %}
+          style="color: {{ block.settings.override_text_color }};"
+        {% endif %}
+      >
+        {{ block.settings.description }}
+      </p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+

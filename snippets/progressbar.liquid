@@ -1,0 +1,382 @@
+{% if settings.free_gift or settings.free_shipping %}
+
+{% assign show_shipping_bar = settings.free_shipping %}
+{% assign swap_layout = false %} 
+{% assign use_fixed_positions = settings.fixed_icon_positions | default: false %}
+
+<style>
+  .free-shipping {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  .free-shipping.layout-swapped { flex-direction: column-reverse; }
+  .free-shipping.layout-swapped .free-shipping--text { margin-bottom: 0; margin-top: 20px; }
+  .free-shipping.layout-swapped .free-shipping--bar { margin-top: 0; }
+  .free-shipping--text { margin-bottom: 0px; text-align: left; transition: all 0.25s ease; }
+  
+  .free-shipping--bar {
+    background: #cfcfcf;
+    height: 6px;
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+    border-radius: 50px;
+  }
+  .free-shipping--percentage {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    transform: scale(var(--percentage, 0), 1);
+    transform-origin: center left;
+    background: #153d24;
+    border-radius: 50px;
+    transition: all 0.25s cubic-bezier(0.104, 0.204, 0.492, 1);
+  }
+  .truck-icon {
+    transform-origin: center left;
+    position: absolute;
+    top: 50%;
+    left: calc(var(--percentage, 0) * 100%);
+    transform: translate(-100%, -50%);
+    width: 32px; height: 32px; z-index: 2;
+    pointer-events: none;
+    background: #fff; border-radius: 22px;
+    display: flex; flex-direction: column; align-items: center;
+    transition: left 0.3s ease; 
+  }
+  .truck-icon span { font-size: 10px; font-weight: 500; white-space: nowrap; margin-top: 5px; }
+  .truck-icon img, .truck-icon svg { height: 34px; width: 34px; min-height: 34px; object-fit:contain; }
+  .fs-hidden { display: none !important; }
+</style>
+
+{% assign free_shipping_minimum = settings.free_shipping_minimum | times: 100 %}
+{% assign free_gift_minimum = settings.free_gift_minimum | times: 100 %}
+
+<free-shipping class="free-shipping {% if swap_layout %}layout-swapped{% endif %}" 
+  data-cart-total="{{ cart.total_price }}" 
+  data-minimum="{{ free_shipping_minimum }}"
+  data-gift-minimum="{{ free_gift_minimum }}"
+  data-gift-variant-id="{{ all_products[settings.free_gift_product].selected_or_first_available_variant.id }}"
+  data-show-gift="{{ settings.free_gift | json }}"
+  data-show-shipping="{{ show_shipping_bar | json }}"
+  data-fixed-icons="{{ use_fixed_positions }}"
+  data-locale="{{ localization.language.iso_code }}-{{ localization.country.iso_code }}"
+  data-currency="{{ localization.country.currency.iso_code }}"
+  style="{% if settings.free_shipping_text != blank or settings.free_gift_texts != blank %}margin-bottom: 30px;{% endif %}"
+>
+
+  
+  <div class="free-shipping--text">
+    
+    <div class="fs-shipping-messages fs-hidden">
+      <div class="free-shipping--text-remaining">
+          {{ settings.free_shipping_not_met | replace: "amount", "<span></span>" }}
+        </div>
+        <div class="free-shipping--text-full">
+          <span>{{ settings.free_shipping_met }}</span>
+        </div>
+    </div>
+
+    {% if settings.free_gift %}
+    <div class="fs-gift-messages fs-hidden">
+        <div class="free-gift--text-remaining">
+          {{ settings.free_gift_not_met | replace: "amount", "<span></span>" }}
+        </div>
+        <div class="free-gift--text-full">{{ settings.free_gift_met }}</div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="free-shipping--bar">
+    {% if show_shipping_bar %}
+    <div class="truck-icon shipping-milestone fs-hidden">
+      <img src="https://cdn.shopify.com/s/files/1/0076/2072/2745/files/delivery-truck.png?v=1748330974" alt="Truck">
+      <span>{{ settings.free_shipping_text }}</span>
+    </div>
+    {% endif %}
+    
+    {% if settings.free_gift %}
+    <div class="truck-icon gift-milestone fs-hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" enable-background="new 0 0 256 256"><g><path fill="#000000" d="M128,18.4c60.4,0,109.6,49.2,109.6,109.6c0,60.4-49.2,109.6-109.6,109.6c-60.4,0-109.6-49.2-109.6-109.6C18.4,67.6,67.6,18.4,128,18.4 M128,10C62.8,10,10,62.8,10,128c0,65.2,52.8,118,118,118c65.2,0,118-52.8,118-118C246,62.8,193.2,10,128,10L128,10z"/><path fill="#000000" d="M171.4,90.8c1.8-2.9,3.4-6.7,3.1-10.6c-0.2-2.6-1.5-6.3-6-9.3c-3.8-2.5-8.6-3.1-14-1.7c-9.2,2.3-19.7,10.3-26.5,19.5c-6.8-9.2-17.3-17.2-26.5-19.5c-5.4-1.3-10.2-0.7-14,1.7c-4.5,3-5.7,6.7-6,9.2c-0.4,3.9,1.3,7.7,3.1,10.6h-4.9c-6.2,0-11.1,5-11.1,11.1v14.9c0,5.2,3.5,9.5,8.3,10.7c-0.5,1.3-0.8,2.7-0.8,4.1v44.6c0,6.1,5,11.2,11.1,11.2H128c0,0,40.9,0,40.9,0c6.1,0,11.1-5,11.1-11.2v-44.6c0-1.5-0.3-2.9-0.8-4.2c4.7-1.3,8.2-5.6,8.2-10.7V102c0-6.1-5-11.1-11.2-11.1L171.4,90.8L171.4,90.8z M156.3,76.4c3.3-0.9,6.1-0.6,8.1,0.7c2.2,1.4,2.6,2.8,2.6,3.7c0.4,3.7-3.6,8.5-5.1,9.9h-26.2C141.5,84,149.6,78.1,156.3,76.4L156.3,76.4L156.3,76.4z M88.9,80.9c0.1-0.9,0.5-2.3,2.7-3.7c2-1.3,4.7-1.6,8.1-0.7c6.7,1.7,14.8,7.6,20.5,14.4H94C92.5,89.3,88.5,84.5,88.9,80.9L88.9,80.9L88.9,80.9z M76.7,102.7c0-1.9,1.7-3.4,3.6-3.4h43.6v20.5H87.6h-7.3c-2,0-3.6-1.5-3.6-3.4V102.7L76.7,102.7L76.7,102.7z M84.9,175.6v-44c0-2,1.6-3.7,3.6-3.7h35.4v51.3H88.5C86.5,179.3,84.9,177.7,84.9,175.6L84.9,175.6L84.9,175.6z M171.1,175.6c0,2-1.6,3.7-3.5,3.7h-35.4V128h35.4c2,0,3.5,1.7,3.5,3.7V175.6L171.1,175.6L171.1,175.6z M179.3,116.4c0,1.9-1.6,3.4-3.6,3.4h-7.3h-36.3V99.3h43.6c2,0,3.6,1.5,3.6,3.4V116.4L179.3,116.4L179.3,116.4z"/></g></svg>
+      <span>{{ settings.free_gift_texts }}</span>
+    </div>
+    {% endif %}
+    
+    <div class="free-shipping--percentage"> </div>
+  </div>
+</free-shipping>
+
+<script>
+  function formatMoney(amount, locale, currency) {
+    const loc = locale || 'en-US';
+    const curr = currency || 'USD';
+
+    return new Intl.NumberFormat(loc, {
+      style: "currency",
+      currency: curr,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(amount / 100);
+  }
+
+  if (!customElements.get('free-shipping')) {
+    class FreeShipping extends HTMLElement {
+      constructor() {
+        super();
+        this.giftAdded = false;
+        this.processingGift = false;
+        this.locale = 'en-US';
+        this.currency = 'USD';
+        this.fixedIcons = false;
+      }
+
+      connectedCallback() {
+        let total = parseInt(this.dataset.cartTotal, 10);
+        let showGift = this.dataset.showGift === 'true';
+        let showShipping = this.dataset.showShipping === 'true';
+        this.fixedIcons = this.dataset.fixedIcons === 'true';
+
+        this.locale = this.dataset.locale;
+        this.currency = this.dataset.currency;
+
+        let shippingMinimum = Math.round(parseInt(this.dataset.minimum, 10) * (Shopify.currency.rate || 1));
+        let giftMinimum = this.dataset.giftMinimum ? Math.round(parseInt(this.dataset.giftMinimum, 10) * (Shopify.currency.rate || 1)) : 0;
+        let giftVariantId = this.dataset.giftVariantId;
+
+        let activeGoals = [];
+
+        if (showShipping) {
+          activeGoals.push({
+            type: 'shipping',
+            value: shippingMinimum
+          });
+        }
+        if (showGift && giftMinimum > 0) {
+          activeGoals.push({
+            type: 'gift',
+            value: giftMinimum
+          });
+        }
+
+        activeGoals.sort((a, b) => a.value - b.value);
+
+        let maxThreshold = activeGoals.length > 0 ? activeGoals[activeGoals.length - 1].value : shippingMinimum;
+
+        let percentage = this.calculateBarPercentage(total, activeGoals, maxThreshold);
+        this.style.setProperty('--percentage', percentage);
+
+        this.updateIcons(activeGoals, maxThreshold, total);
+
+        let nextGoal = null;
+
+        for (let goal of activeGoals) {
+          if (total < goal.value) {
+            nextGoal = goal;
+            break;
+          }
+        }
+
+        if (nextGoal) {
+          if (nextGoal.type === 'shipping') {
+            this.showShippingProgress(total, nextGoal.value);
+          } else {
+            this.showGiftProgress(total, nextGoal.value);
+          }
+        } else {
+          if (activeGoals.length > 0) {
+            let lastGoal = activeGoals[activeGoals.length - 1];
+            if (lastGoal.type === 'shipping') {
+              this.showShippingSuccess();
+            } else {
+              this.showGiftSuccess();
+            }
+          } else {
+            if (showShipping) this.showShippingSuccess();
+          }
+        }
+
+        if (showGift && giftMinimum > 0 && total >= giftMinimum) {
+          if (giftVariantId && !this.giftAdded && !this.processingGift) {
+            this.addGiftToCart(giftVariantId);
+          }
+        }
+      }
+
+      calculateBarPercentage(total, activeGoals, maxThreshold) {
+        if (!this.fixedIcons || activeGoals.length < 2) {
+          return (maxThreshold > 0) ? Math.min(total / maxThreshold, 1) : 1;
+        }
+
+        const goal1 = activeGoals[0].value;
+        const goal2 = activeGoals[1].value;
+
+        if (total < goal1) {
+          return (total / goal1) * 0.5;
+        } else if (total >= goal1 && total < goal2) {
+          const range = goal2 - goal1;
+          const progressInRange = total - goal1;
+          const relativePercent = progressInRange / range;
+          return 0.5 + (relativePercent * 0.5);
+        } else {
+          return 1;
+        }
+      }
+
+      showShippingProgress(total, threshold) {
+        this.hideAllTexts();
+        const container = this.querySelector('.fs-shipping-messages');
+        const remainingText = container.querySelector('.free-shipping--text-remaining');
+        const amountSpan = remainingText.querySelector('span');
+
+        if (container) container.classList.remove('fs-hidden');
+        if (remainingText) remainingText.style.display = 'block';
+
+        let diff = threshold - total;
+        if (amountSpan) amountSpan.innerHTML = formatMoney(diff, this.locale, this.currency);
+
+        const fullText = container.querySelector('.free-shipping--text-full');
+        if (fullText) fullText.style.display = 'none';
+      }
+
+      showGiftProgress(total, threshold) {
+        this.hideAllTexts();
+        const container = this.querySelector('.fs-gift-messages');
+        const remainingText = container.querySelector('.free-gift--text-remaining');
+        const amountSpan = remainingText.querySelector('span');
+
+        if (container) container.classList.remove('fs-hidden');
+        if (remainingText) remainingText.style.display = 'block';
+
+        let diff = threshold - total;
+        if (amountSpan) amountSpan.innerHTML = formatMoney(diff, this.locale, this.currency);
+
+        const fullText = container.querySelector('.free-gift--text-full');
+        if (fullText) fullText.style.display = 'none';
+      }
+
+      showShippingSuccess() {
+        this.hideAllTexts();
+        const container = this.querySelector('.fs-shipping-messages');
+        const remainingText = container.querySelector('.free-shipping--text-remaining');
+        const fullText = container.querySelector('.free-shipping--text-full');
+
+        if (container) container.classList.remove('fs-hidden');
+        if (remainingText) remainingText.style.display = 'none';
+        if (fullText) fullText.style.display = 'block';
+      }
+
+      showGiftSuccess() {
+        this.hideAllTexts();
+        const container = this.querySelector('.fs-gift-messages');
+        const remainingText = container.querySelector('.free-gift--text-remaining');
+        const fullText = container.querySelector('.free-gift--text-full');
+
+        if (container) container.classList.remove('fs-hidden');
+        if (remainingText) remainingText.style.display = 'none';
+        if (fullText) fullText.style.display = 'block';
+      }
+
+      hideAllTexts() {
+        const shipMsg = this.querySelector('.fs-shipping-messages');
+        const giftMsg = this.querySelector('.fs-gift-messages');
+        if (shipMsg) shipMsg.classList.add('fs-hidden');
+        if (giftMsg) giftMsg.classList.add('fs-hidden');
+      }
+
+      updateIcons(activeGoals, maxThreshold, total) {
+        const shippingIcon = this.querySelector('.shipping-milestone');
+        const giftIcon = this.querySelector('.gift-milestone');
+
+        if (shippingIcon) shippingIcon.classList.add('fs-hidden');
+        if (giftIcon) giftIcon.classList.add('fs-hidden');
+
+        activeGoals.forEach((goal, index) => {
+          let icon = (goal.type === 'shipping') ? shippingIcon : giftIcon;
+          if (icon) {
+            icon.classList.remove('fs-hidden');
+            let pos;
+
+            if (this.fixedIcons) {
+              if (activeGoals.length > 1) {
+                pos = (index === 0) ? 50 : 100;
+              } else {
+                pos = 100;
+              }
+            } else {
+              pos = (goal.value / maxThreshold) * 100;
+            }
+
+            icon.style.left = `${pos}%`;
+
+            if (total >= goal.value) icon.classList.add('achieved');
+            else icon.classList.remove('achieved');
+          }
+        });
+      }
+
+      async addGiftToCart(variantId) {
+        this.processingGift = true;
+        try {
+          const cartResponse = await fetch('/cart.js');
+          const cart = await cartResponse.json();
+
+          const giftInCart = cart.items.some(item =>
+            item.variant_id === parseInt(variantId)
+          );
+
+          if (giftInCart) {
+            this.giftAdded = true;
+            this.processingGift = false;
+            return;
+          }
+
+          const formData = {
+            items: [{
+              id: variantId,
+              quantity: 1
+            }]
+          };
+
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
+
+          if (response.ok) {
+            this.giftAdded = true;
+            if (typeof window.theme !== 'undefined' && window.theme.cart) window.theme.cart.refresh();
+            else {
+              document.dispatchEvent(new CustomEvent('cart:refresh'));
+              document.dispatchEvent(new CustomEvent('theme:cartchanged'));
+            }
+            this.showGiftNotification();
+          }
+        } catch (error) {
+          console.error(error);
+        } finally {
+          this.processingGift = false;
+        }
+      }
+
+      showGiftNotification() {
+        const notification = document.createElement('div');
+        notification.className = 'free-gift-notification';
+        notification.innerHTML = '🎁 Free gift added to your cart!';
+        document.body.appendChild(notification);
+        setTimeout(() => notification.classList.add('show'), 100);
+        setTimeout(() => {
+          notification.classList.remove('show');
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+    }
+    customElements.define('free-shipping', FreeShipping);
+  }
+</script>
+{% endif %}

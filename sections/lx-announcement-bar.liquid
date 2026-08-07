@@ -1,0 +1,442 @@
+{% comment %}
+  Custom Announcement Bar
+  - Desktop: Slider ON/OFF + separate controls
+  - Mobile: Slider ON/OFF + separate controls
+  - Arrows added + conditional single slide alignment
+{% endcomment %}
+
+<style>
+.custom-ann-bar {
+  width: 100%;
+  position: relative;
+}
+
+.custom-ann-bar__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-ann-bar__item--wraper {
+  width: calc(100% / 3);
+  display: flex;
+  gap: 20px;
+}
+
+.custom-ann-bar__item--wraper:nth-child(1) { justify-content: flex-start; }
+.custom-ann-bar__item--wraper:nth-child(2) { justify-content: center; }
+.custom-ann-bar__item--wraper:nth-child(3) { justify-content: flex-end; }
+
+.custom-ann-bar__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* Single slide center alignment */
+.custom-ann-bar.single-slide .custom-ann-bar__item {
+  justify-content: center;
+}
+
+.custom-ann-bar__slider {
+    cursor: grab;
+}
+.custom-ann-bar__item img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+/* Swiper navigation */
+.custom-ann-bar__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+}
+.custom-ann-bar__arrow--prev { left: 10px; }
+.custom-ann-bar__arrow--next { right: 10px; }
+
+.swiper-slide.swiper-slide-next .custom-ann-bar__item {
+    justify-content: center;
+}
+.swiper-slide.swiper-slide-next ~ .swiper-slide .custom-ann-bar__item {
+    justify-content: end;
+}
+.custom-ann-bar__arrow {
+    height: 30px;
+    width: 30px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+}
+/* ===== DESKTOP ===== */
+@media (min-width: 800px) {
+  .custom-ann-bar__mobile-wrapper,
+  .custom-ann-bar__slider--mobile,
+  .custom-ann-bar__arrow--mobile {
+    display: none;
+  }
+
+  .section-{{ section.id }} {
+    padding: {{ section.settings.padding_y_desktop }}px 0;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 800px) {
+  .custom-ann-bar__wrapper,
+  .custom-ann-bar__slider--desktop,
+  .custom-ann-bar__arrow--desktop {
+    display: none;
+  }
+
+  .section-{{ section.id }} {
+    padding: {{ section.settings.padding_y_mobile }}px 0;
+  }
+
+  .custom-ann-bar__mobile-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .custom-ann-bar__slider-inner {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .custom-ann-bar__arrow--mobile {
+    display: flex;
+  }
+}
+
+@media (min-width: 750px) {
+  .mobile__only {
+    display: none;
+  }
+}
+@media (max-width: 750px) {
+  .custom-ann-bar__item {
+    font-size: 12px !important;
+  }
+  .desktop__only {
+    display: none;
+  }
+}
+</style>
+
+<section
+  class="custom-ann-bar section-{{ section.id }} {% if section.settings.desktop_slides == 1 %}single-slide{% endif %}"
+  style="background-color: {{ section.settings.bg_color }};"
+>
+  <div class="page-width {% if section.settings.enable_desktop_slider %}desktop_slide_active{% endif %}">
+
+    <!-- ================= DESKTOP ================= -->
+    {% if section.settings.enable_desktop_slider %}
+      <div class="custom-ann-bar__slider custom-ann-bar__slider--desktop swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide">
+              <div class="custom-ann-bar__slider-inner">
+                {% render 'announcement-item', block: block %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% if section.settings.desktop_arrows %}
+        <span  class="custom-ann-bar__arrow custom-ann-bar__arrow--prev desktop__only">
+          <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.13395 11.91L6.07295 12.97L0.29395 7.193C0.200795 7.10043 0.126867 6.99036 0.0764187 6.86911C0.0259707 6.74786 -5.78549e-07 6.61783 -5.67068e-07 6.4865C-5.55587e-07 6.35517 0.0259708 6.22514 0.0764187 6.10389C0.126867 5.98264 0.200795 5.87257 0.29395 5.78L6.07295 5.30914e-07L7.13295 1.06L1.70895 6.485L7.13395 11.91Z" fill="black"/>
+          </svg>
+        </span>
+        <span  class="custom-ann-bar__arrow custom-ann-bar__arrow--next desktop__only">
+          <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.50521e-05 1.05997L1.06109 -2.96721e-05L6.84008 5.77697C6.93324 5.86954 7.00717 5.97961 7.05762 6.10086C7.10806 6.22212 7.13403 6.35214 7.13403 6.48347C7.13403 6.6148 7.10806 6.74483 7.05762 6.86608C7.00717 6.98733 6.93324 7.0974 6.84008 7.18997L1.06108 12.97L0.00108308 11.91L5.42508 6.48497L8.50521e-05 1.05997Z" fill="black"/>
+          </svg>
+        </span>
+      {% endif %}
+    {% else %}
+      <div class="custom-ann-bar__wrapper">
+        {% for block in section.blocks %}
+          <div class="custom-ann-bar__item--wraper">
+            {% render 'announcement-item', block: block %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- ================= MOBILE ================= -->
+    {% if section.settings.enable_mobile_slider %}
+      <div class="custom-ann-bar__slider custom-ann-bar__slider--mobile swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide">
+              <div class="custom-ann-bar__slider-inner">
+                {% render 'announcement-item', block: block %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% if section.settings.mobile_arrows %}
+        <span  class="custom-ann-bar__arrow custom-ann-bar__arrow--prev custom-ann-bar__arrow--mobile  mobile__only">
+          <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.13395 11.91L6.07295 12.97L0.29395 7.193C0.200795 7.10043 0.126867 6.99036 0.0764187 6.86911C0.0259707 6.74786 -5.78549e-07 6.61783 -5.67068e-07 6.4865C-5.55587e-07 6.35517 0.0259708 6.22514 0.0764187 6.10389C0.126867 5.98264 0.200795 5.87257 0.29395 5.78L6.07295 5.30914e-07L7.13295 1.06L1.70895 6.485L7.13395 11.91Z" fill="black"/>
+          </svg>
+        </span>
+        <span  class="custom-ann-bar__arrow custom-ann-bar__arrow--next custom-ann-bar__arrow--mobile mobile__only">
+          <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.50521e-05 1.05997L1.06109 -2.96721e-05L6.84008 5.77697C6.93324 5.86954 7.00717 5.97961 7.05762 6.10086C7.10806 6.22212 7.13403 6.35214 7.13403 6.48347C7.13403 6.6148 7.10806 6.74483 7.05762 6.86608C7.00717 6.98733 6.93324 7.0974 6.84008 7.18997L1.06108 12.97L0.00108308 11.91L5.42508 6.48497L8.50521e-05 1.05997Z" fill="black"/>
+          </svg>
+        </span>
+      {% endif %}
+    {% else %}
+      <div class="custom-ann-bar__mobile-wrapper">
+        {% for block in section.blocks %}
+          {% render 'announcement-item', block: block %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% if section.settings.enable_desktop_slider or section.settings.enable_mobile_slider %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  if (window.innerWidth > 800 && {{ section.settings.enable_desktop_slider | json }}) {
+    new Swiper(".custom-ann-bar__slider--desktop", {
+      slidesPerView: {{ section.settings.desktop_slides }},
+      loop: {{ section.settings.desktop_loop }},
+      autoplay: {{ section.settings.desktop_autoplay | json }} ? {
+        delay: {{ section.settings.desktop_autoplay_delay }},
+        disableOnInteraction: false
+      } : false,
+      speed: {{ section.settings.desktop_speed }},
+      navigation: {
+        nextEl: '.custom-ann-bar__arrow--next',
+        prevEl: '.custom-ann-bar__arrow--prev',
+      }
+    });
+  }
+
+  if (window.innerWidth <= 800 && {{ section.settings.enable_mobile_slider | json }}) {
+    new Swiper(".custom-ann-bar__slider--mobile", {
+      slidesPerView: {{ section.settings.mobile_slides }},
+      loop: {{ section.settings.mobile_loop }},
+      autoplay: {{ section.settings.mobile_autoplay | json }} ? {
+        delay: {{ section.settings.mobile_autoplay_delay }},
+        disableOnInteraction: false
+      } : false,
+      speed: {{ section.settings.mobile_speed }},
+      navigation: {
+        nextEl: '.custom-ann-bar__arrow--next.custom-ann-bar__arrow--mobile',
+        prevEl: '.custom-ann-bar__arrow--prev.custom-ann-bar__arrow--mobile',
+      }
+    });
+  }
+
+});
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Custom Announcement Bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "padding_y_desktop",
+      "label": "Padding Top/Bottom (Desktop)",
+      "default": 10
+    },
+    {
+      "type": "number",
+      "id": "padding_y_mobile",
+      "label": "Padding Top/Bottom (Mobile)",
+      "default": 8
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop Slider Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_desktop_slider",
+      "label": "Enable Desktop Slider",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "desktop_slides",
+      "label": "Slides Per View (Desktop)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1,
+      "visible_if": "{{ section.settings.enable_desktop_slider }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_autoplay",
+      "label": "Autoplay (Desktop)",
+      "default": true,
+      "visible_if": "{{ section.settings.enable_desktop_slider }}"
+    },
+    {
+      "type": "number",
+      "id": "desktop_autoplay_delay",
+      "label": "Autoplay Delay (Desktop ms)",
+      "default": 2500,
+      "visible_if": "{{ section.settings.enable_desktop_slider }}"
+    },
+    {
+      "type": "number",
+      "id": "desktop_speed",
+      "label": "Slide Speed (Desktop ms)",
+      "default": 500,
+      "visible_if": "{{ section.settings.enable_desktop_slider }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_loop",
+      "label": "Loop (Desktop)",
+      "default": true,
+      "visible_if": "{{ section.settings.enable_desktop_slider }}"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Arrows"
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_arrows",
+      "label": "Enable Desktop Arrows",
+      "default": false
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile Slider Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_slider",
+      "label": "Enable Mobile Slider",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "mobile_slides",
+      "label": "Slides Per View (Mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1,
+      "visible_if": "{{ section.settings.enable_mobile_slider }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_autoplay",
+      "label": "Autoplay (Mobile)",
+      "default": true,
+      "visible_if": "{{ section.settings.enable_mobile_slider }}"
+    },
+    {
+      "type": "number",
+      "id": "mobile_autoplay_delay",
+      "label": "Autoplay Delay (Mobile ms)",
+      "default": 2000,
+      "visible_if": "{{ section.settings.enable_mobile_slider }}"
+    },
+    {
+      "type": "number",
+      "id": "mobile_speed",
+      "label": "Slide Speed (Mobile ms)",
+      "default": 400,
+      "visible_if": "{{ section.settings.enable_mobile_slider }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_loop",
+      "label": "Loop (Mobile)",
+      "default": true,
+      "visible_if": "{{ section.settings.enable_mobile_slider }}"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Arrows"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_arrows",
+      "label": "Enable Mobile Arrows",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Announcement Item",
+      "limit": 50,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "30-Day Energy Guarantee"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "number",
+          "id": "font_size",
+          "label": "Font Size",
+          "default": 14
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Announcement Bar",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,367 @@
+<style>
+#section-{{ section.id }} {
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+}
+@media (max-width: 750px) {
+    #section-{{ section.id }} {
+        padding-top: {{ section.settings.mobile_padding_top }}px !important;
+        padding-bottom: {{ section.settings.mobile_padding_bottom }}px !important;
+    }
+}
+
+.lx-image-with-counter-header h1 {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+}
+.lx-image-with-counter-inner-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lx-image-with-counter-header h1 {
+    line-height: 100%;
+    letter-spacing: 0;
+}
+
+.lx-image-with-counter-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    align-items: center;
+}
+
+.lx-image-with-counter-left {
+    width: calc(65% - 10px);
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    position: relative;
+}
+
+.lx-image-with-counter-right {
+    width: calc(35% - 10px);
+    display: flex;
+    max-width: fit-content;
+}
+
+.lx-image-with-counter-right img {
+    width: 100%;
+    height: 100%;
+    max-width: 370px;
+    max-height: 370px;
+}
+
+.counter-left---item-count {
+    min-width: 54px;
+    height: 54px;
+    border: 1px solid;
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 500;
+    background: var(--gradient-background);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.counter-left---item {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.left---item-info-heading {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: rgba(var(--color-foreground));
+}
+.counter-left---item.active {
+    align-items: flex-start;
+}
+.counter-left---item-count {
+    color: rgba(var(--color-foreground));
+}
+.left---item-info-content {
+    max-width: 510px;
+}
+.left---item-info-content p {
+    font-size: 14px;
+    color: rgba(var(--color-foreground));
+    line-height: 120%;
+    letter-spacing: 0;
+}
+
+.left---item-info-content {
+    display: none;
+}
+
+.counter-left---item-info {
+    cursor: pointer;
+}
+
+#section-{{ section.id }} .lx-image-with-counter-left:before {
+    width: 1px;
+    height: calc(100% + 20px);
+    position: absolute;
+    content: '';
+    background: {{ section.settings.acitve_bg }};
+    left: 27px;
+    z-index: 0;
+}
+#section-{{ section.id }} .active .counter-left---item-count {
+    background: {{ section.settings.acitve_bg }};
+    color: {{ section.settings.acitve_color }};
+}
+.lx-image-with-counter-header h1 {
+    margin-top: 0;
+}
+.left--wrappper .lx-image-with-counter-body {
+    flex-direction: row-reverse;
+}
+.lx-image-with-counter-right img {
+    object-fit: cover;
+    border-radius: 10px;
+}
+@media (max-width: 990px){
+    .lx-image-with-counter-body {
+        flex-direction: column-reverse;
+        row-gap: 30px;
+    }
+
+    .lx-image-with-counter-right {
+        width: 100%;
+    }
+
+    .lx-image-with-counter-left {
+        width: 100%;
+    }
+}
+@media (max-width: 750px){
+    .lx-image-with-counter-header h1 {
+        font-size: 26px;
+    }
+    .lx-image-with-counter-right {
+        max-width: 100%;
+    }
+    .lx-image-with-counter-right img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .left---item-info-heading {
+        font-size: 18px;
+    }
+}
+</style>
+
+
+<div id="section-{{ section.id }}" class="lx-image-with-counter-row color-{{ section.settings.color_scheme }} isolate gradient {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="page-width">
+        <div class="lx-image-with-counter-inner-row {{ section.settings.image_position }}--wrappper">
+            {% if section.settings.heading != '' %}
+                <div class="lx-image-with-counter-header">
+                    <h1>{{ section.settings.heading }}</h1>
+                </div>
+            {% endif %}
+            <div class="lx-image-with-counter-body">
+                <div class="lx-image-with-counter-left">
+                   {% for block in section.blocks %}
+                    {% if block.settings.title != blank %}
+                        <div class="counter-left---item {% if forloop.first %}active{% endif %}">
+                            <div class="counter-left---item-count">
+                                {{ forloop.index }}
+                            </div>
+                            <div class="counter-left---item-info">
+                                <div class="left---item-info-heading">
+                                    {{ block.settings.title }}
+                                </div>
+                                {% if block.settings.text != blank %}
+                                    <div class="left---item-info-content">
+                                        {{ block.settings.text }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                   {% endfor %} 
+                </div>
+                {% if section.settings.image %}
+                    <div class="lx-image-with-counter-right">
+                        {% render 'lx-liquid-image' image: section.settings.image %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('.counter-left---item:first').addClass('active');
+    $('.counter-left---item:first').find('.left---item-info-content').slideDown();
+
+    $(".counter-left---item-info").click(function() {
+        var parentItem = $(this).parents('.counter-left---item');
+        var content = parentItem.find('.left---item-info-content');
+
+        if (parentItem.hasClass('active')) {
+            return;
+        }
+
+        $('.counter-left---item').removeClass('active');
+        $('.left---item-info-content').slideUp();
+
+        parentItem.addClass('active');
+        content.slideDown();
+    });
+    $(".counter-left---item-count").click(function(){
+       $(this).parent().find(".counter-left---item-info").click();
+    });
+});
+</script>
+
+
+
+{% schema %}
+{
+    "name": "Image with counter",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Color Scheme"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:sections.all.colors.label",
+            "info": "t:sections.all.colors.has_cards_info",
+            "default": "scheme-1"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "How To Use Shilajit"
+        },
+        {
+            "type": "number",
+            "id": "heading_size",
+            "label": "Heading size (px)",
+            "default": 32
+        },
+        {
+            "type": "select",
+            "id": "heading_weight",
+            "label": "Heading weight",
+            "options": [
+                { "value": "400", "label": "Normal (400)" },
+                { "value": "700", "label": "Bold (700)" }
+            ],
+            "default": "400"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "select",
+            "id": "image_position",
+            "label": "Image position",
+            "options": [
+                { "value": "right", "label": "Right" },
+                { "value": "left", "label": "Left" }
+            ],
+            "default": "right"
+        },
+        {
+            "type": "header",
+            "content": "Counter Scheme"
+        },
+        {
+            "type": "color",
+            "id": "acitve_color",
+            "label": "Active Count text color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "acitve_bg",
+            "label": "Active Count Background",
+            "default": "#000000"
+        },
+        {
+            "type": "header",
+            "content": "Section spacing"
+        },
+        {
+            "type": "range",
+            "id": "desktop_padding_top",
+            "min": 0,
+            "max": 150,
+            "step": 5,
+            "label": "Desktop padding top",
+            "default": 50
+        },
+        {
+            "type": "range",
+            "id": "desktop_padding_bottom",
+            "min": 0,
+            "max": 150,
+            "step": 5,
+            "label": "Desktop padding bottom",
+            "default": 50
+        },
+        {
+            "type": "range",
+            "id": "mobile_padding_top",
+            "min": 0,
+            "max": 150,
+            "step": 5,
+            "label": "Mobile padding top",
+            "default": 30
+        },
+        {
+            "type": "range",
+            "id": "mobile_padding_bottom",
+            "min": 0,
+            "max": 150,
+            "step": 5,
+            "label": "Mobile padding bottom",
+            "default": 30
+        }
+    ],
+    "blocks": [
+        {
+            "type": "feature",
+            "name": "item",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Lorem ipsum dolor sit"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Feature text",
+                    "default": "<p>Lorem ipsum dolor sit</p>"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        { "name": "Image with counter" }
+    ]
+}
+{% endschema %}

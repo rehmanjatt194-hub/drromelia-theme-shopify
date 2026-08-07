@@ -1,0 +1,859 @@
+{% doc %}
+  @prompt
+    Create a fully customizable Shopify section that looks exactly like a “3-Feature Icons Row” layout.
+    
+    Follow this structure:
+    
+    SECTION LAYOUT
+    Heading Area
+    
+    A centered main heading at the top
+    
+    Main heading must support:
+    
+    Custom text
+    
+    Font size (desktop + mobile)
+    
+    Font weight
+    
+    Letter spacing
+    
+    Text color
+    
+    Optional italic option for selected words (like Feel)
+    
+    FEATURE ITEMS (3 ICON BLOCKS)
+    
+    Show 3 items in a row on desktop.
+    Each item includes:
+    
+    1. Icon
+    
+    Icon image picker
+    
+    Icon size control (px)
+    
+    Icon color option (if SVG)
+    
+    Icon border-radius
+    
+    2. Text below icon
+    
+    Text field for the description
+    
+    Text alignment
+    
+    Text color
+    
+    Font size (desktop + mobile)
+    
+    Line height
+    
+    Max width control
+    
+    Spacing controls:
+    
+    Icon → Text spacing
+    
+    Item padding
+    
+    Gap between items
+    
+    MOBILE BEHAVIOR
+    Option: Enable mobile slider
+    
+    Create a setting:
+    
+    "Enable Mobile Slider" – true/false
+    
+    If true → convert items into a horizontal slider
+    
+    Show only pagination dots (same style as screenshot)
+    
+    No arrows
+    
+    1 item per slide
+    
+    Slider speed + autoplay option
+    
+    If false →
+    
+    No slider
+    
+    Items will stack with 100% width (one per row on mobile)
+    
+    GLOBAL OPTIONS
+    
+    Provide customization for:
+    
+    Section padding (top/bottom – desktop + mobile)
+    
+    Container width
+    
+    Background color
+    
+    Gap between repeated blocks
+    
+    BLOCKS
+    
+    Each block should allow:
+    
+    Icon image
+    
+    Icon size
+    
+    Text
+    
+    Text size
+    
+    Text color
+    
+    OUTPUT REQUIREMENTS
+    
+    Clean HTML + Liquid + CSS
+    
+    Use section schema
+    
+    Mobile responsive
+    
+    Looks EXACTLY like the provided reference layout:
+    
+    Heading centered
+    
+    3 equal columns
+    
+    Simple line icons
+    
+    Small description text
+    
+    Even spacing
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-feature-icons-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    padding-top: {{ block.settings.padding_top_desktop }}px;
+    padding-bottom: {{ block.settings.padding_bottom_desktop }}px;
+  }
+
+  .ai-feature-icons-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-feature-icons-heading-{{ ai_gen_id }} {
+    text-align: center;
+    margin: 0 0 {{ block.settings.heading_bottom_spacing }}px;
+    font-size: {{ block.settings.heading_size_desktop }}px;
+    font-weight: {{ block.settings.heading_weight }};
+    letter-spacing: {{ block.settings.heading_letter_spacing }}px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-feature-icons-heading-{{ ai_gen_id }} em {
+    font-style: italic;
+  }
+
+  .ai-feature-icons-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ block.settings.items_gap }}px;
+  }
+
+  .ai-feature-icons-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: {{ block.settings.text_alignment }};
+    padding: {{ block.settings.item_padding }}px;
+  }
+
+  .ai-feature-icons-icon-wrapper-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.icon_text_spacing }}px;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-feature-icons-icon-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: {{ block.settings.icon_border_radius }}px;
+  }
+
+  .ai-feature-icons-icon-wrapper-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-feature-icons-text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size_desktop }}px;
+    line-height: {{ block.settings.text_line_height }};
+    max-width: {{ block.settings.text_max_width }}px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-feature-icons-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.padding_top_mobile }}px;
+      padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+    }
+
+    .ai-feature-icons-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size_mobile }}px;
+    }
+
+    .ai-feature-icons-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_mobile }}px;
+    }
+
+    {% if block.settings.enable_mobile_slider %}
+      .ai-feature-icons-grid-{{ ai_gen_id }} {
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .ai-feature-icons-slider-{{ ai_gen_id }} {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .ai-feature-icons-item-{{ ai_gen_id }} {
+        min-width: 100%;
+        flex-shrink: 0;
+      }
+
+      .ai-feature-icons-pagination-{{ ai_gen_id }} {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .ai-feature-icons-dot-{{ ai_gen_id }} {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: {{ block.settings.text_color }};
+        opacity: 0.3;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+
+      .ai-feature-icons-dot-{{ ai_gen_id }}.active {
+        opacity: 1;
+      }
+    {% else %}
+      .ai-feature-icons-grid-{{ ai_gen_id }} {
+        grid-template-columns: 1fr;
+      }
+    {% endif %}
+  }
+{% endstyle %}
+
+<feature-icons-slider-{{ ai_gen_id }} class="ai-feature-icons-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-feature-icons-container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-feature-icons-heading-{{ ai_gen_id }}">
+        {% if block.settings.heading_italic_words != blank %}
+          {% assign italic_words = block.settings.heading_italic_words | split: ',' %}
+          {% assign heading_words = block.settings.heading | split: ' ' %}
+          {% for word in heading_words %}
+            {% assign word_trimmed = word | strip %}
+            {% assign is_italic = false %}
+            {% for italic_word in italic_words %}
+              {% assign italic_word_trimmed = italic_word | strip %}
+              {% if word_trimmed == italic_word_trimmed %}
+                {% assign is_italic = true %}
+              {% endif %}
+            {% endfor %}
+            {% if is_italic %}<em>{{ word }}</em>{% else %}{{ word }}{% endif %}{% unless forloop.last %} {% endunless %}
+          {% endfor %}
+        {% else %}
+          {{ block.settings.heading }}
+        {% endif %}
+      </h2>
+    {% endif %}
+
+    <div class="ai-feature-icons-grid-{{ ai_gen_id }}">
+      {% if block.settings.enable_mobile_slider %}
+        <div class="ai-feature-icons-slider-{{ ai_gen_id }}">
+      {% endif %}
+
+      {% if block.settings.icon_1 != blank or block.settings.text_1 != blank %}
+        <div class="ai-feature-icons-item-{{ ai_gen_id }}">
+          {% if block.settings.icon_1 != blank %}
+            <div class="ai-feature-icons-icon-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.icon_1 | image_url: width: 200 }}"
+                alt="{{ block.settings.icon_1.alt | escape }}"
+                loading="lazy"
+                width="200"
+                height="200"
+              >
+            </div>
+          {% else %}
+            <div class="ai-feature-icons-icon-wrapper-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.text_1 != blank %}
+            <p class="ai-feature-icons-text-{{ ai_gen_id }}">
+              {{ block.settings.text_1 }}
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.icon_2 != blank or block.settings.text_2 != blank %}
+        <div class="ai-feature-icons-item-{{ ai_gen_id }}">
+          {% if block.settings.icon_2 != blank %}
+            <div class="ai-feature-icons-icon-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.icon_2 | image_url: width: 200 }}"
+                alt="{{ block.settings.icon_2.alt | escape }}"
+                loading="lazy"
+                width="200"
+                height="200"
+              >
+            </div>
+          {% else %}
+            <div class="ai-feature-icons-icon-wrapper-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.text_2 != blank %}
+            <p class="ai-feature-icons-text-{{ ai_gen_id }}">
+              {{ block.settings.text_2 }}
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.icon_3 != blank or block.settings.text_3 != blank %}
+        <div class="ai-feature-icons-item-{{ ai_gen_id }}">
+          {% if block.settings.icon_3 != blank %}
+            <div class="ai-feature-icons-icon-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.icon_3 | image_url: width: 200 }}"
+                alt="{{ block.settings.icon_3.alt | escape }}"
+                loading="lazy"
+                width="200"
+                height="200"
+              >
+            </div>
+          {% else %}
+            <div class="ai-feature-icons-icon-wrapper-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.text_3 != blank %}
+            <p class="ai-feature-icons-text-{{ ai_gen_id }}">
+              {{ block.settings.text_3 }}
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.enable_mobile_slider %}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.enable_mobile_slider %}
+      <div class="ai-feature-icons-pagination-{{ ai_gen_id }}"></div>
+    {% endif %}
+  </div>
+</feature-icons-slider-{{ ai_gen_id }}>
+
+{% if block.settings.enable_mobile_slider %}
+  <script>
+    (function() {
+      class FeatureIconsSlider{{ ai_gen_id }} extends HTMLElement {
+        constructor() {
+          super();
+          this.currentSlide = 0;
+          this.totalSlides = 3;
+          this.autoplayInterval = null;
+          this.isMobile = false;
+        }
+
+        connectedCallback() {
+          this.checkMobile();
+          window.addEventListener('resize', () => this.checkMobile());
+        }
+
+        checkMobile() {
+          const wasMobile = this.isMobile;
+          this.isMobile = window.innerWidth <= 749;
+
+          if (this.isMobile && !wasMobile) {
+            this.initSlider();
+          } else if (!this.isMobile && wasMobile) {
+            this.destroySlider();
+          }
+        }
+
+        initSlider() {
+          this.slider = this.querySelector('.ai-feature-icons-slider-{{ ai_gen_id }}');
+          this.pagination = this.querySelector('.ai-feature-icons-pagination-{{ ai_gen_id }}');
+
+          if (!this.slider || !this.pagination) return;
+
+          this.createPagination();
+          this.updateSlider();
+
+          {% if block.settings.slider_autoplay %}
+            this.startAutoplay();
+          {% endif %}
+        }
+
+        createPagination() {
+          this.pagination.innerHTML = '';
+          for (let i = 0; i < this.totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('ai-feature-icons-dot-{{ ai_gen_id }}');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.addEventListener('click', () => {
+              this.goToSlide(i);
+              {% if block.settings.slider_autoplay %}
+                this.resetAutoplay();
+              {% endif %}
+            });
+            this.pagination.appendChild(dot);
+          }
+        }
+
+        goToSlide(index) {
+          this.currentSlide = index;
+          this.updateSlider();
+        }
+
+        updateSlider() {
+          if (!this.slider) return;
+          const offset = -this.currentSlide * 100;
+          this.slider.style.transform = `translateX(${offset}%)`;
+
+          const dots = this.pagination.querySelectorAll('.ai-feature-icons-dot-{{ ai_gen_id }}');
+          dots.forEach((dot, index) => {
+            if (index === this.currentSlide) {
+              dot.classList.add('active');
+            } else {
+              dot.classList.remove('active');
+            }
+          });
+        }
+
+        startAutoplay() {
+          this.autoplayInterval = setInterval(() => {
+            this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+            this.updateSlider();
+          }, {{ block.settings.slider_speed }} * 1000);
+        }
+
+        resetAutoplay() {
+          if (this.autoplayInterval) {
+            clearInterval(this.autoplayInterval);
+            this.startAutoplay();
+          }
+        }
+
+        destroySlider() {
+          if (this.autoplayInterval) {
+            clearInterval(this.autoplayInterval);
+            this.autoplayInterval = null;
+          }
+        }
+
+        disconnectedCallback() {
+          this.destroySlider();
+        }
+      }
+
+      customElements.define('feature-icons-slider-{{ ai_gen_id }}', FeatureIconsSlider{{ ai_gen_id }});
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Feature icons row",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "text",
+      "id": "heading_italic_words",
+      "label": "Italic words",
+      "info": "Enter words to italicize, separated by commas (e.g., Feel, Choose)"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop font size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 14,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile font size",
+      "default": 28
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": -2,
+      "max": 4,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Feature 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1",
+      "label": "Icon"
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Text",
+      "default": "Free shipping on orders over $50"
+    },
+    {
+      "type": "header",
+      "content": "Feature 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2",
+      "label": "Icon"
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Text",
+      "default": "30-day money back guarantee"
+    },
+    {
+      "type": "header",
+      "content": "Feature 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3",
+      "label": "Icon"
+    },
+    {
+      "type": "textarea",
+      "id": "text_3",
+      "label": "Text",
+      "default": "24/7 customer support"
+    },
+    {
+      "type": "header",
+      "content": "Icon style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Size",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Color",
+      "default": "#000000",
+      "info": "Only applies to SVG icons"
+    },
+    {
+      "type": "range",
+      "id": "icon_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "icon_text_spacing",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon to text spacing",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "text_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Line height",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "text_max_width",
+      "min": 100,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Max width",
+      "default": 250
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Item padding",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "items_gap",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap between items",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Mobile slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_slider",
+      "label": "Enable mobile slider",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "slider_autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slider_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay speed",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile bottom padding",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature icons row"
+    }
+  ]
+}
+{% endschema %}

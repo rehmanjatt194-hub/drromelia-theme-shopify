@@ -1,0 +1,64 @@
+{% assign payment_icons = 
+  "https://cdn.shopify.com/s/files/1/0978/7595/1938/files/visa.svg?v=1767086181,
+   https://cdn.shopify.com/s/files/1/0978/7595/1938/files/master.svg?v=1767086181,
+   https://cdn.shopify.com/s/files/1/0978/7595/1938/files/mobile.svg?v=1767086181,
+   https://cdn.shopify.com/s/files/1/0978/7595/1938/files/google.svg?v=1767086181,
+   https://cdn.shopify.com/s/files/1/0978/7595/1938/files/app.svg?v=1767086182" 
+   | split: "," 
+%}
+
+{% assign limit = block.settings.payment-limit %}
+{% assign total_icons = payment_icons.size %}
+{% assign remaining = total_icons | minus: limit %}
+
+<div class="featured-payments-wrapper">
+  <div class="payment-icon-items">
+
+    {%- for icon in payment_icons -%}
+      <img
+        src="{{ icon | strip }}"
+        class="payment-icon {% if forloop.index > limit %}hidden-payment{% endif %}"
+        loading="lazy"
+        alt="Payment method">
+    {%- endfor -%}
+
+    {% if remaining > 0 %}
+      <button class="payment-icons-load-more">
+        +{{ remaining }}
+      </button>
+    {% endif %}
+
+  </div>
+</div>
+
+<style>
+.payment-icon-items {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.hidden-payment {
+  display: none;
+}
+.payment-icons-load-more {
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.querySelector(".payment-icons-load-more");
+  if (!btn) return;
+
+  btn.addEventListener("click", function () {
+    document.querySelectorAll(".hidden-payment").forEach(icon => {
+      icon.style.display = "inline-block";
+    });
+    btn.remove();
+  });
+});
+</script>

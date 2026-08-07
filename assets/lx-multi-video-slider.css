@@ -1,0 +1,540 @@
+#video-slider-section { width: 100%; }
+.video-card---slider { position: relative; cursor: pointer; }
+.video-card---slider img.thumb { width: 100%; height: 100%; }
+.video-card---slider video {
+    height: 100%;
+    object-fit: cover;
+}
+.video-card---slider img {
+    position: absolute;
+    z-index: 1;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+}
+
+.video-btn .icon-pause,
+.video-btn .icon-muted {
+  display: none;
+}
+.video-card__controls {
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    max-width: 90%;
+    margin: 0 auto;
+    right: 0;
+}
+.video-card.is-playing .icon-play {
+    position: absolute;
+    opacity:0;
+}
+.video-btn span {
+    display: flex;
+}
+
+.video-btn span svg path {
+    fill: white;
+}
+.video-card.is-playing .icon-pause {
+  display: flex;
+}
+
+.video-card.is-muted .icon-unmuted {
+  position: absolute;
+  opacity:0;
+}
+
+.video-card.is-muted .icon-muted {
+  display: flex;
+}
+.video-btn span svg {
+    width: 30px;
+    height: 30px;
+}
+.video-btn--mute span svg {
+    width: 27px;
+    height: 27px;
+}
+.video-btn {
+    background: transparent;
+    border: unset;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.video-slider---header h2 {margin-top: 0;margin-bottom: 18px;font-weight: 400;letter-spacing: 0;line-height: 100%;}
+
+.video-slider---header {
+    width: 100%;
+}
+
+.lx-multi-slidervideo-header--text p {
+    margin: 0;
+    line-height: 100%;
+    letter-spacing: 0;
+}
+
+.video-card---slider {
+    display: flex;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.video-card---slider video {
+    height: 380px;
+    object-fit: cover;
+}
+.video-slider-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.videoSwiper-----wrappper {
+    position: relative;
+}
+
+.videoSwiper-----wrappper:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    background: linear-gradient(90deg, rgba(217, 217, 217, 0) 12.63%, rgba(255, 255, 255, 0.5) 47.72%, #FFFFFF 83.39%);
+    width: 15%;
+    HEIGHT: 100%;
+    top: 0;
+    z-index: 2;
+    transform: rotate(180deg);
+}
+
+.videoSwiper-----wrappper:after {
+    position: absolute;
+    content: '';
+    right: 0;
+    background: linear-gradient(90deg, rgba(217, 217, 217, 0) 12.63%, rgba(255, 255, 255, 0.5) 47.72%, #FFFFFF 83.39%);
+    width: 15%;
+    HEIGHT: 100%;
+    top: 0;
+    z-index: 2;
+}
+
+.video-card---slider video { width: 100%; }
+.videoSwiper-----wrappper .swiper-pagination {
+    position: unset;
+}
+.video-card---slider {
+    border: 1px solid black;
+}
+.video-card---slider.playing-video img {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.video-card---slider.playing-video span.video-card---play-cion {
+    opacity: 0;
+    visibility: hidden;
+}
+.videoSwiper-----wrappper .swiper-pagination span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: black;
+}
+span.video-card---play-cion {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 50px;
+    max-height: 50px;
+    margin: auto;
+}
+@media (max-width: 750px){
+    .video-slider---header h2 {
+        font-size: 26px!important;
+    }
+}
+
+
+
+
+
+
+/* ==========================================================================
+   Multi Video Slider Styles
+   ========================================================================== */
+
+/* Section Layout */
+.video-slider-section {
+  padding-top: var(--section-padding-top, 40px);
+  padding-bottom: var(--section-padding-bottom, 40px);
+  background: var(--section-bg-color, #ffffff);
+}
+
+.video-slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.video-slider-header {
+  margin-bottom: 8px;
+}
+
+.video-slider-heading {
+  font-size: var(--heading-size, 28px);
+  color: var(--heading-color, #000000);
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.video-slider-text {
+  color: var(--text-color, #666666);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.video-slider-text p {
+  margin: 0;
+}
+
+/* Slider Wrapper */
+.slider-wrapper {
+  position: relative;
+}
+
+.relative-container {
+  position: relative;
+}
+
+/* Video Card */
+.video-card {
+  position: relative;
+  aspect-ratio: 1 / 1.3;
+  height: 100%;
+  border-radius: var(--card-border-radius, 12px);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+@media (min-width: 750px) {
+  .video-card {
+    aspect-ratio: 1 / 1.3;
+  }
+}
+
+/* Thumbnail */
+.video-card__thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.video-card__thumbnail.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.video-card__thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+}
+
+.video-card__placeholder-svg {
+  width: 60%;
+  height: 60%;
+  opacity: 0.5;
+}
+
+/* Play Button */
+.video-card__play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  width: var(--play-btn-size, 54px);
+  height: var(--play-btn-size, 54px);
+  color: var(--play-btn-bg, rgba(232, 232, 232, 0.7));
+}
+
+.video-card__play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-card__play-btn svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Video */
+.video-card__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.video-card__video.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-card__video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Video Title */
+.video-card__title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 4;
+}
+
+/* ==========================================================================
+   Swiper Custom Controls
+   ========================================================================== */
+
+.swiper-custom-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.swiper-custom-arrow {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--arrow-bg, #ffffff);
+  color: var(--arrow-color, #000000);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.swiper-custom-arrow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.swiper-custom-arrow.swiper-button-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.swiper-custom-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Pagination Dots */
+.swiper-custom-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.swiper-custom-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot-color, #cccccc);
+  opacity: 1;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.swiper-custom-pagination .swiper-pagination-bullet-active {
+  background: var(--dot-active-color, #000000);
+  transform: scale(1.2);
+}
+
+/* Scrollbar */
+.swiper-custom-scrollbar {
+  height: 4px;
+  background: var(--scrollbar-track, #e0e0e0);
+  border-radius: 4px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.swiper-custom-scrollbar .swiper-scrollbar-drag {
+  background: var(--scrollbar-thumb, #888888);
+  border-radius: 4px;
+  cursor: grab;
+}
+
+.swiper-custom-scrollbar .swiper-scrollbar-drag:active {
+  cursor: grabbing;
+}
+
+/* Progress Bar */
+.swiper-progress-track {
+  height: 3px;
+  background: var(--progress-track, #e0e0e0);
+  border-radius: 3px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.swiper-progress-fill {
+  height: 100%;
+  background: var(--progress-fill, #000000);
+  border-radius: 3px;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+/* ==========================================================================
+   Visibility Utilities
+   ========================================================================== */
+
+.hide-on-mobile {
+  display: none !important;
+}
+
+.hide-on-desktop {
+  display: none !important;
+}
+
+@media (min-width: 750px) {
+  .hide-on-mobile {
+    display: flex !important;
+  }
+  
+  .hide-on-desktop {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   Swiper Container Overrides
+   ========================================================================== */
+
+swiper-container.js-swiper-template {
+  width: 100%;
+}
+
+swiper-container.js-swiper-template::part(wrapper) {
+  align-items: stretch;
+}
+
+swiper-container.js-swiper-template swiper-slide {
+  /* height: auto; */
+}
+
+/* ==========================================================================
+   Playing State
+   ========================================================================== */
+
+.video-card.is-playing .video-card__play-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 749px) {
+  .video-slider-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .video-slider-header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .video-slider-heading {
+    font-size: calc(var(--heading-size, 28px) * 0.75);
+  }
+  
+  .swiper-custom-controls {
+    padding: 0 16px;
+  }
+  
+  .swiper-custom-scrollbar,
+  .swiper-progress-track {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
+
+/* ==========================================================================
+   Animation for Video Card Hover
+   ========================================================================== */
+
+/* .video-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.3) 100%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+} */
+
+.video-card:hover::before {
+  opacity: 1;
+}
+
+.video-card.is-playing::before {
+  opacity: 0;
+}
+

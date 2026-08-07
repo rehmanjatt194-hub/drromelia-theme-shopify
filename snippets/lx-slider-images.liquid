@@ -1,0 +1,114 @@
+{{ 'lx-slider-images.css' | asset_url | stylesheet_tag }}
+{% assign use_metaobject = block.settings.use_metaobject_data %}
+{% assign metafields_wrapper = product.metafields.custom.product_slider_images.value %}
+
+  {% if metafields_wrapper != blank %}
+  <div class="template-slider-section lx-slider-images--wrappper" data-block-id="{{ block.id }}" {{ block.shopify_attributes }} style="--border-color:{{ block.settings.br_color }};--border-radius:{{ block.settings.br_radius }}px;">
+    <div class="slider-wrapper relative-container">
+      
+      {% if block.settings.block_heading != blank %}
+      <div class="swiper-custom-header">
+        <div class="swiper-custom-heading">
+          {{ block.settings.block_heading }}
+        </div>
+      </div>
+      {% endif %}
+      
+      <swiper-container 
+          init="false" 
+          class="js-swiper-template lxMetafieldSwiperImages"
+          data-swiper-config='{
+              "autoplay": {{ block.settings.enable_autoplay | default: false }},
+              "autoplayInterval": {{ block.settings.autoplay_interval | times: 1000 | default: 3000 }},
+              "mobileSlides": {{ block.settings.mobile_slides | default: 1.2 }},
+              "mobileSpacing": {{ block.settings.mobile_spacing | default: 16 }},
+              "desktopSlides": {{ block.settings.desktop_slides | default: 4 }},
+              "desktopSpacing": {{ block.settings.desktop_spacing | default: 24 }},
+              "loop": {{ block.settings.enable_loop | default: false }}
+          }'
+      >
+          {% if use_metaobject and metafields_wrapper != blank %}
+
+            {% for meta_info in metafields_wrapper %}
+              {% if meta_info.image or meta_info.popup_video != blank %}
+                <swiper-slide class="lx-slider-image-item" meta__index="{{ forloop.index }}">
+                  <div class="lx-slider-image-item-inner">
+                    {% if meta_info.image != blank %}
+                      {% render 'lx-liquid-image', image: meta_info.image %}
+                    {% else %}
+                      {{ meta_info.popup_video | video_tag: autoplay: true, muted: true, loop: true, controls: false }}
+                    {% endif %}
+                  </div>
+                </swiper-slide>
+              {% endif %}
+            {% endfor %}
+
+          {% else %}
+
+            {% for i in (1..6) %}
+              {% assign image_key = 'image_' | append: i %}
+              {% assign video_key = 'video_' | append: i %}
+              {% if block.settings[image_key] != blank or block.settings[video_key] != blank %}
+                <swiper-slide class="lx-slider-image-item" meta__index="{{ forloop.index }}">
+                  <div class="lx-slider-image-item-inner">
+                    {% if block.settings[image_key] != blank %}
+                      {% render 'lx-liquid-image', image: block.settings[image_key] %}
+                    {% else %}
+                      {% if block.settings[video_key] != blank %}
+                        {{ block.settings[video_key] | video_tag: autoplay: true, muted: true, loop: true, controls: false }}
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                </swiper-slide>
+              {% endif %}
+
+            {% endfor %}
+
+          {% endif %}
+
+      </swiper-container>
+      {% if block.settings.desktop_arrows %}
+        <div class="swiper-custom-controls">
+            <div class="swiper-custom-prev swiper-custom-arrow 
+                {% unless block.settings.mobile_arrows %}hide-on-mobile{% endunless %} 
+                {% unless block.settings.desktop_arrows %}hide-on-desktop{% endunless %}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </div>
+            
+            <div class="swiper-custom-pagination 
+                {% unless block.settings.mobile_dots %}hide-on-mobile{% endunless %} 
+                {% unless block.settings.desktop_dots %}hide-on-desktop{% endunless %}">
+            </div>
+
+            <div class="swiper-custom-next swiper-custom-arrow 
+                {% unless block.settings.mobile_arrows %}hide-on-mobile{% endunless %} 
+                {% unless block.settings.desktop_arrows %}hide-on-desktop{% endunless %}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+        </div>
+      {% endif %}
+      <div class="swiper-custom-scrollbar
+          {% unless block.settings.mobile_scrollbar %}hide-on-mobile{% endunless %} 
+          {% unless block.settings.desktop_scrollbar %}hide-on-desktop{% endunless %}">
+      </div>
+
+      <div class="swiper-progress-track
+          {% unless block.settings.mobile_progress_bar %}hide-on-mobile{% endunless %} 
+          {% unless block.settings.desktop_progress_bar %}hide-on-desktop{% endunless %}">
+           <div class="swiper-progress-fill"></div>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+
+<script>
+  document.addEventListener('shopify:section:select', (e) => {
+    if (e.detail.sectionId === '{{ section.id }}') {
+      const container = document.querySelector(`.template-slider-section[data-section-id="{{ section.id }}"] swiper-container`);
+      if (container && typeof templateSliderManager !== 'undefined') {
+        templateSliderManager.initSingleSlider(container);
+      }
+    }
+  });
+</script>

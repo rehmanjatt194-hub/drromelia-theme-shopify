@@ -1,0 +1,19 @@
+{% assign meta_item = product.metafields.custom.card_points.value %}
+{% if meta_item != blank %}
+    <div class="card_icons-point-row">
+        {% for meta_item in meta_item %}
+            {% if meta_item.icon != blank or meta_item.text != blank %}
+                <div class="card_icons-point-item">
+                    {%  if meta_item.icon != blank %}
+                        {% render 'lx-liquid-image' image: meta_item.icon %}
+                    {% endif %}
+                    {% if meta_item.text != '' %}
+                        <span class="point-item-text">
+                            {{ meta_item.text }}
+                        </span>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

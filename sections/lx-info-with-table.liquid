@@ -1,0 +1,461 @@
+<style>
+#section-{{ section.id }} {
+  padding-top: {{ section.settings.desktop_padding_top }}px;
+  padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+}
+
+#section-{{ section.id }} .lx-info-with-table-row {
+  display: flex;
+}
+
+h2.lx-left-heading {
+    line-height: 100%;
+    margin-top: 0;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.lx-left-text p {line-height: 120%;letter-spacing: 0;}
+#section-{{ section.id }} .lx-left-heading {
+  font-size: {{ section.settings.left_heading_size }}px;
+}
+.lx-table-cell.table_header_right {
+    line-height: 100%;
+    text-align: center;
+    letter-spacing: 0;
+}
+#section-{{ section.id }} .lx-info-with-table-inner-row {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 40px;
+    align-items: center;
+}
+.lx-table-cell.lx-mid-col.table_header_center {
+    position: relative;
+}
+
+.lx-table-cell.lx-mid-col.table_header_center:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    background: {{ section.settings.mid_col_bg }};
+    top: -38px;
+    border-radius: 10px 10px 0 0;
+}
+.lx-table-cell.table_header_left {
+    border-radius: 10px 0 0 0;
+}
+.lx-table-cell.table_header_right {
+    border-radius: 0 10px 0 0;
+}
+.lx-table.lx-info-with-table-right {
+    border-radius: 10px;
+}
+.lx-table-row:last-child .lx-table-cell.table--cell-left {
+    border-radius: 0 0 0 10px;
+}
+.lx-table-row:last-child .lx-table-cell.table--cell-right {
+    border-radius: 0 0 10px 0;
+}
+#section-{{ section.id }} .lx-left-text {
+  font-size: {{ section.settings.left_text_size }}px;
+}
+
+/* TABLE */
+#section-{{ section.id }} .lx-table-cell:not(.lx-mid-col) {
+  background: {{ section.settings.table_bg }};
+}
+
+#section-{{ section.id }} .lx-table-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  border-bottom: 1px solid #A4A4A4;
+}
+
+#section-{{ section.id }} .lx-table-cell {
+  padding: 0 20px;
+  height: {{ section.settings.column_hight }}px;
+  font-size: {{ section.settings.table_font_size }}px;
+  color: {{ section.settings.table_text_color }};
+  display: flex;
+  align-items: center;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+#section-{{ section.id }} .lx-table-cell.table--cell-right {
+    display: flex;
+    justify-content: center;
+}
+#section-{{ section.id }} .lx-mid-col {
+  background: {{ section.settings.mid_col_bg }};
+  justify-content: center;
+}
+
+#section-{{ section.id }} .lx-table-icon {
+  max-width: {{ section.settings.icon_size }}px;
+  max-height: {{ section.settings.icon_size }}px;
+}
+
+#section-{{ section.id }} .lx-table-icon__c {
+  max-width: {{ section.settings.icon_size_c }}px;
+  max-height: {{ section.settings.icon_size_c }}px;
+}
+.lx-table-row:last-child {
+    border-bottom: unset!important;
+}
+
+.lx-table.lx-info-with-table-right {
+    box-shadow: 0px 1px 20px 3px #00000040;
+}
+#section-{{ section.id }} img.lx-table-icon--logo {
+    height: {{ section.settings.logo_size }}px;
+    width: 100%;
+    object-fit: contain;
+}
+#section-{{ section.id }} .lx-table-cell.table_header_left {
+    font-size: 18px;
+}
+@media (max-width: 990px){
+  #section-{{ section.id }} .lx-info-with-table-inner-row {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 750px) {
+  #section-{{ section.id }} {
+    padding-top: {{ section.settings.mobile_padding_top }}px;
+    padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+  }
+  #section-{{ section.id }} .lx-table-cell.table_header_left {
+        font-size: 16px;
+    }
+  #section-{{ section.id }} .lx-info-with-table-row {
+    grid-template-columns: 1fr;
+  }
+  #section-{{ section.id }} .lx-table-cell {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  #section-{{ section.id }} .lx-left-heading {
+    font-size: {{ section.settings.left_heading_size_mobile }}px;
+  }
+
+  #section-{{ section.id }} .lx-left-text {
+    font-size: {{ section.settings.left_text_size_mobile }}px;
+  }
+
+  #section-{{ section.id }} .lx-table-cell {
+    font-size: {{ section.settings.table_font_size_mobile }}px;
+  }
+  .lx-table-cell.lx-mid-col.table_header_center:after {
+    height: 25px;
+    top: -22px;
+  }
+}
+</style>
+
+<div id="section-{{ section.id }}" class="lx-info-with-table-row color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="page-width">
+    <div class="lx-info-with-table-inner-row">
+        <div class="lx-info-with-table-left">
+        <h2 class="lx-left-heading">{{ section.settings.heading }}</h2>
+        <div class="lx-left-text">
+            {{ section.settings.text }}
+        </div>
+        </div>
+
+        <div class="lx-table lx-info-with-table-right">
+
+        {% for block in section.blocks %}
+            {% if block.type == 'table_header' %}
+            <div class="lx-table-row">
+                <div class="lx-table-cell table_header_left">
+                {{ block.settings.col_1 }}
+                </div>
+
+                <div class="lx-table-cell lx-mid-col table_header_center">
+                {% if block.settings.center_logo != blank %}
+                    {% render 'lx-liquid-image' image: block.settings.center_logo, class: 'lx-table-icon--logo' %}
+                {% else %}
+                    {{ block.settings.col_2 }}
+                {% endif %}
+                </div>
+
+                <div class="lx-table-cell table_header_right">
+                {{ block.settings.col_3 }}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if block.type == 'table_row' %}
+            <div class="lx-table-row">
+                <div class="lx-table-cell table--cell-left">
+                {{ block.settings.feature_text }}
+                </div>
+
+                <div class="lx-table-cell lx-mid-col">
+                {% if block.settings.center_icon != blank %}
+                    {% render 'lx-liquid-image' image: block.settings.center_icon, class: 'lx-table-icon' %}
+                {% endif %}
+                </div>
+
+                <div class="lx-table-cell table--cell-right">
+                {% if block.settings.right_icon != blank %}
+                    {% render 'lx-liquid-image' image: block.settings.right_icon, class: 'lx-table-icon__c' %}
+                {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Info With Compare Table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Left column settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Left Heading",
+      "default": "SHILAJIT vs Others"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Left Description"
+    },
+    {
+      "type": "range",
+      "id": "left_heading_size",
+      "label": "Heading Font Size",
+      "min": 18,
+      "max": 60,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "left_heading_size_mobile",
+      "label": "Heading Font Size Mobile",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "default": 26
+    },
+
+    {
+      "type": "range",
+      "id": "left_text_size",
+      "label": "Text Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "left_text_size_mobile",
+      "label": "Text Font Size Mobile",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Right column settings"
+    },
+    {
+      "type": "color",
+      "id": "table_bg",
+      "label": "Table Background",
+      "default": "#0f3b2c"
+    },
+    {
+      "type": "color",
+      "id": "mid_col_bg",
+      "label": "Middle Column Background",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "range",
+      "id": "column_hight",
+      "label": "Column height",
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "default": 65
+    },
+    {
+      "type": "color",
+      "id": "table_text_color",
+      "label": "Table Text Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Tick icon Size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 36
+    },
+
+    {
+      "type": "range",
+      "id": "icon_size_c",
+      "label": "Cross icon Size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "logo_size",
+      "label": "Middle logo height",
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "default": 29
+    },
+
+    {
+      "type": "range",
+      "id": "table_font_size",
+      "label": "Table Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "table_font_size_mobile",
+      "label": "Table Font Size Mobile",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Section spacing settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Desktop Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Desktop Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "label": "Mobile Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "label": "Mobile Padding Bottom",
+      "default": 40
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "table_header",
+      "name": "Table Header",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "col_1",
+          "label": "First Column Text",
+          "default": "Features"
+        },
+        {
+          "type": "text",
+          "id": "col_2",
+          "label": "Center Column Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "center_logo",
+          "label": "Center Logo (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "col_3",
+          "label": "Right Column Text"
+        }
+      ]
+    },
+
+    {
+      "type": "table_row",
+      "name": "Table Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "center_icon",
+          "label": "Center Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "right_icon",
+          "label": "Right Icon"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Info With Compare Table"
+    }
+  ]
+}
+{% endschema %}

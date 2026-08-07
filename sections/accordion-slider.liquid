@@ -1,0 +1,796 @@
+{{ 'accordion-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .accordion-slider-section--{{ section.id }} {
+    --section-bg: {{ section.settings.section_background }};
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --section-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    
+    --heading-size: {{ section.settings.heading_size }}px;
+    --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --heading-font-weight: {{ section.settings.heading_font_weight }};
+    
+    --card-bg: {{ section.settings.card_background }};
+    --card-radius: {{ section.settings.card_border_radius }}px;
+    --card-title-color: {{ section.settings.card_title_color }};
+    --card-title-size: {{ section.settings.card_title_size }}px;
+    --card-title-size-mobile: {{ section.settings.card_title_size_mobile }}px;
+    --card-title-font-weight: {{ section.settings.card_title_font_weight }};
+    --card-content-color: {{ section.settings.card_content_color }};
+    --card-content-size: {{ section.settings.card_content_size }}px;
+    --card-content-size-mobile: {{ section.settings.card_content_size_mobile }}px;
+    
+    --toggle-btn-bg: {{ section.settings.toggle_button_background }};
+    --toggle-btn-color: {{ section.settings.toggle_button_color }};
+    --toggle-btn-size: {{ section.settings.toggle_button_size }}px;
+    --toggle-btn-icon-size: {{ section.settings.toggle_button_icon_size }}px;
+    
+    --image-height: {{ section.settings.image_height }}px;
+    --image-height-mobile: {{ section.settings.image_height_mobile }}px;
+    --image-radius: {{ section.settings.image_border_radius }}px;
+    
+    --arrow-bg: {{ section.settings.arrow_background }};
+    --arrow-color: {{ section.settings.arrow_color }};
+    --arrow-size: {{ section.settings.arrow_size }}px;
+    
+    --progress-bg: {{ section.settings.progress_bar_background }};
+    --progress-fill: {{ section.settings.progress_bar_fill }};
+    --progress-height: {{ section.settings.progress_bar_height }}px;
+    
+    --dots-color: {{ section.settings.dots_color }};
+    --dots-active-color: {{ section.settings.dots_active_color }};
+  }
+  .accordion-slider-section--{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+  }
+{%- endstyle -%}
+
+<div class="accordion-slider-section  color-{{ section.settings.color_scheme }} isolate gradient  accordion-slider-section--{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="page-width {% if section.settings.full_width %}full-width{% endif %}">
+    <div class="accordion-slider---inner-row">
+    {%- if section.settings.section_heading != blank -%}
+      <div class="accordion-slider-header">
+        <{{ section.settings.heading_tag }} class="accordion-slider-heading">
+          {{ section.settings.section_heading }}
+        </{{ section.settings.heading_tag }}>
+        
+        {%- if section.settings.section_subheading != blank -%}
+          <p class="accordion-slider-subheading" style="font-size: {{ section.settings.subheading_size }}px;">
+            {{ section.settings.section_subheading }}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="slider-wrapper accordion-slider-wrapper">
+      <swiper-container 
+        init="false" 
+        class="js-swiper-template accordion-swiper"
+        data-swiper-config='{
+          "autoplay": {{ section.settings.enable_autoplay | default: false }},
+          "autoplayInterval": {{ section.settings.autoplay_interval | times: 1000 | default: 3000 }},
+          "mobileSlides": {{ section.settings.mobile_slides | default: 1.2 }},
+          "mobileSpacing": {{ section.settings.mobile_spacing | default: 16 }},
+          "desktopSlides": {{ section.settings.desktop_slides | default: 3 }},
+          "desktopSpacing": {{ section.settings.desktop_spacing | default: 24 }}
+        }'
+      >
+        {%- for block in section.blocks -%}
+          <swiper-slide {{ block.shopify_attributes }}>
+            <div class="accordion-card {% if block.settings.default_open %}is-open{% endif %}" data-accordion-card>
+              {%- if block.settings.card_image != blank -%}
+                <div class="accordion-card-image">
+                  <img 
+                    src="{{ block.settings.card_image | image_url: width: 800 }}"
+                    srcset="{{ block.settings.card_image | image_url: width: 400 }} 400w,
+                            {{ block.settings.card_image | image_url: width: 600 }} 600w,
+                            {{ block.settings.card_image | image_url: width: 800 }} 800w"
+                    sizes="(max-width: 767px) 90vw, 400px"
+                    alt="{{ block.settings.card_image.alt | default: block.settings.card_title | escape }}"
+                    loading="lazy"
+                    width="{{ block.settings.card_image.width }}"
+                    height="{{ block.settings.card_image.height }}"
+                  >
+                </div>
+              {%- else -%}
+                <div class="accordion-card-image accordion-card-image--placeholder">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {%- endif -%}
+              
+              <div class="accordion-card-content">
+                <div class="accordion-card-header">
+                  {%- if block.settings.card_title != blank -%}
+                    <h3 class="accordion-card-title">{{ block.settings.card_title }}</h3>
+                  {%- endif -%}
+                  
+                  <button type="button" class="accordion-toggle-btn" aria-expanded="{% if block.settings.default_open %}true{% else %}false{% endif %}" aria-label="Toggle accordion">
+                    <span class="toggle-icon toggle-icon--plus">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </span>
+                    <span class="toggle-icon toggle-icon--minus">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+                
+                {%- if block.settings.card_content != blank -%}
+                  <div class="accordion-card-body">
+                    <div class="accordion-card-body-inner">
+                      {{ block.settings.card_content }}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          </swiper-slide>
+        {%- endfor -%}
+      </swiper-container>
+
+      <div class="swiper-custom-controls">
+        <div class="swiper-custom-prev swiper-custom-arrow 
+          {% unless section.settings.mobile_arrows %}hide-on-mobile{% endunless %} 
+          {% unless section.settings.desktop_arrows %}hide-on-desktop{% endunless %}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </div>
+        
+        <div class="swiper-custom-pagination 
+          {% unless section.settings.mobile_dots %}hide-on-mobile{% endunless %} 
+          {% unless section.settings.desktop_dots %}hide-on-desktop{% endunless %}">
+        </div>
+        
+        <div class="swiper-custom-next swiper-custom-arrow 
+          {% unless section.settings.mobile_arrows %}hide-on-mobile{% endunless %} 
+          {% unless section.settings.desktop_arrows %}hide-on-desktop{% endunless %}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <div class="swiper-custom-scrollbar
+        {% unless section.settings.mobile_scrollbar %}hide-on-mobile{% endunless %} 
+        {% unless section.settings.desktop_scrollbar %}hide-on-desktop{% endunless %}">
+      </div>
+
+      <div class="swiper-progress-track
+        {% unless section.settings.mobile_progress_bar %}hide-on-mobile{% endunless %} 
+        {% unless section.settings.desktop_progress_bar %}hide-on-desktop{% endunless %}">
+        <div class="swiper-progress-fill"></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const section = document.querySelector('.accordion-slider-section--{{ section.id }}');
+    
+    function initAccordion() {
+      if (!section) return;
+      
+      const cards = section.querySelectorAll('[data-accordion-card]');
+      
+      cards.forEach(card => {
+        const toggleBtn = card.querySelector('.accordion-toggle-btn');
+        
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isOpen = card.classList.contains('is-open');
+            
+            {%- if section.settings.accordion_behavior == 'single' -%}
+              // Close all other accordions in this section
+              cards.forEach(otherCard => {
+                if (otherCard !== card) {
+                  otherCard.classList.remove('is-open');
+                  const otherBtn = otherCard.querySelector('.accordion-toggle-btn');
+                  if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                }
+              });
+            {%- endif -%}
+            
+            card.classList.toggle('is-open');
+            toggleBtn.setAttribute('aria-expanded', !isOpen);
+          });
+        }
+      });
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAccordion);
+    } else {
+      initAccordion();
+    }
+    
+    // Shopify editor support
+    document.addEventListener('shopify:section:load', (e) => {
+      if (e.target.contains(section)) {
+        initAccordion();
+        templateSliderManager.init();
+      }
+    });
+    
+    document.addEventListener('shopify:block:select', (e) => {
+      const block = section.querySelector(`[data-shopify-editor-block="${e.detail.blockId}"]`);
+      if (block) {
+        const card = block.querySelector('[data-accordion-card]');
+        if (card) {
+          card.classList.add('is-open');
+          const btn = card.querySelector('.accordion-toggle-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Accordion Slider",
+  "tag": "section",
+  "class": "accordion-slider-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section full background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "📝 Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Heading",
+      "default": "Lorem Ipsum Dolor Sit Amet Consectetur"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Size (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Size (Mobile)",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "section_subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading Size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "🎨 Section Styling"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "🖼️ Card Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 150,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Image Height (Desktop)",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "min": 100,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Image Height (Mobile)",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "🃏 Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "card_title_font_weight",
+      "label": "Card Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "card_content_color",
+      "label": "Card Content Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "range",
+      "id": "card_content_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Content Size (Desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_content_size_mobile",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Content Size (Mobile)",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "🔘 Toggle Button"
+    },
+    {
+      "type": "color",
+      "id": "toggle_button_background",
+      "label": "Toggle Button Background",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "toggle_button_color",
+      "label": "Toggle Button Icon Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "toggle_button_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Toggle Button Size",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "toggle_button_icon_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Toggle Button Icon Size",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "📂 Accordion Behavior"
+    },
+    {
+      "type": "select",
+      "id": "accordion_behavior",
+      "label": "Accordion Behavior",
+      "options": [
+        { "value": "single", "label": "Only one open at a time" },
+        { "value": "multiple", "label": "Multiple can be open" }
+      ],
+      "default": "single"
+    },
+    {
+      "type": "header",
+      "content": "⚙️ Slider Configuration"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_interval",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay Interval",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "💻 Desktop Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_slides",
+      "min": 1,
+      "max": 6,
+      "step": 0.1,
+      "label": "Slides per view",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "desktop_spacing",
+      "min": 0,
+      "max": 100,
+      "label": "Spacing (px)",
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_arrows",
+      "label": "Show Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_dots",
+      "label": "Show Dots",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_scrollbar",
+      "label": "Show Draggable Scrollbar",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_progress_bar",
+      "label": "Show Visual Progress Bar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "📱 Mobile Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_slides",
+      "min": 1,
+      "max": 6,
+      "step": 0.1,
+      "label": "Slides per view",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "mobile_spacing",
+      "min": 0,
+      "max": 50,
+      "label": "Spacing (px)",
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_arrows",
+      "label": "Show Arrows",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_dots",
+      "label": "Show Dots",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_scrollbar",
+      "label": "Show Draggable Scrollbar",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_progress_bar",
+      "label": "Show Visual Progress Bar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "🎯 Arrow Styling"
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Arrow Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Icon Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "min": 30,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Arrow Button Size",
+      "default": 44
+    },
+    {
+      "type": "header",
+      "content": "📊 Progress Bar Styling"
+    },
+    {
+      "type": "color",
+      "id": "progress_bar_background",
+      "label": "Progress Bar Background",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "progress_bar_fill",
+      "label": "Progress Bar Fill",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "progress_bar_height",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Progress Bar Height",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "⚫ Dots Styling"
+    },
+    {
+      "type": "color",
+      "id": "dots_color",
+      "label": "Dots Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "dots_active_color",
+      "label": "Active Dot Color",
+      "default": "#1a1a1a"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion_card",
+      "name": "Accordion Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card Title",
+          "default": "quis nostrud exercitation"
+        },
+        {
+          "type": "richtext",
+          "id": "card_content",
+          "label": "Card Content",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "default_open",
+          "label": "Open by Default",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion Slider",
+      "blocks": [
+        {
+          "type": "accordion_card",
+          "settings": {
+            "card_title": "quis nostrud exercitation",
+            "default_open": true
+          }
+        },
+        {
+          "type": "accordion_card",
+          "settings": {
+            "card_title": "quis nostrud exercitation"
+          }
+        },
+        {
+          "type": "accordion_card",
+          "settings": {
+            "card_title": "quis nostrud exercitation"
+          }
+        },
+        {
+          "type": "accordion_card",
+          "settings": {
+            "card_title": "quis nostrud exercitation"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

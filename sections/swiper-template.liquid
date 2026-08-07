@@ -1,0 +1,105 @@
+<div class="template-slider-section" data-block-id="{{ section.id }}">
+  <div class="slider-wrapper relative-container">
+    <div class="swiper-custom-header">
+      <div class="swiper-custom-heading">
+        {%- if section.settings.block_heading != blank -%}
+          {{ section.settings.block_heading }}
+        {%- endif -%}
+        </div>
+    </div>
+    
+    <swiper-container 
+        init="false" 
+        class="js-swiper-template"
+        data-swiper-config='{
+            "autoplay": {{ section.settings.enable_autoplay | default: false }},
+            "autoplayInterval": {{ section.settings.autoplay_interval | times: 1000 | default: 3000 }},
+            "mobileSlides": {{ section.settings.mobile_slides | default: 1.2 }},
+            "mobileSpacing": {{ section.settings.mobile_spacing | default: 16 }},
+            "desktopSlides": {{ section.settings.desktop_slides | default: 4 }},
+            "desktopSpacing": {{ section.settings.desktop_spacing | default: 24 }}
+        }'
+    >
+        {%- for i in (1..6) -%}
+            <swiper-slide>
+                {% render 'card-product',
+                    show_vendor: section.settings.show_vendor,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    lazy_load: false,
+                    placeholder_image: placeholder_image
+                %}
+            </swiper-slide>
+        {%- endfor -%}
+    </swiper-container>
+
+    <div class="swiper-custom-controls">
+        <div class="swiper-custom-prev swiper-custom-arrow 
+            {% unless section.settings.mobile_arrows %}hide-on-mobile{% endunless %} 
+            {% unless section.settings.desktop_arrows %}hide-on-desktop{% endunless %}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </div>
+        
+        <div class="swiper-custom-pagination 
+            {% unless section.settings.mobile_dots %}hide-on-mobile{% endunless %} 
+            {% unless section.settings.desktop_dots %}hide-on-desktop{% endunless %}">
+        </div>
+
+        <div class="swiper-custom-next swiper-custom-arrow 
+            {% unless section.settings.mobile_arrows %}hide-on-mobile{% endunless %} 
+            {% unless section.settings.desktop_arrows %}hide-on-desktop{% endunless %}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+    </div>
+
+    <div class="swiper-custom-scrollbar
+        {% unless section.settings.mobile_scrollbar %}hide-on-mobile{% endunless %} 
+        {% unless section.settings.desktop_scrollbar %}hide-on-desktop{% endunless %}">
+    </div>
+
+    <div class="swiper-progress-track
+        {% unless section.settings.mobile_progress_bar %}hide-on-mobile{% endunless %} 
+        {% unless section.settings.desktop_progress_bar %}hide-on-desktop{% endunless %}">
+         <div class="swiper-progress-fill"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('shopify:block:select', (e) => {
+    const container = document.querySelector(`.template-slider-section[data-block-id="${e.detail.blockId}"] swiper-container`);
+    if (container) templateSliderManager.initSingleSlider(container);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Slider",
+  "settings": [
+    { "type": "text", "id": "block_heading", "label": "Heading", "default": "Swiper template" },
+    { "type": "header", "content": "⚙️ Configuration" },
+    { "type": "checkbox", "id": "enable_autoplay", "label": "Enable Autoplay", "default": false },
+    { "type": "range", "id": "autoplay_interval", "min": 2, "max": 10, "step": 1, "unit": "s", "label": "Autoplay Interval", "default": 3 },
+    { "type": "header", "content": "💻 Desktop Settings" },
+    { "type": "range", "id": "desktop_slides", "min": 1, "max": 6, "step": 0.1, "label": "Slides per view", "default": 4 },
+    { "type": "range", "id": "desktop_spacing", "min": 0, "max": 100, "label": "Spacing (px)", "default": 24 },
+    { "type": "checkbox", "id": "desktop_arrows", "label": "Show Arrows", "default": true },
+    { "type": "checkbox", "id": "desktop_dots", "label": "Show Dots", "default": false },
+    { "type": "checkbox", "id": "desktop_scrollbar", "label": "Show Draggable Scrollbar", "default": false },
+    { "type": "checkbox", "id": "desktop_progress_bar", "label": "Show Visual Progress Bar", "default": true },
+    { "type": "header", "content": "📱 Mobile Settings" },
+    { "type": "range", "id": "mobile_slides", "min": 1, "max": 6, "step": 0.1, "label": "Slides per view", "default": 1.2 },
+    { "type": "range", "id": "mobile_spacing", "min": 0, "max": 50, "label": "Spacing (px)", "default": 16 },
+    { "type": "checkbox", "id": "mobile_arrows", "label": "Show Arrows", "default": false },
+    { "type": "checkbox", "id": "mobile_dots", "label": "Show Dots", "default": true },
+    { "type": "checkbox", "id": "mobile_scrollbar", "label": "Show Draggable Scrollbar", "default": false },
+    { "type": "checkbox", "id": "mobile_progress_bar", "label": "Show Visual Progress Bar", "default": true }
+  ],
+  "presets": [
+    {
+      "name": "Swiper Slider"
+    }
+  ]
+}
+{% endschema %}

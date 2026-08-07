@@ -1,0 +1,84 @@
+.lx-slider-image-item img {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    height: 100%;
+}
+.lx-slider-image-item {
+    display: flex;
+}
+.lx-slider-images-wrapper .swiper.lxMetafieldSwiperImages {
+    max-width: 100%;
+}
+.lx-slider-images--wrappper swiper-container.js-swiper-template {
+    max-width: 100%;
+}
+.lx-slider-images-inner {
+    display: flex;
+    justify-content: center;
+}
+.lx-slider-images-wrapper {
+  margin-top: 20px;
+}
+div#progressBar {
+  width: var(---bar-width);
+}
+.product-lx-tabs-btn-item img {
+    max-width: 20px;
+    max-height: 20px;
+}
+.lx-meta-prev, .lx-meta-next {
+    cursor: pointer;
+    font-size: 26px;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    border: 1px solid #00000026;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.lx-slider-images-wrapper {
+    position: relative;
+}
+.lx-meta-prev {
+    left: 0px;
+}
+span.lx-faq-wrapper-q-inner img {
+    max-width: 20px;
+    max-height: 20px;
+}
+.lx-meta-next {
+  right: 0px;
+}
+.lx-icon-with-text-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.lx-meta-prev, .lx-meta-next {
+    transition: 0.5s ease;
+}
+.lx-slider-images-wrapper div.swiper-wrapper {
+    padding-bottom: 2px;
+}
+.lx-meta-prev:hover, .lx-meta-next:hover {
+    background: black;
+}
+
+.lx-meta--image-btn:hover svg path {
+    stroke: white;
+}
+
+.lx-meta--image-btn svg path {
+    transition: 0.5s ease;
+}
+.lx-slider-image-item {
+    cursor: pointer;
+}

@@ -1,0 +1,89 @@
+{{ 'bundle_product.css' | asset_url | stylesheet_tag }}
+
+
+<div class="bundle_product--row" style="
+    ---pr-size:{{ block.settings.price_font_desktop }}px;
+    ---pr-m-size:{{ block.settings.price_font_mobile }}px;
+    ---cpr-size:{{ block.settings.compare_price_font_desktop }}px;
+    ---cpr-m-size:{{ block.settings.compare_price_font_mobile }}px;
+    ---pr-color:{{ block.settings.price_color }};
+    ---cpr-color:{{ block.settings.compare_price_color }};
+    ---icon-size:{{ block.settings.icon-size }}px;
+    ---text-size:{{ block.settings.text-size }}px;
+    ---top-bg:{{ block.settings.bg_color }};
+    ---bn-img:{{ block.settings.bundle-image }}px;
+    ---bn-img-m:{{ block.settings.bundle-image-m }}px;
+    ---bn-title:{{ block.settings.bundle_title }}px;
+    "
+>
+    {% if block.settings.title != blank %}
+        <div class="bundle_product--header">
+            <span class="bundle_product--line"></span>
+            <h3>{{ block.settings.title }}</h3>
+            <span class="bundle_product--line"></span>
+        </div>
+    {% endif %}
+    {% assign bundle_product = product.metafields.custom.bundle_product.value %}
+    {% for bundle_product in bundle_product %}
+        <div class="bundle_product--body">
+            <div class="bundle_product--body-top">
+                {% render 'lx-liquid-image' image: bundle_product.icon %}
+                {% if bundle_product.text != '' %}
+                    <div class="bundle_product--top-text">
+                        {{ bundle_product.text | metafield_tag }}
+                    </div>
+                {% endif %}
+            </div>
+            {% assign product_item = bundle_product.product.value %}
+            <div class="bundle_product--body-wrapper">
+               <div class="bundle_product--body-img">
+                 {% render 'lx-liquid-image' image: product_item.featured_image %}
+               </div>
+               <div class="bundle_product--body-info">
+                 <div class="bundle_product--body-info-left">
+                    <div class="bundle_product--intro">
+                        <h3>{{ product_item.title }}</h3>
+                        {%- if product_item.compare_at_price > product_item.price -%}
+                            {% assign discount_amount = product_item.compare_at_price | minus: product_item.price %}
+                            {% assign discount_percent = discount_amount | times: 100 | divided_by: product_item.compare_at_price | floor %}
+
+                            <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
+                                {{ discount_percent }}% OFF
+                            </span>
+                        {%- endif -%}
+                    </div>
+                    <div class="bundle_product--intro-items">
+                        {% for bundle_point in bundle_product.icon_with_text.value %}
+                           {% if bundle_point.icon != '' %}
+                            <div class="product--intro-item">
+                                {% render 'lx-liquid-image' image: bundle_point.icon %}
+                                {% if bundle_point.text != '' %}
+                                    <span>{{ bundle_point.text }}</span>
+                                {% endif %}
+                            </div>
+                           {% endif %}
+                        {% endfor %}
+                    </div>
+                 </div>
+                 <div class="bundle_product--body-info-right" style="--add-btn-bg:{{ block.settings.btn_color }};">
+                    <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                        {%- render 'price',
+                            product: product_item,
+                            use_variant: true,
+                            show_badges: true,
+                            price_class: 'price--large'
+                        -%}
+                    </div>
+                    {%- render 'lx-add-btn',
+                        block: block,
+                        product: product,
+                        product_form_id: product_form_id,
+                        section_id: section.id,
+                        show_pickup_availability: true
+                    -%}
+                 </div>
+               </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

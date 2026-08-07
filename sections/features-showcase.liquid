@@ -1,0 +1,863 @@
+{%- style -%}
+  #Features-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --heading-font-size: {{ section.settings.heading_font_size }}px;
+    --card-bg-color: {{ section.settings.card_background_color }};
+    --card-border-color: {{ section.settings.card_border_color }};
+    --card-border-radius: {{ section.settings.card_border_radius }}px;
+    --card-title-color: {{ section.settings.card_title_color }};
+    --card-title-size: {{ section.settings.card_title_font_size }}px;
+    --card-desc-color: {{ section.settings.card_description_color }};
+    --card-desc-size: {{ section.settings.card_description_font_size }}px;
+    --icon-bg-color: {{ section.settings.icon_background_color }};
+    --icon-border-color: {{ section.settings.icon_border_color }};
+    --icon-color: {{ section.settings.icon_color }};
+    --icon-size: {{ section.settings.icon_size }}px;
+    --center-image-width: {{ section.settings.center_image_width }}px;
+    --section-bg-color: {{ section.settings.section_background_color }};
+  }
+
+  @media screen and (max-width: 990px) {
+    #Features-{{ section.id }} {
+      --heading-font-size: {{ section.settings.heading_font_size | times: 0.8 }}px;
+      --center-image-width: {{ section.settings.center_image_width | times: 0.7 }}px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #Features-{{ section.id }} {
+      --heading-font-size: {{ section.settings.heading_font_size | times: 0.6 }}px;
+      --card-title-size: {{ section.settings.card_title_font_size | times: 0.9 }}px;
+      --card-desc-size: {{ section.settings.card_description_font_size | times: 0.9 }}px;
+    }
+    .features-showcase {
+        padding: 30px 0!important;
+    }
+  }
+{%- endstyle -%}
+
+<section id="Features-{{ section.id }}" class="features-showcase color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="features-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="features-content">
+      {%- comment -%} Left Features {%- endcomment -%}
+      <div class="features-column features-left">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.position == 'left' -%}
+            {%- if block.settings.title != blank or block.settings.description != blank -%}
+              <div class="feature-card feature-card--left" {{ block.shopify_attributes }}>
+                <div class="feature-card__content">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="feature-card__title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.description != blank -%}
+                    <p class="feature-card__description">{{ block.settings.description }}</p>
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.show_icon -%}
+                  <div class="feature-card__icon">
+                    {%- if block.settings.custom_icon != blank -%}
+                      <img 
+                        src="{{ block.settings.custom_icon | image_url: width: 60 }}" 
+                        alt="{{ block.settings.title | escape }}"
+                        width="60"
+                        height="60"
+                        loading="lazy"
+                      >
+                    {%- else -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M32 8c-8 0-16 4-16 12s8 12 16 20c8-8 16-12 16-20s-8-12-16-12z"/>
+                        <path d="M20 36c-4 2-8 6-8 12h40c0-6-4-10-8-12"/>
+                        <circle cx="32" cy="20" r="4"/>
+                        <path d="M28 44l4 12 4-12"/>
+                        <path d="M12 28c-2 2-4 6-4 10"/>
+                        <path d="M52 28c2 2 4 6 4 10"/>
+                      </svg>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} Center Image {%- endcomment -%}
+      <div class="features-center">
+        {%- if section.settings.center_image != blank -%}
+          <div class="features-center__image">
+            <img 
+              src="{{ section.settings.center_image | image_url: width: section.settings.center_image_width }}"
+              srcset="{{ section.settings.center_image | image_url: width: 400 }} 400w,
+                      {{ section.settings.center_image | image_url: width: 600 }} 600w,
+                      {{ section.settings.center_image | image_url: width: 800 }} 800w,
+                      {{ section.settings.center_image | image_url: width: 1000 }} 1000w"
+              sizes="(max-width: 749px) 60vw, (max-width: 990px) 40vw, {{ section.settings.center_image_width }}px"
+              alt="{{ section.settings.center_image_alt | default: section.settings.heading | escape }}"
+              width="{{ section.settings.center_image_width }}"
+              height="auto"
+              loading="lazy"
+            >
+          </div>
+        {%- else -%}
+          <div class="features-center__placeholder">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Right Features {%- endcomment -%}
+      <div class="features-column features-right">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.position == 'right' -%}
+            {%- if block.settings.title != blank or block.settings.description != blank -%}
+              <div class="feature-card feature-card--right" {{ block.shopify_attributes }}>
+                {%- if block.settings.show_icon -%}
+                  <div class="feature-card__icon">
+                    {%- if block.settings.custom_icon != blank -%}
+                      <img 
+                        src="{{ block.settings.custom_icon | image_url: width: 60 }}" 
+                        alt="{{ block.settings.title | escape }}"
+                        width="60"
+                        height="60"
+                        loading="lazy"
+                      >
+                    {%- else -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M32 8c-8 0-16 4-16 12s8 12 16 20c8-8 16-12 16-20s-8-12-16-12z"/>
+                        <path d="M20 36c-4 2-8 6-8 12h40c0-6-4-10-8-12"/>
+                        <circle cx="32" cy="20" r="4"/>
+                        <path d="M28 44l4 12 4-12"/>
+                        <path d="M12 28c-2 2-4 6-4 10"/>
+                        <path d="M52 28c2 2 4 6 4 10"/>
+                      </svg>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                <div class="feature-card__content">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="feature-card__title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.description != blank -%}
+                    <p class="feature-card__description">{{ block.settings.description }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- comment -%} Button {%- endcomment -%}
+    {%- if section.settings.button_label != blank -%}
+      <div class="features-button-wrapper">
+        <a 
+          href="{{ section.settings.button_link }}" 
+          class="features-button {% if section.settings.button_style == 'outline' %}features-button--outline{% endif %}"
+          style="
+            --btn-bg: {{ section.settings.button_background_color }};
+            --btn-text: {{ section.settings.button_text_color }};
+            --btn-border: {{ section.settings.button_border_color }};
+            --btn-hover-bg: {{ section.settings.button_hover_background_color }};
+            --btn-hover-text: {{ section.settings.button_hover_text_color }};
+            --btn-font-size: {{ section.settings.button_font_size }}px;
+            --btn-padding-x: {{ section.settings.button_padding_horizontal }}px;
+            --btn-padding-y: {{ section.settings.button_padding_vertical }}px;
+            --btn-border-radius: {{ section.settings.button_border_radius }}px;
+          "
+        >
+          {{ section.settings.button_label }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .features-showcase {
+    padding-top: var(--section-padding-top);
+    padding-bottom: var(--section-padding-bottom);
+  }
+
+  .features-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+h2.features-heading {
+    margin-top: 0;
+}  .features-heading {
+    text-align: center;
+    font-size: var(--heading-font-size);
+    margin-bottom: 60px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .features-content {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .features-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .features-left {
+    align-items: flex-end;
+  }
+
+  .features-right {
+    align-items: flex-start;
+  }
+
+  .feature-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
+    padding: 20px 24px;
+    {% comment %} max-width: 340px; {% endcomment %}
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .feature-card--left {
+    flex-direction: row;
+  }
+
+  .feature-card--left .feature-card__content {
+    text-align: right;
+  }
+
+  .feature-card--right {
+    flex-direction: row;
+  }
+
+  .feature-card--right .feature-card__content {
+    text-align: left;
+  }
+
+  .feature-card__icon {
+    flex-shrink: 0;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    border-radius: 50%;
+    background-color: var(--icon-bg-color);
+    border: 2px solid var(--icon-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .feature-card__icon svg {
+    width: 100%;
+    height: 100%;
+    color: var(--icon-color);
+  }
+
+  .feature-card__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .feature-card__content {
+    flex: 1;
+  }
+
+  .feature-card__title {
+    font-size: var(--card-title-size);
+    color: var(--card-title-color);
+    margin: 0 0 8px 0;
+    font-weight: 600;
+  }
+
+  p.feature-card__description {
+    font-size: var(--card-desc-size);
+    color: var(--card-desc-color);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .features-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .features-center__image {
+    max-width: var(--center-image-width);
+    width: 100%;
+  }
+
+  .features-center__image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .features-center__placeholder {
+    width: var(--center-image-width);
+    max-width: 100%;
+  }
+
+  .features-center__placeholder .placeholder-svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .features-button-wrapper {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .features-button {
+    display: inline-block;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 2px solid var(--btn-border);
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-size: var(--btn-font-size);
+    border-radius: var(--btn-border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .features-button:hover {
+    background-color: var(--btn-hover-bg);
+    color: var(--btn-hover-text);
+  }
+
+  .features-button--outline {
+    background-color: transparent;
+  }
+
+  .features-button--outline:hover {
+    background-color: var(--btn-hover-bg);
+  }
+
+  @media (min-width: 990px){
+    .features-left .feature-card__icon {
+        margin-right: -50px;
+    }
+
+    .features-right .feature-card__icon {
+        margin-left: -50px;
+    }
+  }
+  
+  @media (min-width: 750px){
+    .feature-card {
+        max-width: 350px;
+    }
+
+    .feature-card.feature-card--left {
+        margin-right: auto;
+    }
+
+    .feature-card.feature-card--right {
+        margin-left: auto;
+    }
+  }
+  /* Tablet Responsive */
+  @media screen and (max-width: 990px) {
+    .features-content {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 30px;
+    }
+
+    .features-center {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      margin-bottom: 20px;
+    }
+
+    .features-left,
+    .features-right {
+      align-items: center;
+    }
+
+    .feature-card {
+      max-width: 100%;
+    }
+
+    .feature-card--left {
+      flex-direction: row-reverse;
+    }
+
+    .feature-card--left .feature-card__content {
+      text-align: left;
+    }
+  }
+
+  /* Mobile Responsive */
+  @media screen and (max-width: 749px) {
+    .features-heading {
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+    .feature-card.feature-card--left {
+        flex-direction: row-reverse;
+    }
+    .features-content {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .features-center {
+      grid-row: 1;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    .features-left {
+      grid-row: 2;
+    }
+
+    .features-right {
+      grid-row: 3;
+    }
+
+    .feature-card {
+      padding: 16px 20px;
+    }
+
+    .feature-card--left,
+    .feature-card--right {
+      flex-direction: row;
+    }
+
+    .feature-card--left .feature-card__content,
+    .feature-card--right .feature-card__content {
+      text-align: left;
+    }
+
+    .features-button-wrapper {
+      margin-top: 30px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Features Showcase",
+  "tag": "section",
+  "class": "section-features-showcase",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FEATURES"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Center Image"
+    },
+    {
+      "type": "text",
+      "id": "center_image_alt",
+      "label": "Center Image Alt Text",
+      "info": "Describe the image for accessibility"
+    },
+    {
+      "type": "range",
+      "id": "center_image_width",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Center Image Width",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Heading Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 20,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 42
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border Color",
+      "default": "#e8e8e8"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Card Title Typography"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Font Size",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Card Description Typography"
+    },
+    {
+      "type": "color",
+      "id": "card_description_color",
+      "label": "Card Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "card_description_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Icon Styling"
+    },
+    {
+      "type": "color",
+      "id": "icon_background_color",
+      "label": "Icon Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_border_color",
+      "label": "Icon Border Color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 40,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "outline",
+          "label": "Outline"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Button Hover Background Color",
+      "default": "#2d2d4a"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Lorem ipsum"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show Icon",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon",
+          "info": "Upload a custom icon (recommended size: 60x60px). Leave empty for default icon."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Showcase",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "position": "left",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "position": "left",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "position": "left",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "position": "right",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Nunc id tellus vel vitae urna facilisis nibh ut vitae.",
+            "show_icon": true
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "position": "right",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Nunc id tellus vel vitae urna facilisis nibh ut vitae.",
+            "show_icon": true
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "position": "right",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Nunc id tellus vel vitae urna facilisis nibh ut vitae.",
+            "show_icon": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
