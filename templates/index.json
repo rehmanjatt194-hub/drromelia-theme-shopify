@@ -1,1 +1,948 @@
-{"sections":{"swiper_template_qkE74p":{"type":"swiper-template","disabled":true,"name":"Slider template","settings":{"block_heading":"Pairs well with","enable_autoplay":false,"autoplay_interval":3,"desktop_slides":4,"desktop_spacing":24,"desktop_arrows":true,"desktop_dots":true,"desktop_scrollbar":true,"desktop_progress_bar":true,"mobile_slides":1.5,"mobile_spacing":16,"mobile_arrows":false,"mobile_dots":false,"mobile_scrollbar":false,"mobile_progress_bar":true}},"image_banner_ABjkTH":{"type":"image-banner","blocks":{"review_mrQiNm":{"type":"review","settings":{"review":"shopify:\/\/shop_images\/Group_1413372262.svg","text":"<p>4.8 average ratings | Based on 800+ reviews<\/p>","object":"contain","height":17}},"heading_rWEc3q":{"type":"heading","settings":{"heading":"<p>Shilajit For Everyone &<br\/>Every Day<\/p>","heading_size":"medium"}},"text_K7xYdb":{"type":"text","settings":{"text":"<p>Pure Power. No Fillers.<br\/>Authentic Himalayan Shilajit to fuel energy, focus & recovery.<\/p>","text_style":"body","upper":false,"font-size":18,"font-size-m":14}},"buttons_JLWeTc":{"type":"buttons","settings":{"button_label_1":"Unlock Your Daily Strength","button_link_1":"shopify:\/\/collections","button_style_secondary_1":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}},"review_info_qHG9hf":{"type":"review-info","settings":{"name":"John Smith","review":"shopify:\/\/shop_images\/Group_1413372262.svg","text":"<p>Finally a sleep mask that doesn’t hurt and sweat my eyes. I sleep better already.<\/p>"}}},"block_order":["review_mrQiNm","heading_rWEc3q","text_K7xYdb","buttons_JLWeTc","review_info_qHG9hf"],"name":"t:sections.image-banner.presets.name","settings":{"image":"shopify:\/\/shop_images\/Group_1413372262.png","image_m":"shopify:\/\/shop_images\/Group_1413372264_1.png","image_overlay_opacity":0,"image_height":"adapt","image_behavior":"none","desktop_content_position":"middle-left","desktop_content_alignment":"left","show_text_box":false,"color_scheme":"scheme-1","stack_images_on_mobile":false,"mobile_content_alignment":"left","show_text_below":false}},"lx_as_seen_as_bFQdpE":{"type":"lx-as-seen-as","blocks":{"image_RH8n9J":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/image_3.png","image_width":90,"link":""}},"image_WyncCm":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/image_4.png","image_width":200,"link":""}},"image_CNXgyD":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/image_5.png","image_width":85,"link":""}},"image_wBy48M":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Mask_group.png","image_width":50,"link":""}},"image_xUKVAw":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/image_900.png","image_width":150,"link":""}},"image_TgH3p3":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/image_6.png","image_width":125,"link":""}}},"block_order":["image_RH8n9J","image_WyncCm","image_CNXgyD","image_wBy48M","image_xUKVAw","image_TgH3p3"],"name":"Scrolling Info","settings":{"color_scheme":"scheme-1","heading":"As Seen In:","full_width":true,"use_alt_bg":false,"text_size":50,"vertical_padding":20,"speed":29,"direction":"right","font":"heading","space":50}},"difference_features_kz3Upz":{"type":"difference-features","blocks":{"feature_YY4FpP":{"type":"feature","settings":{"icon_image":"shopify:\/\/shop_images\/Rectangle_37_15d3f9df-e060-4bbd-896c-a8d98109a8d8.png","icon_svg":"","default_icon":"energy","title":"","description":"Feel more awake, focused, and productive all day with a steady, natural energy release.","override_icon_color":"","override_title_color":"","override_text_color":"","override_card_bg":"","icon_size":80,"icon_size_mobile":55,"icon_spacing":20}},"feature_xFVJ7q":{"type":"feature","settings":{"icon_image":"shopify:\/\/shop_images\/Rectangle_37_58a50cf7-e77e-4122-99b9-c06618a88285.png","icon_svg":"","default_icon":"energy","title":"","description":"Feel more awake, focused, and productive all day with a steady, natural energy release.","override_icon_color":"","override_title_color":"","override_text_color":"","override_card_bg":"","icon_size":80,"icon_size_mobile":55,"icon_spacing":20}},"feature_C4PUTY":{"type":"feature","settings":{"icon_image":"shopify:\/\/shop_images\/Rectangle_37_7ed06b4f-5f30-4e5d-969e-48d7371eae06.png","icon_svg":"","default_icon":"energy","title":"","description":"Feel more awake, focused, and productive all day with a steady, natural energy release.","override_icon_color":"","override_title_color":"","override_text_color":"","override_card_bg":"","icon_size":80,"icon_size_mobile":55,"icon_spacing":20}}},"block_order":["feature_YY4FpP","feature_xFVJ7q","feature_C4PUTY"],"name":"Difference Features","settings":{"color_scheme":"scheme-1","heading":"The Difference You Can Feel","accent_text":"Feel","subheading":"","heading_tag":"h2","heading_alignment":"center","heading_size":32,"heading_size_mobile":24,"heading_font_weight":"400","heading_margin_bottom":50,"accent_color":"#6F2C91","accent_font_style":"italic","accent_font_weight":"600","card_alignment":"center","card_background":"rgba(0,0,0,0)","card_padding":40,"card_padding_mobile":15,"card_border_radius":0,"card_border_width":0,"card_border_color":"#e0e0e0","card_shadow":false,"card_hover_effect":false,"card_gap":30,"card_gap_mobile":20,"card_title_color":"#1a1a1a","card_title_size":18,"card_title_size_mobile":16,"card_title_font_weight":"600","card_title_spacing":10,"text_size":16,"text_size_mobile":14,"text_line_height":1.6,"max_width":1400,"columns_desktop":3,"columns_tablet":2,"columns_mobile":1,"padding_top":60,"padding_bottom":60,"padding_top_mobile":40,"padding_bottom_mobile":40,"enable_slider_desktop":false,"enable_slider_mobile":true,"enable_autoplay":false,"autoplay_interval":3,"desktop_slides":3,"desktop_spacing":24,"desktop_arrows":true,"desktop_dots":true,"desktop_scrollbar":false,"desktop_progress_bar":false,"mobile_slides":1,"mobile_spacing":16,"mobile_arrows":false,"mobile_dots":true,"mobile_scrollbar":false,"mobile_progress_bar":false,"arrow_bg_color":"#ffffff","arrow_hover_bg_color":"#f5f5f5","arrow_color":"#1a1a1a","arrow_border_color":"#e0e0e0","dot_color":"#1a1a1a","dot_active_color":"#1a1a1a","progress_track_color":"#e0e0e0","progress_fill_color":"#1a1a1a"}},"featured_collection_9QMpdy":{"type":"featured-collection","name":"t:sections.featured-collection.presets.name","settings":{"collection":"frontpage","products_to_show":10,"title":"Featured collection","heading_size":"h1","description":"","show_description":false,"description_style":"body","columns_desktop":4,"enable_desktop_slider":false,"full_width":false,"show_view_all":true,"view_all_style":"solid","color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"quick_add":"standard","columns_mobile":"1","swipe_on_mobile":false,"padding_top":36,"padding_bottom":36}},"featured_product_XUyTPk":{"type":"featured-product","blocks":{"title_MRbdjj":{"type":"title","settings":{"heading_size":"h1"}},"content_AATAhe":{"type":"content","settings":{"text":"<p>Our purest form — raw Himalayan Shilajit resin packed with 85+ minerals and fulvic acid.<br\/>Designed to help restore vitality, enhance endurance, and promote hormonal balance.<br\/>Each jar is triple-tested for purity and potency.<\/p>"}},"buy_buttons_F8A8VF":{"type":"buy_buttons","settings":{"show_dynamic_checkout":false,"show_gift_card_recipient":true}},"payment_UfDnAK":{"type":"payment","settings":{"payment-limit":5}}},"block_order":["title_MRbdjj","content_AATAhe","buy_buttons_F8A8VF","payment_UfDnAK"],"name":"t:sections.featured-product.presets.name","settings":{"product":"shilajit-premium","color_scheme":"scheme-1","secondary_background":false,"media_size":"medium","constrain_to_viewport":false,"media_fit":"contain","media_position":"left","image_zoom":"none","hide_variants":false,"enable_video_looping":false,"padding_top":36,"padding_bottom":0}},"image_with_text_yXjUci":{"type":"image-with-text","blocks":{"heading_iQw9m6":{"type":"heading","settings":{"heading":"Live Stronger, Think Sharper","heading_size_desktop":32,"heading_size_mobile":28,"heading_weight":"400"}},"text_cnnfhW":{"type":"text","settings":{"text":"<p>With Shilajit, you unlock all-day performance — from the gym to your daily<br\/>grind.<\/p>","text_style":"body","text_size_desktop":16,"text_size_mobile":14}},"feature_nYRP7c":{"type":"feature","settings":{"icon":"shopify:\/\/shop_images\/Vector_39.svg","text":"<p>100% natural energy release<\/p>"}},"feature_LmcBAG":{"type":"feature","settings":{"icon":"shopify:\/\/shop_images\/Vector_39.svg","text":"<p>100% natural energy release<\/p>"}},"feature_pD6A8q":{"type":"feature","settings":{"icon":"shopify:\/\/shop_images\/Vector_39.svg","text":"<p>100% natural energy release<\/p>"}},"button_9eMmhT":{"type":"button","settings":{"button_label":"Unlock Your Daily Strength","button_link":"#","button_style_secondary":false}}},"block_order":["heading_iQw9m6","text_cnnfhW","feature_nYRP7c","feature_LmcBAG","feature_pD6A8q","button_9eMmhT"],"name":"t:sections.image-with-text.presets.name","settings":{"media_type":"image","image":"shopify:\/\/shop_images\/image_320_3.png","video_autoplay":true,"video_loop":true,"video_muted":true,"video_controls":false,"height":"adapt","desktop_image_width":"medium","layout":"text_first","object_fit":"contain","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"middle","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"","padding_top":36,"padding_bottom":36}},"lx_heading_with_text_Vyr8Fi":{"type":"lx-heading-with-text","name":"Heading With Text","settings":{"heading":"The Ultimate Daily Energy For Your Body","heading_size":32,"heading_size_mobile":24,"heading_color":"#ffffff","text":"<p>Shilajit is nature’s original performance enhancer — used for centuries to<br\/>boost strength, endurance, and vitality.<br\/>Our lab-tested Himalayan extract delivers a daily dose of minerals,<br\/>antioxidants, and adaptogens to help you feel at your best — every day.<\/p>","text_size":16,"text_size_mobile":14,"text_color":"#ffffff","bg_gradient":"radial-gradient(circle, #6F2C91 0%, #F46F9A 100%)","desktop_padding_top":50,"desktop_padding_bottom":50,"mobile_padding_top":30,"mobile_padding_bottom":30}},"features_showcase_L6T8q9":{"type":"features-showcase","blocks":{"feature_DBTdXF":{"type":"feature","settings":{"position":"left","title":"Lorem ipsum","description":"Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.","show_icon":true,"custom_icon":"shopify:\/\/shop_images\/Rectangle_41.png"}},"feature_iyH4xy":{"type":"feature","settings":{"position":"left","title":"Lorem ipsum","description":"Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.","show_icon":true,"custom_icon":"shopify:\/\/shop_images\/Rectangle_41.png"}},"feature_appGzK":{"type":"feature","settings":{"position":"left","title":"Lorem ipsum","description":"Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.","show_icon":true,"custom_icon":"shopify:\/\/shop_images\/Rectangle_41.png"}},"feature_xgFHcp":{"type":"feature","settings":{"position":"right","title":"Lorem ipsum","description":"Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.","show_icon":true,"custom_icon":"shopify:\/\/shop_images\/Rectangle_41.png"}},"feature_UezEgp":{"type":"feature","settings":{"position":"right","title":"Lorem ipsum","description":"Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.","show_icon":true,"custom_icon":"shopify:\/\/shop_images\/Rectangle_41.png"}},"feature_nrMwjP":{"type":"feature","settings":{"position":"right","title":"Lorem ipsum","description":"Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.","show_icon":true,"custom_icon":"shopify:\/\/shop_images\/Rectangle_41.png"}}},"block_order":["feature_DBTdXF","feature_iyH4xy","feature_appGzK","feature_xgFHcp","feature_UezEgp","feature_nrMwjP"],"name":"Features Showcase","settings":{"color_scheme":"scheme-1","heading":"FEATURES","center_image":"shopify:\/\/shop_images\/image_905.png","center_image_alt":"","center_image_width":400,"heading_font_size":32,"card_background_color":"#ffffff","card_border_color":"#d9d9d9","card_border_radius":24,"card_title_color":"#15253e","card_title_font_size":18,"card_description_color":"#15253e","card_description_font_size":14,"icon_background_color":"#ffffff","icon_border_color":"#1a1a2e","icon_color":"#1a1a2e","icon_size":64,"button_label":"","button_link":"","button_style":"solid","button_background_color":"#1a1a2e","button_text_color":"#ffffff","button_border_color":"#1a1a2e","button_hover_background_color":"#2d2d4a","button_hover_text_color":"#ffffff","button_font_size":16,"button_padding_horizontal":32,"button_padding_vertical":14,"button_border_radius":8,"padding_top":60,"padding_bottom":60}},"image_with_circle_orbit_NTCijz":{"type":"image-with-circle-orbit","name":"Image with Circle Orbit","settings":{"color_scheme":"scheme-1","circle_1_size":42,"circle_1_color":"#8a8a8a","circle_2_size":66,"circle_2_color":"#8a8a8a","circle_3_size":90,"circle_3_color":"#8a8a8a","circle_border_width":1,"circle_color":"#e0e0e0","enable_rotation":true,"rotation_speed":35,"badge_1_text":"85+ Essential Minerals","badge_2_text":"100% Natural & Pure","badge_3_text":"Supports Energy & Recovery","badge_bg_color":"#6F2C91","badge_border_color":"#ffffff","badge_text_color":"#ffffff","badge_font_size":13,"kicker":"","heading":"INTRODUCING SHILAJIT CAPSULES","heading_size":32,"heading_weight":"400","heading_em_color":"#6F2C91","subtext":"<h4>Nature’s Purest Energy in Every Capsule<\/h4><p><strong><br\/>Mountain Strength Formula<br\/><\/strong>Experience the potency of pure Himalayan Shilajit — now in an easy-to-take capsule. Each dose delivers over 85+ trace minerals, fulvic acid, and essential nutrients that fuel your energy, focus, and recovery from within.<\/p><p><strong><br\/>Daily Performance Support<br\/><\/strong>Designed for modern lifestyles — from athletes to busy professionals. Our capsules naturally enhance stamina, boost testosterone levels, and improve cognitive clarity so you can perform at your peak every day.<br\/><br\/><strong><br\/>Authentic. Potent. Clean.<br\/><\/strong>Harvested from high-altitude Himalayan rocks and purified through a multi-step process to ensure 100% natural, heavy-metal-free quality — no fillers, no additives, just pure vitality in every capsule.<br\/><\/p>","image":"shopify:\/\/shop_images\/image_902_492fd88c-d42f-4b39-a0c1-d01dff0721a7.png","image_alt":"product image","image_position":"left","container_width":620,"body_text_size":15,"button_text":"Unlock Your Daily Strength","button_link":"","button_size":15,"desktop_padding_top":50,"desktop_padding_bottom":50,"mobile_padding_top":30,"mobile_padding_bottom":30}},"lx_tabs_info_t6XRCT":{"type":"LX-tabs-info","blocks":{"benifit_gyP9x4":{"type":"benifit","settings":{"icon":"shopify:\/\/shop_images\/Rectangle_37.svg","heading":"Natural Energy Boost","text":"<p>Replenishes your body’s minerals and fulvic acid levels to naturally elevate stamina, focus, and endurance — without caffeine or crashes.<\/p>","align":"left","icon_size":60}},"benifit_nmWcNe":{"type":"benifit","settings":{"icon":"shopify:\/\/shop_images\/Rectangle_37.svg","heading":"Natural Energy Boost","text":"<p>Replenishes your body’s minerals and fulvic acid levels to naturally elevate stamina, focus, and endurance — without caffeine or crashes.<\/p>","align":"left","icon_size":60}},"benifit_yUVccX":{"type":"benifit","settings":{"icon":"shopify:\/\/shop_images\/Rectangle_37.svg","heading":"Natural Energy Boost","text":"<p>Replenishes your body’s minerals and fulvic acid levels to naturally elevate stamina, focus, and endurance — without caffeine or crashes.<\/p>","align":"left","icon_size":60}},"ingredients_aWEC6z":{"type":"ingredients","settings":{"icon":"shopify:\/\/shop_images\/Rectangle_37.svg","heading":"Natural Energy Boost","text":"<p>Replenishes your body’s minerals and fulvic acid levels to naturally elevate stamina, focus, and endurance — without caffeine or crashes.<\/p>","align":"left","icon_size":60}},"ingredients_8NdwGi":{"type":"ingredients","settings":{"icon":"shopify:\/\/shop_images\/Rectangle_37.svg","heading":"Natural Energy Boost","text":"<p>Replenishes your body’s minerals and fulvic acid levels to naturally elevate stamina, focus, and endurance — without caffeine or crashes.<\/p>","align":"left","icon_size":60}},"usage_MDkAmE":{"type":"usage","settings":{"icon":"shopify:\/\/shop_images\/Rectangle_37.svg","heading":"Natural Energy Boost","text":"<p>Replenishes your body’s minerals and fulvic acid levels to naturally elevate stamina, focus, and endurance — without caffeine or crashes.<\/p>","align":"left","icon_size":60}}},"block_order":["benifit_gyP9x4","benifit_nmWcNe","benifit_yUVccX","ingredients_aWEC6z","ingredients_8NdwGi","usage_MDkAmE"],"name":"Custom Tabs - Default","settings":{"bg_color":"#ffffff","btn_bg":"rgba(0,0,0,0)","btn_text_color":"#6F2C91","btn_border_color":"#6F2C91","btn_active_bg":"#6F2C91","btn_active_text":"#ffffff","btn_active_border":"#6F2C91","heading_color":"#000000","text_color":"#000000","desktop_padding_top":15,"desktop_padding_bottom":50,"mobile_padding_top":30,"mobile_padding_bottom":30,"btn_gap":20,"btn_margin_bottom":45,"btn_font_size":16,"btn_radius":41,"btn_padding_x":40,"btn_padding_y":10,"btn_border_width":1,"items_per_row":3,"item_gap":15,"icon_gap":20,"heading_size":16,"text_size":14}},"image_with_text_HAWDFH":{"type":"image-with-text","blocks":{"heading_TQLhLm":{"type":"heading","settings":{"heading":"30 Days Better Energy Guarantee","heading_size_desktop":32,"heading_size_mobile":24,"heading_weight":"400"}},"text_9aJ7Bz":{"type":"text","settings":{"text":"<p>Experience the power of Shilajit risk-free. If you don’t feel more energetic, focused, and balanced — return it within 30 days for a full refund.<\/p><p>Less than 3% ever return it — because results speak for themselves.<\/p>","text_style":"body","text_size_desktop":16,"text_size_mobile":14}},"button_jNmLRc":{"type":"button","settings":{"button_label":"Unlock Your Daily Strength","button_link":"#","button_style_secondary":false}}},"block_order":["heading_TQLhLm","text_9aJ7Bz","button_jNmLRc"],"name":"t:sections.image-with-text.presets.name","settings":{"media_type":"image","image":"shopify:\/\/shop_images\/image_320_3.png","video_autoplay":true,"video_loop":true,"video_muted":true,"video_controls":false,"height":"adapt","desktop_image_width":"medium","layout":"text_first","object_fit":"contain","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"middle","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"","padding_top":36,"padding_bottom":36}},"lx_faqs_box_VNKD3h":{"type":"lx-faqs-box","blocks":{"faq_block_aFib9A":{"type":"faq_block","settings":{"question":"What is Shilajit and how is it made?","answer":"Your answer text goes here."}},"faq_block_kmzXVq":{"type":"faq_block","settings":{"question":"What is Shilajit and how is it made?","answer":"Your answer text goes here."}},"faq_block_UCATxK":{"type":"faq_block","settings":{"question":"What is Shilajit and how is it made?","answer":"Your answer text goes here."}},"faq_block_4wLzQL":{"type":"faq_block","settings":{"question":"What is Shilajit and how is it made?","answer":"Your answer text goes here."}},"faq_block_rdeTLc":{"type":"faq_block","settings":{"question":"What is Shilajit and how is it made?","answer":"Your answer text goes here."}},"faq_block_EcExnC":{"type":"faq_block","settings":{"question":"What is Shilajit and how is it made?","answer":"Your answer text goes here."}}},"block_order":["faq_block_aFib9A","faq_block_kmzXVq","faq_block_UCATxK","faq_block_4wLzQL","faq_block_rdeTLc","faq_block_EcExnC"],"name":"FAQ Accordion","settings":{"color_scheme":"scheme-1","heading":"Frequently Asked Questions","media_type":"image","direction":"first","video_autoplay":true,"video_loop":true,"video_muted":true,"video_controls":false,"container_width":800,"padding_top_desktop":20,"padding_bottom_desktop":70,"padding_top_mobile":20,"padding_bottom_mobile":30,"heading_align":"center","heading_size":32,"heading_size_mobile":19,"question_size":16,"answer_size":16,"icon_color":"#000000"}},"testimonials_ac7mg8":{"type":"Testimonials","blocks":{"testimonial_mEVHKL":{"type":"testimonial","settings":{"review_text":"Et fantastisk produkt! Mine varmeste anbefalinger","customer_name":"Cecilie T."}},"testimonial_Q6KNKE":{"type":"testimonial","settings":{"review_text":"Et fantastisk produkt! Mine varmeste anbefalinger","customer_name":"Cecilie T."}},"testimonial_3Mifrb":{"type":"testimonial","settings":{"review_text":"Et fantastisk produkt! Mine varmeste anbefalinger","customer_name":"Cecilie T."}},"testimonial_AYMpam":{"type":"testimonial","settings":{"review_text":"Ved ikke hvorfor jeg var i tvivl. Min Airshaper har virkelig erstattet alle mine andre stylingredskaber.","customer_name":"Kaja O."}},"testimonial_tJJEWw":{"type":"testimonial","settings":{"review_text":"Hurtig levering og fantastisk produkt. Positivt overrasket!","customer_name":"Mille T."}},"testimonial_K9wpYN":{"type":"testimonial","settings":{"review_text":"Min morgenrutine er blevet meget nemmere. Tørrer og styler på én gang!","customer_name":"Laura M."}}},"block_order":["testimonial_mEVHKL","testimonial_Q6KNKE","testimonial_3Mifrb","testimonial_AYMpam","testimonial_tJJEWw","testimonial_K9wpYN"],"name":"Testimonial Carousel","settings":{"heading":"FLERE TUSINDE HAR VALGT OS","subheading":"Stol ikke kun på os, stol på vores community","star_image":"shopify:\/\/shop_images\/image_15.png","bg_color":"#f9f9f9","margin_top":60,"margin_bottom":0,"padding_top":60,"padding_bottom":60}}},"order":["swiper_template_qkE74p","image_banner_ABjkTH","lx_as_seen_as_bFQdpE","difference_features_kz3Upz","featured_collection_9QMpdy","featured_product_XUyTPk","image_with_text_yXjUci","lx_heading_with_text_Vyr8Fi","features_showcase_L6T8q9","image_with_circle_orbit_NTCijz","lx_tabs_info_t6XRCT","image_with_text_HAWDFH","lx_faqs_box_VNKD3h","testimonials_ac7mg8"]}
+{
+  "sections": {
+    "swiper_template_qkE74p": {
+      "type": "swiper-template",
+      "disabled": true,
+      "name": "Slider template",
+      "settings": {
+        "block_heading": "Pairs well with",
+        "enable_autoplay": false,
+        "autoplay_interval": 3,
+        "desktop_slides": 4,
+        "desktop_spacing": 24,
+        "desktop_arrows": true,
+        "desktop_dots": true,
+        "desktop_scrollbar": true,
+        "desktop_progress_bar": true,
+        "mobile_slides": 1.5,
+        "mobile_spacing": 16,
+        "mobile_arrows": false,
+        "mobile_dots": false,
+        "mobile_scrollbar": false,
+        "mobile_progress_bar": true
+      }
+    },
+    "image_banner_ABjkTH": {
+      "type": "image-banner",
+      "blocks": {
+        "review_mrQiNm": {
+          "type": "review",
+          "settings": {
+            "review": "shopify://shop_images/Group_1413372262.svg",
+            "text": "<p>4.8 average ratings | Based on 800+ reviews</p>",
+            "object": "contain",
+            "height": 17
+          }
+        },
+        "heading_rWEc3q": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Dr. Romelia Skincare<br/>For Brighter & Glowing Skin</p>",
+            "heading_size": "medium"
+          }
+        },
+        "text_K7xYdb": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Clinically Proven Results.<br/>Reveal a radiant, even-toned complexion with our Whitening Cream & Serum.</p>",
+            "text_style": "body",
+            "upper": false,
+            "font-size": 18,
+            "font-size-m": 14
+          }
+        },
+        "buttons_JLWeTc": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Discover The Range",
+            "button_link_1": "shopify://collections",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        },
+        "review_info_qHG9hf": {
+          "type": "review-info",
+          "settings": {
+            "name": "John Smith",
+            "review": "shopify://shop_images/Group_1413372262.svg",
+            "text": "<p>Finally a sleep mask that doesn’t hurt and sweat my eyes. I sleep better already.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_mrQiNm",
+        "heading_rWEc3q",
+        "text_K7xYdb",
+        "buttons_JLWeTc",
+        "review_info_qHG9hf"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Group_1413372262.png",
+        "image_m": "shopify://shop_images/Group_1413372264_1.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
+    },
+    "lx_as_seen_as_bFQdpE": {
+      "type": "lx-as-seen-as",
+      "blocks": {
+        "image_RH8n9J": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_3.png",
+            "image_width": 90,
+            "link": ""
+          }
+        },
+        "image_WyncCm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_4.png",
+            "image_width": 200,
+            "link": ""
+          }
+        },
+        "image_CNXgyD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_5.png",
+            "image_width": 85,
+            "link": ""
+          }
+        },
+        "image_wBy48M": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Mask_group.png",
+            "image_width": 50,
+            "link": ""
+          }
+        },
+        "image_xUKVAw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_900.png",
+            "image_width": 150,
+            "link": ""
+          }
+        },
+        "image_TgH3p3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_6.png",
+            "image_width": 125,
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_RH8n9J",
+        "image_WyncCm",
+        "image_CNXgyD",
+        "image_wBy48M",
+        "image_xUKVAw",
+        "image_TgH3p3"
+      ],
+      "name": "Scrolling Info",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "As Seen In:",
+        "full_width": true,
+        "use_alt_bg": false,
+        "text_size": 50,
+        "vertical_padding": 20,
+        "speed": 29,
+        "direction": "right",
+        "font": "heading",
+        "space": 50
+      }
+    },
+    "difference_features_kz3Upz": {
+      "type": "difference-features",
+      "blocks": {
+        "feature_YY4FpP": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/Rectangle_37_15d3f9df-e060-4bbd-896c-a8d98109a8d8.png",
+            "icon_svg": "",
+            "default_icon": "energy",
+            "title": "Brightens Skin Tone",
+            "description": "A clinically proven 3-in-1 formula that brightens skin tone and fades dark spots.",
+            "override_icon_color": "",
+            "override_title_color": "",
+            "override_text_color": "",
+            "override_card_bg": "",
+            "icon_size": 80,
+            "icon_size_mobile": 55,
+            "icon_spacing": 20
+          }
+        },
+        "feature_xFVJ7q": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/Rectangle_37_58a50cf7-e77e-4122-99b9-c06618a88285.png",
+            "icon_svg": "",
+            "default_icon": "energy",
+            "title": "Protects Skin",
+            "description": "Protects against pollution and environmental stressors for a healthy glow.",
+            "override_icon_color": "",
+            "override_title_color": "",
+            "override_text_color": "",
+            "override_card_bg": "",
+            "icon_size": 80,
+            "icon_size_mobile": 55,
+            "icon_spacing": 20
+          }
+        },
+        "feature_C4PUTY": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/Rectangle_37_7ed06b4f-5f30-4e5d-969e-48d7371eae06.png",
+            "icon_svg": "",
+            "default_icon": "energy",
+            "title": "Anti-Ageing",
+            "description": "Helps reduce fine lines and signs of ageing while providing deep nourishment.",
+            "override_icon_color": "",
+            "override_title_color": "",
+            "override_text_color": "",
+            "override_card_bg": "",
+            "icon_size": 80,
+            "icon_size_mobile": 55,
+            "icon_spacing": 20
+          }
+        }
+      },
+      "block_order": [
+        "feature_YY4FpP",
+        "feature_xFVJ7q",
+        "feature_C4PUTY"
+      ],
+      "name": "Difference Features",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "The Difference You Can See",
+        "accent_text": "Feel",
+        "subheading": "",
+        "heading_tag": "h2",
+        "heading_alignment": "center",
+        "heading_size": 32,
+        "heading_size_mobile": 24,
+        "heading_font_weight": "400",
+        "heading_margin_bottom": 50,
+        "accent_color": "#6F2C91",
+        "accent_font_style": "italic",
+        "accent_font_weight": "600",
+        "card_alignment": "center",
+        "card_background": "rgba(0,0,0,0)",
+        "card_padding": 40,
+        "card_padding_mobile": 15,
+        "card_border_radius": 0,
+        "card_border_width": 0,
+        "card_border_color": "#e0e0e0",
+        "card_shadow": false,
+        "card_hover_effect": false,
+        "card_gap": 30,
+        "card_gap_mobile": 20,
+        "card_title_color": "#1a1a1a",
+        "card_title_size": 18,
+        "card_title_size_mobile": 16,
+        "card_title_font_weight": "600",
+        "card_title_spacing": 10,
+        "text_size": 16,
+        "text_size_mobile": 14,
+        "text_line_height": 1.6,
+        "max_width": 1400,
+        "columns_desktop": 3,
+        "columns_tablet": 2,
+        "columns_mobile": 1,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "enable_slider_desktop": false,
+        "enable_slider_mobile": true,
+        "enable_autoplay": false,
+        "autoplay_interval": 3,
+        "desktop_slides": 3,
+        "desktop_spacing": 24,
+        "desktop_arrows": true,
+        "desktop_dots": true,
+        "desktop_scrollbar": false,
+        "desktop_progress_bar": false,
+        "mobile_slides": 1,
+        "mobile_spacing": 16,
+        "mobile_arrows": false,
+        "mobile_dots": true,
+        "mobile_scrollbar": false,
+        "mobile_progress_bar": false,
+        "arrow_bg_color": "#ffffff",
+        "arrow_hover_bg_color": "#f5f5f5",
+        "arrow_color": "#1a1a1a",
+        "arrow_border_color": "#e0e0e0",
+        "dot_color": "#1a1a1a",
+        "dot_active_color": "#1a1a1a",
+        "progress_track_color": "#e0e0e0",
+        "progress_fill_color": "#1a1a1a"
+      }
+    },
+    "featured_collection_9QMpdy": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "frontpage",
+        "products_to_show": 10,
+        "title": "Featured collection",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_XUyTPk": {
+      "type": "featured-product",
+      "blocks": {
+        "title_MRbdjj": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "content_AATAhe": {
+          "type": "content",
+          "settings": {
+            "text": "<p>Our purest form — Dr. Romelia Whitening Range packed with Kojic Acid, Niacinamide & Alpha Arbutin.<br/>Designed to help fade dark spots, even out skin texture, and give you that healthy, radiant glow.<br/>Dermatologically tested and safe for all skin types.</p>"
+          }
+        },
+        "buy_buttons_F8A8VF": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "payment_UfDnAK": {
+          "type": "payment",
+          "settings": {
+            "payment-limit": 5
+          }
+        }
+      },
+      "block_order": [
+        "title_MRbdjj",
+        "content_AATAhe",
+        "buy_buttons_F8A8VF",
+        "payment_UfDnAK"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "shilajit-premium",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_yXjUci": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_iQw9m6": {
+          "type": "heading",
+          "settings": {
+            "heading": "Brighter, More Even-Toned Skin",
+            "heading_size_desktop": 32,
+            "heading_size_mobile": 28,
+            "heading_weight": "400"
+          }
+        },
+        "text_cnnfhW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With Dr. Romelia's Whitening Serum, you unlock a clearer, more luminous complexion. Lightweight, fast-absorbing, and gentle for daily use.</p>",
+            "text_style": "body",
+            "text_size_desktop": 16,
+            "text_size_mobile": 14
+          }
+        },
+        "feature_nYRP7c": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Vector_39.svg",
+            "text": "<p>Clinically Proven Results</p>"
+          }
+        },
+        "feature_LmcBAG": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Vector_39.svg",
+            "text": "<p>Evens Skin Texture</p>"
+          }
+        },
+        "feature_pD6A8q": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Vector_39.svg",
+            "text": "<p>Brightens Skin Tone</p>"
+          }
+        },
+        "button_9eMmhT": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Whitening Serum",
+            "button_link": "#",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_iQw9m6",
+        "text_cnnfhW",
+        "feature_nYRP7c",
+        "feature_LmcBAG",
+        "feature_pD6A8q",
+        "button_9eMmhT"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/image_320_3.png",
+        "video_autoplay": true,
+        "video_loop": true,
+        "video_muted": true,
+        "video_controls": false,
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "object_fit": "contain",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "lx_heading_with_text_Vyr8Fi": {
+      "type": "lx-heading-with-text",
+      "name": "Heading With Text",
+      "settings": {
+        "heading": "The Ultimate Daily Skincare For Your Glow",
+        "heading_size": 32,
+        "heading_size_mobile": 24,
+        "heading_color": "#ffffff",
+        "text": "<p>Our Whitening Cream is a 3-in-1 formula crafted to protect, nourish, and brighten.<br/>Enriched with Kojic Acid, Niacinamide, and Alpha Arbutin, it defends against pollution and signs of ageing.<br/>Experience a visibly radiant and youthful complexion every day.</p>",
+        "text_size": 16,
+        "text_size_mobile": 14,
+        "text_color": "#ffffff",
+        "bg_gradient": "radial-gradient(circle, #6F2C91 0%, #F46F9A 100%)",
+        "desktop_padding_top": 50,
+        "desktop_padding_bottom": 50,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30
+      }
+    },
+    "features_showcase_L6T8q9": {
+      "type": "features-showcase",
+      "blocks": {
+        "feature_DBTdXF": {
+          "type": "feature",
+          "settings": {
+            "position": "left",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true,
+            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+          }
+        },
+        "feature_iyH4xy": {
+          "type": "feature",
+          "settings": {
+            "position": "left",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true,
+            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+          }
+        },
+        "feature_appGzK": {
+          "type": "feature",
+          "settings": {
+            "position": "left",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true,
+            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+          }
+        },
+        "feature_xgFHcp": {
+          "type": "feature",
+          "settings": {
+            "position": "right",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true,
+            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+          }
+        },
+        "feature_UezEgp": {
+          "type": "feature",
+          "settings": {
+            "position": "right",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true,
+            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+          }
+        },
+        "feature_nrMwjP": {
+          "type": "feature",
+          "settings": {
+            "position": "right",
+            "title": "Lorem ipsum",
+            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "show_icon": true,
+            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+          }
+        }
+      },
+      "block_order": [
+        "feature_DBTdXF",
+        "feature_iyH4xy",
+        "feature_appGzK",
+        "feature_xgFHcp",
+        "feature_UezEgp",
+        "feature_nrMwjP"
+      ],
+      "name": "Features Showcase",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "FEATURES",
+        "center_image": "shopify://shop_images/image_905.png",
+        "center_image_alt": "",
+        "center_image_width": 400,
+        "heading_font_size": 32,
+        "card_background_color": "#ffffff",
+        "card_border_color": "#d9d9d9",
+        "card_border_radius": 24,
+        "card_title_color": "#15253e",
+        "card_title_font_size": 18,
+        "card_description_color": "#15253e",
+        "card_description_font_size": 14,
+        "icon_background_color": "#ffffff",
+        "icon_border_color": "#1a1a2e",
+        "icon_color": "#1a1a2e",
+        "icon_size": 64,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "solid",
+        "button_background_color": "#1a1a2e",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#1a1a2e",
+        "button_hover_background_color": "#2d2d4a",
+        "button_hover_text_color": "#ffffff",
+        "button_font_size": 16,
+        "button_padding_horizontal": 32,
+        "button_padding_vertical": 14,
+        "button_border_radius": 8,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "image_with_circle_orbit_NTCijz": {
+      "type": "image-with-circle-orbit",
+      "name": "Image with Circle Orbit",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "circle_1_size": 42,
+        "circle_1_color": "#8a8a8a",
+        "circle_2_size": 66,
+        "circle_2_color": "#8a8a8a",
+        "circle_3_size": 90,
+        "circle_3_color": "#8a8a8a",
+        "circle_border_width": 1,
+        "circle_color": "#e0e0e0",
+        "enable_rotation": true,
+        "rotation_speed": 35,
+        "badge_1_text": "Dermatologically Tested",
+        "badge_2_text": "Suitable For All Skin Types",
+        "badge_3_text": "Clinically Proven Results",
+        "badge_bg_color": "#6F2C91",
+        "badge_border_color": "#ffffff",
+        "badge_text_color": "#ffffff",
+        "badge_font_size": 13,
+        "kicker": "",
+        "heading": "INTRODUCING DR. ROMELIA WHITENING RANGE",
+        "heading_size": 32,
+        "heading_weight": "400",
+        "heading_em_color": "#6F2C91",
+        "subtext": "<h4>Nature’s Brightening Power in Every Drop</h4><p><strong><br/>Clinically Proven Formula<br/></strong>Experience the potency of Kojic Acid, Niacinamide & Alpha Arbutin. Our fast-absorbing formula fades dark spots and evens texture.</p><p><strong><br/>Daily Skincare Support<br/></strong>Designed for modern lifestyles. Our cream and serum naturally protect against pollution and signs of ageing.</p><p><strong><br/>Paraben-Free & Safe<br/></strong>Gentle enough for daily use, revealing a clearer, more luminous complexion over time without harmful additives.</p>",
+        "image": "shopify://shop_images/image_902_492fd88c-d42f-4b39-a0c1-d01dff0721a7.png",
+        "image_alt": "product image",
+        "image_position": "left",
+        "container_width": 620,
+        "body_text_size": 15,
+        "button_text": "Shop Now",
+        "button_link": "",
+        "button_size": 15,
+        "desktop_padding_top": 50,
+        "desktop_padding_bottom": 50,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30
+      }
+    },
+    "lx_tabs_info_t6XRCT": {
+      "type": "LX-tabs-info",
+      "blocks": {
+        "benifit_gyP9x4": {
+          "type": "benifit",
+          "settings": {
+            "icon": "shopify://shop_images/Rectangle_37.svg",
+            "heading": "Brightens Skin Tone",
+            "text": "<p>A clinically proven 3-in-1 formula that brightens skin tone, fades dark spots, and reveals a radiant complexion.</p>",
+            "align": "left",
+            "icon_size": 60
+          }
+        },
+        "benifit_nmWcNe": {
+          "type": "benifit",
+          "settings": {
+            "icon": "shopify://shop_images/Rectangle_37.svg",
+            "heading": "Anti-Ageing & Protection",
+            "text": "<p>Helps reduce fine lines and signs of ageing while defending against pollution and environmental stressors.</p>",
+            "align": "left",
+            "icon_size": 60
+          }
+        },
+        "benifit_yUVccX": {
+          "type": "benifit",
+          "settings": {
+            "icon": "shopify://shop_images/Rectangle_37.svg",
+            "heading": "Deep Nourishment",
+            "text": "<p>Moisturizes and revitalizes skin, smoothing out uneven texture for a healthy, radiant glow.</p>",
+            "align": "left",
+            "icon_size": 60
+          }
+        },
+        "ingredients_aWEC6z": {
+          "type": "ingredients",
+          "settings": {
+            "icon": "shopify://shop_images/Rectangle_37.svg",
+            "heading": "Kojic Acid",
+            "text": "<p>A natural ingredient that effectively fades dark spots and visibly brightens the skin tone.</p>",
+            "align": "left",
+            "icon_size": 60
+          }
+        },
+        "ingredients_8NdwGi": {
+          "type": "ingredients",
+          "settings": {
+            "icon": "shopify://shop_images/Rectangle_37.svg",
+            "heading": "Niacinamide & Alpha Arbutin",
+            "text": "<p>Powerful antioxidants that help even out skin texture, protect from environmental damage, and promote youthful skin.</p>",
+            "align": "left",
+            "icon_size": 60
+          }
+        },
+        "usage_MDkAmE": {
+          "type": "usage",
+          "settings": {
+            "icon": "shopify://shop_images/Rectangle_37.svg",
+            "heading": "Daily 3-Step Routine",
+            "text": "<p>Step 1: Wash face. Step 2: Apply serum or cream. Step 3: Massage gently until absorbed. For Face, Hands & Feet.</p>",
+            "align": "left",
+            "icon_size": 60
+          }
+        }
+      },
+      "block_order": [
+        "benifit_gyP9x4",
+        "benifit_nmWcNe",
+        "benifit_yUVccX",
+        "ingredients_aWEC6z",
+        "ingredients_8NdwGi",
+        "usage_MDkAmE"
+      ],
+      "name": "Custom Tabs - Default",
+      "settings": {
+        "bg_color": "#ffffff",
+        "btn_bg": "rgba(0,0,0,0)",
+        "btn_text_color": "#6F2C91",
+        "btn_border_color": "#6F2C91",
+        "btn_active_bg": "#6F2C91",
+        "btn_active_text": "#ffffff",
+        "btn_active_border": "#6F2C91",
+        "heading_color": "#000000",
+        "text_color": "#000000",
+        "desktop_padding_top": 15,
+        "desktop_padding_bottom": 50,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "btn_gap": 20,
+        "btn_margin_bottom": 45,
+        "btn_font_size": 16,
+        "btn_radius": 41,
+        "btn_padding_x": 40,
+        "btn_padding_y": 10,
+        "btn_border_width": 1,
+        "items_per_row": 3,
+        "item_gap": 15,
+        "icon_gap": 20,
+        "heading_size": 16,
+        "text_size": 14
+      }
+    },
+    "image_with_text_HAWDFH": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_TQLhLm": {
+          "type": "heading",
+          "settings": {
+            "heading": "30 Days Better Skin Guarantee",
+            "heading_size_desktop": 32,
+            "heading_size_mobile": 24,
+            "heading_weight": "400"
+          }
+        },
+        "text_9aJ7Bz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Experience the power of Dr. Romelia risk-free. If you don’t see a brighter, more even-toned complexion, return it within 30 days for a full refund.</p>",
+            "text_style": "body",
+            "text_size_desktop": 16,
+            "text_size_mobile": 14
+          }
+        },
+        "button_jNmLRc": {
+          "type": "button",
+          "settings": {
+            "button_label": "Get Glowing Skin Now",
+            "button_link": "#",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_TQLhLm",
+        "text_9aJ7Bz",
+        "button_jNmLRc"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/image_320_3.png",
+        "video_autoplay": true,
+        "video_loop": true,
+        "video_muted": true,
+        "video_controls": false,
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "object_fit": "contain",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "lx_faqs_box_VNKD3h": {
+      "type": "lx-faqs-box",
+      "blocks": {
+        "faq_block_aFib9A": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What makes Dr. Romelia Whitening Cream different?",
+            "answer": "It is a clinically proven 3-in-1 formula enriched with Kojic Acid, Niacinamide & Alpha Arbutin to brighten skin tone, fade dark spots, and protect against pollution."
+          }
+        },
+        "faq_block_kmzXVq": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Is the Whitening Serum suitable for all skin types?",
+            "answer": "Yes, our Whitening Serum is dermatologically tested, paraben-free, and perfectly safe for all skin types."
+          }
+        },
+        "faq_block_UCATxK": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Can I use the cream on my hands and feet?",
+            "answer": "Absolutely! Our 3-in-1 formula is specially designed for use on the face, hands, and feet."
+          }
+        },
+        "faq_block_4wLzQL": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What is Shilajit and how is it made?",
+            "answer": "Your answer text goes here."
+          }
+        },
+        "faq_block_rdeTLc": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What is Shilajit and how is it made?",
+            "answer": "Your answer text goes here."
+          }
+        },
+        "faq_block_EcExnC": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What is Shilajit and how is it made?",
+            "answer": "Your answer text goes here."
+          }
+        }
+      },
+      "block_order": [
+        "faq_block_aFib9A",
+        "faq_block_kmzXVq",
+        "faq_block_UCATxK",
+        "faq_block_4wLzQL",
+        "faq_block_rdeTLc",
+        "faq_block_EcExnC"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Frequently Asked Questions",
+        "media_type": "image",
+        "direction": "first",
+        "video_autoplay": true,
+        "video_loop": true,
+        "video_muted": true,
+        "video_controls": false,
+        "container_width": 800,
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 70,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 30,
+        "heading_align": "center",
+        "heading_size": 32,
+        "heading_size_mobile": 19,
+        "question_size": 16,
+        "answer_size": 16,
+        "icon_color": "#000000"
+      }
+    },
+    "testimonials_ac7mg8": {
+      "type": "Testimonials",
+      "blocks": {
+        "testimonial_mEVHKL": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "Et fantastisk produkt! Mine varmeste anbefalinger",
+            "customer_name": "Cecilie T."
+          }
+        },
+        "testimonial_Q6KNKE": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "Et fantastisk produkt! Mine varmeste anbefalinger",
+            "customer_name": "Cecilie T."
+          }
+        },
+        "testimonial_3Mifrb": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "Et fantastisk produkt! Mine varmeste anbefalinger",
+            "customer_name": "Cecilie T."
+          }
+        },
+        "testimonial_AYMpam": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "Ved ikke hvorfor jeg var i tvivl. Min Airshaper har virkelig erstattet alle mine andre stylingredskaber.",
+            "customer_name": "Kaja O."
+          }
+        },
+        "testimonial_tJJEWw": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "Hurtig levering og fantastisk produkt. Positivt overrasket!",
+            "customer_name": "Mille T."
+          }
+        },
+        "testimonial_K9wpYN": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "Min morgenrutine er blevet meget nemmere. Tørrer og styler på én gang!",
+            "customer_name": "Laura M."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_mEVHKL",
+        "testimonial_Q6KNKE",
+        "testimonial_3Mifrb",
+        "testimonial_AYMpam",
+        "testimonial_tJJEWw",
+        "testimonial_K9wpYN"
+      ],
+      "name": "Testimonial Carousel",
+      "settings": {
+        "heading": "FLERE TUSINDE HAR VALGT OS",
+        "subheading": "Stol ikke kun på os, stol på vores community",
+        "star_image": "shopify://shop_images/image_15.png",
+        "bg_color": "#f9f9f9",
+        "margin_top": 60,
+        "margin_bottom": 0,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "swiper_template_qkE74p",
+    "image_banner_ABjkTH",
+    "lx_as_seen_as_bFQdpE",
+    "difference_features_kz3Upz",
+    "featured_collection_9QMpdy",
+    "featured_product_XUyTPk",
+    "image_with_text_yXjUci",
+    "lx_heading_with_text_Vyr8Fi",
+    "features_showcase_L6T8q9",
+    "image_with_circle_orbit_NTCijz",
+    "lx_tabs_info_t6XRCT",
+    "image_with_text_HAWDFH",
+    "lx_faqs_box_VNKD3h",
+    "testimonials_ac7mg8"
+  ]
+}
