@@ -105,6 +105,7 @@
         "feature_xFVJ7q": {
           "type": "feature",
           "settings": {
+            "icon_image": "shopify://shop_images/ChatGPT_Image_Aug_11_2026_06_09_37_PM.png",
             "icon_svg": "",
             "default_icon": "energy",
             "title": "Protects Skin",
@@ -121,6 +122,7 @@
         "feature_C4PUTY": {
           "type": "feature",
           "settings": {
+            "icon_image": "shopify://shop_images/ChatGPT_Image_Aug_11_2026_06_13_58_PM.png",
             "icon_svg": "",
             "default_icon": "energy",
             "title": "Anti-Ageing Support",
