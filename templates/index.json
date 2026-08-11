@@ -82,84 +82,17 @@
         "show_text_below": false
       }
     },
-    "lx_as_seen_as_bFQdpE": {
-      "type": "lx-as-seen-as",
-      "blocks": {
-        "image_RH8n9J": {
-          "type": "image",
-          "settings": {
-            "image_width": 90,
-            "link": ""
-          }
-        },
-        "image_WyncCm": {
-          "type": "image",
-          "settings": {
-            "image_width": 200,
-            "link": ""
-          }
-        },
-        "image_CNXgyD": {
-          "type": "image",
-          "settings": {
-            "image_width": 85,
-            "link": ""
-          }
-        },
-        "image_wBy48M": {
-          "type": "image",
-          "settings": {
-            "image_width": 50,
-            "link": ""
-          }
-        },
-        "image_xUKVAw": {
-          "type": "image",
-          "settings": {
-            "image_width": 150,
-            "link": ""
-          }
-        },
-        "image_TgH3p3": {
-          "type": "image",
-          "settings": {
-            "image_width": 125,
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_RH8n9J",
-        "image_WyncCm",
-        "image_CNXgyD",
-        "image_wBy48M",
-        "image_xUKVAw",
-        "image_TgH3p3"
-      ],
-      "name": "Scrolling Info",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "heading": "As Seen In:",
-        "full_width": true,
-        "use_alt_bg": false,
-        "text_size": 50,
-        "vertical_padding": 20,
-        "speed": 29,
-        "direction": "right",
-        "font": "heading",
-        "space": 50
-      }
-    },
     "difference_features_kz3Upz": {
       "type": "difference-features",
       "blocks": {
         "feature_YY4FpP": {
           "type": "feature",
           "settings": {
+            "icon_image": "shopify://shop_images/ChatGPT_Image_Aug_11_2026_06_05_58_PM.png",
             "icon_svg": "",
             "default_icon": "energy",
             "title": "Brightens Skin Tone",
-            "description": "A clinically proven 3-in-1 formula that brightens skin tone and fades dark spots.",
+            "description": "A 3-in-1 formula with Kojic Acid, Niacinamide & Alpha Arbutin that helps brighten skin tone and reduce the look of dark spots.",
             "override_icon_color": "",
             "override_title_color": "",
             "override_text_color": "",
@@ -175,7 +108,7 @@
             "icon_svg": "",
             "default_icon": "energy",
             "title": "Protects Skin",
-            "description": "Protects against pollution and environmental stressors for a healthy glow.",
+            "description": "Helps defend skin against pollution and everyday environmental stress.",
             "override_icon_color": "",
             "override_title_color": "",
             "override_text_color": "",
@@ -190,8 +123,8 @@
           "settings": {
             "icon_svg": "",
             "default_icon": "energy",
-            "title": "Anti-Ageing",
-            "description": "Helps reduce fine lines and signs of ageing while providing deep nourishment.",
+            "title": "Anti-Ageing Support",
+            "description": "Helps improve the appearance of fine lines while keeping skin nourished.",
             "override_icon_color": "",
             "override_title_color": "",
             "override_text_color": "",
@@ -210,8 +143,8 @@
       "name": "Difference Features",
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "The Difference You Can See",
-        "accent_text": "Feel",
+        "heading": "Brightens Skin Tone / Protects Skin / Anti-Ageing",
+        "accent_text": "",
         "subheading": "",
         "heading_tag": "h2",
         "heading_alignment": "center",
@@ -891,7 +824,6 @@
   "order": [
     "swiper_template_qkE74p",
     "image_banner_ABjkTH",
-    "lx_as_seen_as_bFQdpE",
     "difference_features_kz3Upz",
     "featured_collection_9QMpdy",
     "featured_product_XUyTPk",
