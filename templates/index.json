@@ -37,7 +37,6 @@
         "review_mrQiNm": {
           "type": "review",
           "settings": {
-            "review": "shopify://shop_images/Group_1413372262.svg",
             "text": "<p>4.8 average ratings | Based on 800+ reviews</p>",
             "object": "contain",
             "height": 17
@@ -46,14 +45,14 @@
         "heading_rWEc3q": {
           "type": "heading",
           "settings": {
-            "heading": "<p>Dr. Romelia Skincare<br/>For Brighter & Glowing Skin</p>",
+            "heading": "<p>Brighter, Healthier-Looking<br/>Skin, Every Day<br/></p>",
             "heading_size": "medium"
           }
         },
         "text_K7xYdb": {
           "type": "text",
           "settings": {
-            "text": "<p>Clinically Proven Results.<br/>Reveal a radiant, even-toned complexion with our Whitening Cream & Serum.</p>",
+            "text": "<p>Dr. Romelia’s Whitening Cream and Serum are formulated with Kojic Acid, Niacinamide and Alpha Arbutin to help brighten skin tone and even out your complexion, a simple daily routine, made for Pakistani skin.</p>",
             "text_style": "body",
             "upper": false,
             "font-size": 18,
@@ -63,7 +62,7 @@
         "buttons_JLWeTc": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Discover The Range",
+            "button_label_1": "Shop The Range",
             "button_link_1": "shopify://collections",
             "button_style_secondary_1": false,
             "button_label_2": "",
@@ -75,7 +74,6 @@
           "type": "review-info",
           "settings": {
             "name": "John Smith",
-            "review": "shopify://shop_images/Group_1413372262.svg",
             "text": "<p>Finally a sleep mask that doesn’t hurt and sweat my eyes. I sleep better already.</p>"
           }
         }
@@ -89,8 +87,6 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/Group_1413372262.png",
-        "image_m": "shopify://shop_images/Group_1413372264_1.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -109,7 +105,6 @@
         "image_RH8n9J": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/image_3.png",
             "image_width": 90,
             "link": ""
           }
@@ -117,7 +112,6 @@
         "image_WyncCm": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/image_4.png",
             "image_width": 200,
             "link": ""
           }
@@ -125,7 +119,6 @@
         "image_CNXgyD": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/image_5.png",
             "image_width": 85,
             "link": ""
           }
@@ -133,7 +126,6 @@
         "image_wBy48M": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Mask_group.png",
             "image_width": 50,
             "link": ""
           }
@@ -141,7 +133,6 @@
         "image_xUKVAw": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/image_900.png",
             "image_width": 150,
             "link": ""
           }
@@ -149,7 +140,6 @@
         "image_TgH3p3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/image_6.png",
             "image_width": 125,
             "link": ""
           }
@@ -183,7 +173,6 @@
         "feature_YY4FpP": {
           "type": "feature",
           "settings": {
-            "icon_image": "shopify://shop_images/Rectangle_37_15d3f9df-e060-4bbd-896c-a8d98109a8d8.png",
             "icon_svg": "",
             "default_icon": "energy",
             "title": "Brightens Skin Tone",
@@ -200,7 +189,6 @@
         "feature_xFVJ7q": {
           "type": "feature",
           "settings": {
-            "icon_image": "shopify://shop_images/Rectangle_37_58a50cf7-e77e-4122-99b9-c06618a88285.png",
             "icon_svg": "",
             "default_icon": "energy",
             "title": "Protects Skin",
@@ -217,7 +205,6 @@
         "feature_C4PUTY": {
           "type": "feature",
           "settings": {
-            "icon_image": "shopify://shop_images/Rectangle_37_7ed06b4f-5f30-4e5d-969e-48d7371eae06.png",
             "icon_svg": "",
             "default_icon": "energy",
             "title": "Anti-Ageing",
@@ -249,7 +236,7 @@
         "heading_size_mobile": 24,
         "heading_font_weight": "400",
         "heading_margin_bottom": 50,
-        "accent_color": "#6F2C91",
+        "accent_color": "#6f2c91",
         "accent_font_style": "italic",
         "accent_font_weight": "600",
         "card_alignment": "center",
@@ -409,21 +396,18 @@
         "feature_nYRP7c": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Vector_39.svg",
             "text": "<p>Clinically Proven Results</p>"
           }
         },
         "feature_LmcBAG": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Vector_39.svg",
             "text": "<p>Evens Skin Texture</p>"
           }
         },
         "feature_pD6A8q": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Vector_39.svg",
             "text": "<p>Brightens Skin Tone</p>"
           }
         },
@@ -447,7 +431,6 @@
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "media_type": "image",
-        "image": "shopify://shop_images/image_320_3.png",
         "video_autoplay": true,
         "video_loop": true,
         "video_muted": true,
@@ -495,8 +478,7 @@
             "position": "left",
             "title": "Lorem ipsum",
             "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
-            "show_icon": true,
-            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+            "show_icon": true
           }
         },
         "feature_iyH4xy": {
@@ -505,8 +487,7 @@
             "position": "left",
             "title": "Lorem ipsum",
             "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
-            "show_icon": true,
-            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+            "show_icon": true
           }
         },
         "feature_appGzK": {
@@ -515,8 +496,7 @@
             "position": "left",
             "title": "Lorem ipsum",
             "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
-            "show_icon": true,
-            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+            "show_icon": true
           }
         },
         "feature_xgFHcp": {
@@ -525,8 +505,7 @@
             "position": "right",
             "title": "Lorem ipsum",
             "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
-            "show_icon": true,
-            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+            "show_icon": true
           }
         },
         "feature_UezEgp": {
@@ -535,8 +514,7 @@
             "position": "right",
             "title": "Lorem ipsum",
             "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
-            "show_icon": true,
-            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+            "show_icon": true
           }
         },
         "feature_nrMwjP": {
@@ -545,8 +523,7 @@
             "position": "right",
             "title": "Lorem ipsum",
             "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
-            "show_icon": true,
-            "custom_icon": "shopify://shop_images/Rectangle_41.png"
+            "show_icon": true
           }
         }
       },
@@ -562,7 +539,6 @@
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "FEATURES",
-        "center_image": "shopify://shop_images/image_905.png",
         "center_image_alt": "",
         "center_image_width": 400,
         "heading_font_size": 32,
@@ -611,7 +587,7 @@
         "badge_1_text": "Dermatologically Tested",
         "badge_2_text": "Suitable For All Skin Types",
         "badge_3_text": "Clinically Proven Results",
-        "badge_bg_color": "#6F2C91",
+        "badge_bg_color": "#6f2c91",
         "badge_border_color": "#ffffff",
         "badge_text_color": "#ffffff",
         "badge_font_size": 13,
@@ -619,9 +595,8 @@
         "heading": "INTRODUCING DR. ROMELIA WHITENING RANGE",
         "heading_size": 32,
         "heading_weight": "400",
-        "heading_em_color": "#6F2C91",
+        "heading_em_color": "#6f2c91",
         "subtext": "<h4>Nature’s Brightening Power in Every Drop</h4><p><strong><br/>Clinically Proven Formula<br/></strong>Experience the potency of Kojic Acid, Niacinamide & Alpha Arbutin. Our fast-absorbing formula fades dark spots and evens texture.</p><p><strong><br/>Daily Skincare Support<br/></strong>Designed for modern lifestyles. Our cream and serum naturally protect against pollution and signs of ageing.</p><p><strong><br/>Paraben-Free & Safe<br/></strong>Gentle enough for daily use, revealing a clearer, more luminous complexion over time without harmful additives.</p>",
-        "image": "shopify://shop_images/image_902_492fd88c-d42f-4b39-a0c1-d01dff0721a7.png",
         "image_alt": "product image",
         "image_position": "left",
         "container_width": 620,
@@ -641,7 +616,6 @@
         "benifit_gyP9x4": {
           "type": "benifit",
           "settings": {
-            "icon": "shopify://shop_images/Rectangle_37.svg",
             "heading": "Brightens Skin Tone",
             "text": "<p>A clinically proven 3-in-1 formula that brightens skin tone, fades dark spots, and reveals a radiant complexion.</p>",
             "align": "left",
@@ -651,7 +625,6 @@
         "benifit_nmWcNe": {
           "type": "benifit",
           "settings": {
-            "icon": "shopify://shop_images/Rectangle_37.svg",
             "heading": "Anti-Ageing & Protection",
             "text": "<p>Helps reduce fine lines and signs of ageing while defending against pollution and environmental stressors.</p>",
             "align": "left",
@@ -661,7 +634,6 @@
         "benifit_yUVccX": {
           "type": "benifit",
           "settings": {
-            "icon": "shopify://shop_images/Rectangle_37.svg",
             "heading": "Deep Nourishment",
             "text": "<p>Moisturizes and revitalizes skin, smoothing out uneven texture for a healthy, radiant glow.</p>",
             "align": "left",
@@ -671,7 +643,6 @@
         "ingredients_aWEC6z": {
           "type": "ingredients",
           "settings": {
-            "icon": "shopify://shop_images/Rectangle_37.svg",
             "heading": "Kojic Acid",
             "text": "<p>A natural ingredient that effectively fades dark spots and visibly brightens the skin tone.</p>",
             "align": "left",
@@ -681,7 +652,6 @@
         "ingredients_8NdwGi": {
           "type": "ingredients",
           "settings": {
-            "icon": "shopify://shop_images/Rectangle_37.svg",
             "heading": "Niacinamide & Alpha Arbutin",
             "text": "<p>Powerful antioxidants that help even out skin texture, protect from environmental damage, and promote youthful skin.</p>",
             "align": "left",
@@ -691,7 +661,6 @@
         "usage_MDkAmE": {
           "type": "usage",
           "settings": {
-            "icon": "shopify://shop_images/Rectangle_37.svg",
             "heading": "Daily 3-Step Routine",
             "text": "<p>Step 1: Wash face. Step 2: Apply serum or cream. Step 3: Massage gently until absorbed. For Face, Hands & Feet.</p>",
             "align": "left",
@@ -711,11 +680,11 @@
       "settings": {
         "bg_color": "#ffffff",
         "btn_bg": "rgba(0,0,0,0)",
-        "btn_text_color": "#6F2C91",
-        "btn_border_color": "#6F2C91",
-        "btn_active_bg": "#6F2C91",
+        "btn_text_color": "#6f2c91",
+        "btn_border_color": "#6f2c91",
+        "btn_active_bg": "#6f2c91",
         "btn_active_text": "#ffffff",
-        "btn_active_border": "#6F2C91",
+        "btn_active_border": "#6f2c91",
         "heading_color": "#000000",
         "text_color": "#000000",
         "desktop_padding_top": 15,
@@ -774,7 +743,6 @@
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "media_type": "image",
-        "image": "shopify://shop_images/image_320_3.png",
         "video_autoplay": true,
         "video_loop": true,
         "video_muted": true,
@@ -929,7 +897,6 @@
       "settings": {
         "heading": "FLERE TUSINDE HAR VALGT OS",
         "subheading": "Stol ikke kun på os, stol på vores community",
-        "star_image": "shopify://shop_images/image_15.png",
         "bg_color": "#f9f9f9",
         "margin_top": 60,
         "margin_bottom": 0,
