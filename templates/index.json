@@ -34,14 +34,6 @@
     "image_banner_ABjkTH": {
       "type": "image-banner",
       "blocks": {
-        "review_mrQiNm": {
-          "type": "review",
-          "settings": {
-            "text": "<p>4.8 average ratings | Based on 800+ reviews</p>",
-            "object": "contain",
-            "height": 17
-          }
-        },
         "heading_rWEc3q": {
           "type": "heading",
           "settings": {
@@ -69,21 +61,12 @@
             "button_link_2": "",
             "button_style_secondary_2": false
           }
-        },
-        "review_info_qHG9hf": {
-          "type": "review-info",
-          "settings": {
-            "name": "John Smith",
-            "text": "<p>Finally a sleep mask that doesn’t hurt and sweat my eyes. I sleep better already.</p>"
-          }
         }
       },
       "block_order": [
-        "review_mrQiNm",
         "heading_rWEc3q",
         "text_K7xYdb",
-        "buttons_JLWeTc",
-        "review_info_qHG9hf"
+        "buttons_JLWeTc"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
