@@ -26,7 +26,10 @@
   {%- if section.settings.menu_type_desktop == "drawer" -%}
     @media screen and (min-width: 990px) {
       header-drawer,
-      header-drawer details,
+      header-drawer details {
+        display: block !important;
+        visibility: visible !important;
+      }
       header-drawer summary,
       .header__icon--menu,
       .header__icon--menu span,
