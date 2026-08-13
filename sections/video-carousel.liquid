@@ -1,0 +1,691 @@
+{% comment %}
+  Video Carousel Section - Reels/Testimonial Style
+  Features: Center featured video, blurred side previews, arrows, dots, swipe, autoplay, mute toggle
+  Multiple instances safe via section.id scoping
+{% endcomment %}
+
+{%- assign section_id = section.id -%}
+{%- assign bg_color = section.settings.bg_color -%}
+{%- assign arrow_color = section.settings.arrow_color -%}
+{%- assign dot_active_color = section.settings.dot_active_color -%}
+{%- assign side_cards = section.settings.side_cards | default: 2 -%}
+
+<style>
+  /* =============================================
+     VIDEO CAROUSEL - Scoped to #vc-{{ section_id }}
+     ============================================= */
+
+  #vc-{{ section_id }} {
+    background-color: {{ bg_color }};
+    padding: 60px 0 50px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  #vc-{{ section_id }} .vc-heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 40px;
+    color: inherit;
+  }
+
+  /* -- Outer wrapper -- */
+  #vc-{{ section_id }} .vc-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    width: 100%;
+  }
+
+  /* -- Arrow buttons -- */
+  #vc-{{ section_id }} .vc-arrow {
+    flex-shrink: 0;
+    background: {{ arrow_color }};
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    margin: 0 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+  }
+
+  #vc-{{ section_id }} .vc-arrow:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+    opacity: 0.9;
+  }
+
+  #vc-{{ section_id }} .vc-arrow svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* -- Track -- */
+  #vc-{{ section_id }} .vc-track-outer {
+    flex: 1;
+    overflow: visible;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+  }
+
+  #vc-{{ section_id }} .vc-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 520px;
+  }
+
+  /* -- Each slide card -- */
+  #vc-{{ section_id }} .vc-card {
+    position: absolute;
+    width: 260px;
+    aspect-ratio: 9/16;
+    height: auto;
+    max-height: 480px;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+    cursor: pointer;
+    background: #000;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+  }
+
+  #vc-{{ section_id }} .vc-card video,
+  #vc-{{ section_id }} .vc-card iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
+    pointer-events: none;
+  }
+
+  /* -- Center card -- */
+  #vc-{{ section_id }} .vc-card.is-center {
+    position: relative;
+    transform: scale(1);
+    opacity: 1;
+    filter: none;
+    z-index: 5;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.38);
+    cursor: default;
+  }
+
+  #vc-{{ section_id }} .vc-card.is-center video,
+  #vc-{{ section_id }} .vc-card.is-center iframe {
+    pointer-events: auto;
+  }
+
+  /* -- Play button overlay -- */
+  #vc-{{ section_id }} .vc-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.25s;
+  }
+
+  #vc-{{ section_id }} .vc-play-overlay .play-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+
+  #vc-{{ section_id }} .vc-play-overlay .play-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: #222;
+    margin-left: 4px;
+  }
+
+  #vc-{{ section_id }} .vc-card.is-playing .vc-play-overlay {
+    opacity: 0;
+  }
+
+  /* -- Mute toggle button -- */
+  #vc-{{ section_id }} .vc-mute-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    background: rgba(0,0,0,0.55);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  #vc-{{ section_id }} .vc-mute-btn:hover {
+    background: rgba(0,0,0,0.8);
+  }
+
+  #vc-{{ section_id }} .vc-mute-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+  }
+
+  /* -- Link overlay -- */
+  #vc-{{ section_id }} .vc-link-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    display: block;
+  }
+
+  /* -- Dot pagination -- */
+  #vc-{{ section_id }} .vc-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  #vc-{{ section_id }} .vc-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, width 0.3s;
+    flex-shrink: 0;
+  }
+
+  #vc-{{ section_id }} .vc-dot.is-active {
+    background: {{ dot_active_color }};
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* =============================================
+     RESPONSIVE
+     ============================================= */
+
+  @media screen and (max-width: 749px) {
+    #vc-{{ section_id }} { padding: 40px 0 36px; }
+    #vc-{{ section_id }} .vc-heading { font-size: 1.5rem; margin-bottom: 24px; }
+    #vc-{{ section_id }} .vc-arrow { width: 38px; height: 38px; margin: 0 4px; }
+    #vc-{{ section_id }} .vc-track { height: 420px; }
+    #vc-{{ section_id }} .vc-card { width: 200px; max-height: 380px; }
+  }
+
+  @media screen and (max-width: 479px) {
+    #vc-{{ section_id }} .vc-track { height: 360px; }
+    #vc-{{ section_id }} .vc-card { width: 170px; max-height: 330px; }
+    #vc-{{ section_id }} .is-center { width: 85vw !important; }
+  }
+</style>
+
+<section id="vc-{{ section_id }}" class="video-carousel-section">
+
+  {%- if section.settings.heading != blank -%}
+    <h2 class="vc-heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="vc-wrapper" id="vc-wrapper-{{ section_id }}">
+
+      <button class="vc-arrow vc-arrow-prev" aria-label="Previous video" id="vc-prev-{{ section_id }}">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+
+      <div class="vc-track-outer">
+        <div class="vc-track" id="vc-track-{{ section_id }}"
+             data-autoplay="{{ section.settings.autoplay }}"
+             data-side-cards="{{ side_cards }}">
+
+          {%- for block in section.blocks -%}
+            {%- assign is_center = false -%}
+            {%- if forloop.first -%}{%- assign is_center = true -%}{%- endif -%}
+
+            <div class="vc-card{% if is_center %} is-center{% endif %}"
+                 data-index="{{ forloop.index0 }}"
+                 {{ block.shopify_attributes }}>
+
+              {%- if block.settings.video != blank -%}
+                <video
+                  class="vc-video"
+                  src="{{ block.settings.video.sources[1].url | default: block.settings.video.sources[0].url }}"
+                  playsinline loop muted preload="metadata"
+                  {% if is_center and section.settings.autoplay %}autoplay{% endif %}
+                ></video>
+
+                <div class="vc-play-overlay">
+                  <div class="play-icon">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </div>
+                </div>
+
+                <button class="vc-mute-btn" aria-label="Toggle mute" type="button">
+                  <svg class="icon-muted" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="23" y1="9" x2="17" y2="15" stroke="#fff" stroke-width="2" stroke-linecap="round"/><line x1="17" y1="9" x2="23" y2="15" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                  <svg class="icon-unmuted" viewBox="0 0 24 24" style="display:none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+
+              {%- elsif block.settings.video_url != blank -%}
+                {%- assign raw_url = block.settings.video_url -%}
+                {%- if raw_url contains 'youtube.com' or raw_url contains 'youtu.be' -%}
+                  {%- if raw_url contains 'youtu.be/' -%}
+                    {%- assign yt_id = raw_url | split: 'youtu.be/' | last | split: '?' | first -%}
+                  {%- else -%}
+                    {%- assign yt_id = raw_url | split: 'v=' | last | split: '&' | first -%}
+                  {%- endif -%}
+                  <iframe class="vc-iframe"
+                    src="https://www.youtube.com/embed/{{ yt_id }}?autoplay={% if is_center and section.settings.autoplay %}1{% else %}0{% endif %}&mute=1&loop=1&playlist={{ yt_id }}&controls=0&rel=0&playsinline=1"
+                    allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+                {%- elsif raw_url contains 'vimeo.com' -%}
+                  {%- assign vimeo_id = raw_url | split: 'vimeo.com/' | last | split: '?' | first -%}
+                  <iframe class="vc-iframe"
+                    src="https://player.vimeo.com/video/{{ vimeo_id }}?autoplay={% if is_center and section.settings.autoplay %}1{% else %}0{% endif %}&muted=1&loop=1&background=1"
+                    allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+                {%- endif -%}
+              {%- endif -%}
+
+              {%- if block.settings.link_url != blank -%}
+                <a class="vc-link-overlay" href="{{ block.settings.link_url }}" aria-label="View product"></a>
+              {%- endif -%}
+
+            </div>
+          {%- endfor -%}
+
+        </div>
+      </div>
+
+      <button class="vc-arrow vc-arrow-next" aria-label="Next video" id="vc-next-{{ section_id }}">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+    </div>
+
+    <div class="vc-dots" id="vc-dots-{{ section_id }}" role="tablist">
+      {%- for block in section.blocks -%}
+        <button class="vc-dot{% if forloop.first %} is-active{% endif %}"
+                data-dot-index="{{ forloop.index0 }}"
+                role="tab"
+                aria-label="Slide {{ forloop.index }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+        </button>
+      {%- endfor -%}
+    </div>
+
+  {%- else -%}
+    {%- if request.design_mode -%}
+      <p style="text-align:center;padding:40px;color:#999;">Add video blocks in the theme editor to populate this carousel.</p>
+    {%- endif -%}
+  {%- endif -%}
+
+</section>
+
+<script>
+(function() {
+  'use strict';
+
+  function VideoCarousel(sectionId) {
+    this.id       = sectionId;
+    this.track    = document.getElementById('vc-track-' + sectionId);
+    this.dotsWrap = document.getElementById('vc-dots-' + sectionId);
+    this.prevBtn  = document.getElementById('vc-prev-' + sectionId);
+    this.nextBtn  = document.getElementById('vc-next-' + sectionId);
+    if (!this.track) return;
+
+    this.cards      = Array.from(this.track.querySelectorAll('.vc-card'));
+    this.dots       = this.dotsWrap ? Array.from(this.dotsWrap.querySelectorAll('.vc-dot')) : [];
+    this.total      = this.cards.length;
+    this.current    = 0;
+    this.sideCount  = parseInt(this.track.dataset.sideCards, 10) || 2;
+    this.autoplayOn = this.track.dataset.autoplay === 'true';
+    this.cardGap    = 36;
+
+    if (this.total === 0) return;
+    this._init();
+  }
+
+  VideoCarousel.prototype._init = function() {
+    this._layout(false);
+    this._bindArrows();
+    this._bindDots();
+    this._bindSwipe();
+    this._bindMuteButtons();
+    this._bindPlayOverlays();
+    if (this.autoplayOn) this._playCenter();
+
+    var self = this;
+    window.addEventListener('resize', function() { self._layout(false); });
+  };
+
+  VideoCarousel.prototype._cardWidth = function() {
+    /* Use the center (positioned:relative) card width */
+    var c = this.cards[this.current];
+    return c ? c.offsetWidth : 260;
+  };
+
+  /* ── Layout all cards ── */
+  VideoCarousel.prototype._layout = function(animate) {
+    var self  = this;
+    var total = this.total;
+    var cw    = this._cardWidth();
+
+    this.cards.forEach(function(card, i) {
+      var pos = i - self.current;
+      if (pos > total / 2)  pos -= total;
+      if (pos < -total / 2) pos += total;
+      var posInt = Math.round(pos);
+      var absPos = Math.abs(posInt);
+
+      card.style.transition = animate
+        ? 'transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease'
+        : 'none';
+
+      if (posInt === 0) {
+        card.classList.add('is-center');
+        card.style.cssText += ';transform:translateX(0) scale(1);opacity:1;filter:none;z-index:5;';
+      } else {
+        card.classList.remove('is-center');
+        var stepSize = cw + self.cardGap;
+        var xOffset  = posInt * stepSize;
+        var scale    = Math.max(0.45, 1 - absPos * 0.18);
+        var opacity  = absPos > self.sideCount ? 0 : Math.max(0, 0.65 - (absPos - 1) * 0.25);
+        var blur     = absPos * 3;
+        card.style.transform  = 'translateX(' + xOffset + 'px) scale(' + scale + ')';
+        card.style.opacity    = opacity;
+        card.style.filter     = blur > 0 ? 'blur(' + blur + 'px)' : 'none';
+        card.style.zIndex     = Math.max(1, 5 - absPos);
+      }
+    });
+
+    this._updateDots();
+    this._handleVideoStates();
+  };
+
+  VideoCarousel.prototype.goTo = function(index) {
+    this._pauseCenter();
+    this.current = ((index % this.total) + this.total) % this.total;
+    this._layout(true);
+    if (this.autoplayOn) {
+      var self = this;
+      setTimeout(function() { self._playCenter(); }, 420);
+    }
+  };
+
+  VideoCarousel.prototype.next = function() { this.goTo(this.current + 1); };
+  VideoCarousel.prototype.prev = function() { this.goTo(this.current - 1); };
+
+  VideoCarousel.prototype._updateDots = function() {
+    var self = this;
+    this.dots.forEach(function(dot, i) {
+      var active = (i === self.current);
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  };
+
+  VideoCarousel.prototype._getVideo = function(card) {
+    return card ? card.querySelector('video.vc-video') : null;
+  };
+
+  VideoCarousel.prototype._playCenter = function() {
+    var card = this.cards[this.current];
+    var vid  = this._getVideo(card);
+    if (!vid) return;
+    vid.play().then(function() { card.classList.add('is-playing'); }).catch(function() {});
+  };
+
+  VideoCarousel.prototype._pauseCenter = function() {
+    var card = this.cards[this.current];
+    var vid  = this._getVideo(card);
+    if (!vid) return;
+    vid.pause();
+    card.classList.remove('is-playing');
+  };
+
+  VideoCarousel.prototype._handleVideoStates = function() {
+    var self = this;
+    this.cards.forEach(function(card, i) {
+      var vid = self._getVideo(card);
+      if (vid && i !== self.current) {
+        vid.pause();
+        card.classList.remove('is-playing');
+      }
+    });
+  };
+
+  VideoCarousel.prototype._bindArrows = function() {
+    var self = this;
+    if (this.prevBtn) this.prevBtn.addEventListener('click', function() { self.prev(); });
+    if (this.nextBtn) this.nextBtn.addEventListener('click', function() { self.next(); });
+  };
+
+  VideoCarousel.prototype._bindDots = function() {
+    var self = this;
+    this.dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var idx = parseInt(dot.dataset.dotIndex, 10);
+        if (!isNaN(idx)) self.goTo(idx);
+      });
+    });
+  };
+
+  VideoCarousel.prototype._bindSwipe = function() {
+    var self    = this;
+    var wrapper = document.getElementById('vc-wrapper-' + this.id);
+    if (!wrapper) return;
+    var startX = 0, startY = 0, dragging = false;
+
+    wrapper.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      dragging = true;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchmove', function(e) {
+      if (!dragging) return;
+      if (Math.abs(e.touches[0].clientX - startX) > Math.abs(e.touches[0].clientY - startY)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    wrapper.addEventListener('touchend', function(e) {
+      if (!dragging) return;
+      dragging = false;
+      var diff = e.changedTouches[0].clientX - startX;
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) self.next(); else self.prev();
+      }
+    }, { passive: true });
+  };
+
+  VideoCarousel.prototype._bindMuteButtons = function() {
+    var self = this;
+    this.cards.forEach(function(card) {
+      var btn = card.querySelector('.vc-mute-btn');
+      var vid = self._getVideo(card);
+      if (!btn || !vid) return;
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        vid.muted = !vid.muted;
+        var im = btn.querySelector('.icon-muted');
+        var iu = btn.querySelector('.icon-unmuted');
+        if (im) im.style.display = vid.muted ? '' : 'none';
+        if (iu) iu.style.display = vid.muted ? 'none' : '';
+      });
+    });
+  };
+
+  VideoCarousel.prototype._bindPlayOverlays = function() {
+    var self = this;
+    this.cards.forEach(function(card, i) {
+      var vid     = self._getVideo(card);
+      if (!vid) return;
+
+      card.addEventListener('click', function(e) {
+        if (e.target.closest('.vc-link-overlay') || e.target.closest('.vc-mute-btn')) return;
+        if (i !== self.current) { self.goTo(i); return; }
+        if (vid.paused) {
+          vid.play().then(function() { card.classList.add('is-playing'); }).catch(function() {});
+        } else {
+          vid.pause();
+          card.classList.remove('is-playing');
+        }
+      });
+
+      vid.addEventListener('play',  function() { card.classList.add('is-playing'); });
+      vid.addEventListener('pause', function() { card.classList.remove('is-playing'); });
+      vid.addEventListener('ended', function() { card.classList.remove('is-playing'); });
+    });
+  };
+
+  /* ── Bootstrap ── */
+  function init() { new VideoCarousel('{{ section_id }}'); }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  /* Theme editor live reload */
+  document.addEventListener('shopify:section:load', function(e) {
+    if (e.detail && e.detail.sectionId === '{{ section_id }}') init();
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Video Carousel",
+  "tag": "div",
+  "class": "shopify-section--video-carousel",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "header",
+      "content": "Carousel Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay center video",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "side_cards",
+      "label": "Visible side cards (each side)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow button color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot color",
+      "default": "#222222"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_slide",
+      "name": "Video Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Video Source (choose one)"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Upload Video",
+          "info": "Portrait/vertical MP4 recommended."
+        },
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "YouTube or Vimeo URL",
+          "info": "Used only if no video is uploaded above."
+        },
+        {
+          "type": "header",
+          "content": "Link"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Carousel",
+      "blocks": [
+        { "type": "video_slide" },
+        { "type": "video_slide" },
+        { "type": "video_slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}
