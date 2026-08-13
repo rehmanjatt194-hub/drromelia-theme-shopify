@@ -5,6 +5,96 @@
   {% render 'header-drawer' %}
 {% endcomment %}
 
+<style>
+  .drawer__custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eaeaea;
+    position: relative;
+  }
+  .drawer__custom-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color: #111;
+  }
+  .drawer__custom-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #111;
+    width: 53px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .drawer__custom-close svg {
+    width: 20px;
+    height: 20px;
+  }
+  .drawer__custom-search {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .drawer__custom-search form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+  .drawer__custom-search input {
+    border: none;
+    outline: none;
+    font-size: 15px;
+    width: 100%;
+    box-shadow: none;
+    padding: 10px;
+    background: transparent;
+  }
+  .drawer__custom-search button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+  }
+  .drawer__menu-li {
+    border-bottom: 1px solid #eaeaea;
+  }
+  .menu-drawer__navigation .menu-drawer__menu-item {
+    font-size: 15px;
+    padding: 18px 20px;
+    color: #111;
+    text-decoration: none;
+    font-weight: 400;
+  }
+  .drawer__custom-footer {
+    padding: 25px 20px;
+    background: #fff;
+  }
+  .drawer__custom-footer h3 {
+    font-size: 15px;
+    margin: 0 0 15px;
+    color: #111;
+    font-weight: 400;
+  }
+  .drawer__custom-footer a {
+    display: block;
+    font-size: 15px;
+    color: #111;
+    text-decoration: none;
+    margin-bottom: 8px;
+  }
+</style>
+
 <header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
   <details id="Details-menu-drawer-container" class="menu-drawer-container">
     <summary
@@ -63,6 +153,25 @@
               </div>
             {% endfor %}
           </div> {% endcomment %}
+          <div class="drawer__custom-header">
+            <h2 class="drawer__custom-title">MENU</h2>
+            <div class="drawer__custom-close" onclick="document.querySelector('#Details-menu-drawer-container > summary').click()">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="drawer__custom-search">
+            <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+              <button class="search__button field__button" aria-label="Search">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon icon-search">
+                  <path d="M19 19L13 13M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <input class="search__input field__input" type="search" name="q" placeholder="Search">
+            </form>
+          </div>
+          
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.menu.links -%}
@@ -75,7 +184,7 @@
                   {% endif %}  
                 {% endfor %}
 
-                <li>
+                <li class="drawer__menu-li">
                   {% if mega_menu_block != "" %}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                       <summary
@@ -133,7 +242,7 @@
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
-                              <li>
+                              <li class="drawer__menu-li">
                                 {%- if childlink.links == blank -%}
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
@@ -178,7 +287,7 @@
                                         tabindex="-1"
                                       >
                                         {%- for grandchildlink in childlink.links -%}
-                                          <li>
+                                          <li class="drawer__menu-li">
                                             <a
                                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                               href="{{ grandchildlink.url }}"
@@ -218,7 +327,7 @@
               {% assign left_menu = linklists[settings.menu] %}
               {% if left_menu.links.size > 0 %}
                 {% for link in left_menu.links %}
-                  <li class="left-menu-item">
+                  <li class="left-menu-item drawer__menu-li">
                     <a href="{{ link.url }}" title="{{ link.title }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset" aria-current="page">
                       {{ link.title }}
                     </a>
@@ -226,6 +335,12 @@
                 {% endfor %}
               {% endif %}
             </ul>
+
+            <div class="drawer__custom-footer">
+              <h3>Need help?</h3>
+              <a href="tel:+923111194447">+923111194447</a>
+              <a href="mailto:support@drromelia.com">support@drromelia.com</a>
+            </div>
           </nav>
           <div class="menu-drawer__utility-links hide">
             {%- if shop.customer_accounts_enabled -%}
