@@ -93,59 +93,66 @@
     text-decoration: none;
     margin-bottom: 8px;
   }
-  .drawer__custom-close--floating {
+  /* === Floating Close Button === */
+  #drawer-close-btn {
     display: none;
-    position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
-    left: auto !important;
-    z-index: 999999 !important;
+    position: fixed;
+    top: 0;
+    left: calc(100vw - 53px);
+    z-index: 99999;
     background: #111;
     width: 53px;
     height: 53px;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border: none;
+    outline: none;
   }
-  
-  /* Show floating close box when menu is open */
-  details[open] .drawer__custom-close--floating {
-    display: flex !important;
-  }
-
-  /* Adjust floating box position on desktop */
   @media screen and (min-width: 750px) {
-    .drawer__custom-close--floating {
-      right: auto !important;
-      left: 40rem !important;
+    #drawer-close-btn {
+      left: 40rem;
     }
   }
-  
-  /* Hide inner close button */
+
+  /* Hide inner close button that was inside the drawer header */
   .drawer__custom-header .drawer__custom-close {
     display: none !important;
   }
 
-  /* Make drawer and overlay cover the ENTIRE height of the screen including header */
+  /* Make drawer cover full screen height from top */
   .menu-drawer,
   .js .menu-drawer {
     top: 0 !important;
     height: 100vh !important;
   }
-  .js menu-drawer > details > summary::before,
-  .js menu-drawer > details[open]:not(.menu-opening) > summary::before {
-    top: 0 !important;
-    height: 100vh !important;
-    z-index: 2 !important;
-  }
 
-  /* Adjust drawer width on mobile so the close button fits perfectly */
+  /* Adjust drawer width on mobile to leave room for close button */
   @media screen and (max-width: 749px) {
     .menu-drawer {
       width: calc(100% - 53px) !important;
     }
   }
 </style>
+
+<!-- Floating Close Button (outside the drawer) -->
+<div id="drawer-close-btn" onclick="document.querySelector('#Details-menu-drawer-container > summary').click()" role="button" aria-label="Close menu">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+    <path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<script>
+(function() {
+  var btn = document.getElementById('drawer-close-btn');
+  var details = document.getElementById('Details-menu-drawer-container');
+  if (!btn || !details) return;
+  var observer = new MutationObserver(function() {
+    btn.style.display = details.hasAttribute('open') ? 'flex' : 'none';
+  });
+  observer.observe(details, { attributes: true, attributeFilter: ['open', 'class'] });
+})();
+</script>
 
 <header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
   <details id="Details-menu-drawer-container" class="menu-drawer-container">
@@ -158,11 +165,7 @@
         {{- 'icon-close.svg' | inline_asset_content -}}
       </span>
     </summary>
-    <div class="drawer__custom-close--floating" onclick="document.querySelector('#Details-menu-drawer-container > summary').click()">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
-        <path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
+
     <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
