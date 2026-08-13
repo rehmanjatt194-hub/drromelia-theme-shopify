@@ -2,10 +2,6 @@
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
  *
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
  * This file may be updated by the Shopify admin theme editor
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
@@ -85,7 +81,6 @@
       ],
       "name": "Custom Announcement Bar",
       "settings": {
-        "enable_marquee": true,
         "bg_color": "#333333",
         "padding_y_desktop": 8,
         "padding_y_mobile": 8,
