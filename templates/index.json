@@ -833,6 +833,46 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "video_carousel_YDpEaK": {
+      "type": "video-carousel",
+      "blocks": {
+        "video_slide_piDLLp": {
+          "type": "video_slide",
+          "settings": {
+            "video_url": "",
+            "link_url": ""
+          }
+        },
+        "video_slide_K6MEzP": {
+          "type": "video_slide",
+          "settings": {
+            "video_url": "",
+            "link_url": ""
+          }
+        },
+        "video_slide_h8TUjN": {
+          "type": "video_slide",
+          "settings": {
+            "video_url": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_slide_piDLLp",
+        "video_slide_K6MEzP",
+        "video_slide_h8TUjN"
+      ],
+      "name": "Video Carousel",
+      "settings": {
+        "heading": "Customer Reviews",
+        "autoplay": true,
+        "side_cards": 2,
+        "bg_color": "#f5f5f5",
+        "arrow_color": "#222222",
+        "dot_active_color": "#222222"
+      }
     }
   },
   "order": [
@@ -848,6 +888,7 @@
     "lx_tabs_info_t6XRCT",
     "image_with_text_HAWDFH",
     "lx_faqs_box_VNKD3h",
-    "testimonials_ac7mg8"
+    "testimonials_ac7mg8",
+    "video_carousel_YDpEaK"
   ]
 }
