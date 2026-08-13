@@ -837,6 +837,13 @@
     "video_carousel_YDpEaK": {
       "type": "video-carousel",
       "blocks": {
+        "video_slide_fxVyPQ": {
+          "type": "video_slide",
+          "settings": {
+            "video_url": "",
+            "link_url": ""
+          }
+        },
         "video_slide_piDLLp": {
           "type": "video_slide",
           "settings": {
@@ -860,6 +867,7 @@
         }
       },
       "block_order": [
+        "video_slide_fxVyPQ",
         "video_slide_piDLLp",
         "video_slide_K6MEzP",
         "video_slide_h8TUjN"
