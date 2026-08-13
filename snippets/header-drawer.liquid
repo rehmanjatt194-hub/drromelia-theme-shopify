@@ -97,7 +97,7 @@
     display: none;
     position: fixed;
     top: 0;
-    left: 40rem;
+    left: calc(100vw - 53px);
     z-index: 101;
     background: #111;
     width: 53px;
@@ -106,12 +106,40 @@
     justify-content: center;
     cursor: pointer;
   }
+  
+  /* Show floating close box when menu is open */
+  details[open] .drawer__custom-close--floating {
+    display: flex;
+  }
+
+  /* Adjust floating box position on desktop */
   @media screen and (min-width: 750px) {
-    details[open] .drawer__custom-close--floating {
-      display: flex;
+    .drawer__custom-close--floating {
+      left: 40rem;
     }
-    .drawer__custom-header .drawer__custom-close {
-      display: none !important;
+  }
+  
+  /* Hide inner close button */
+  .drawer__custom-header .drawer__custom-close {
+    display: none !important;
+  }
+
+  /* Make drawer and overlay cover the ENTIRE height of the screen including header */
+  .menu-drawer,
+  .js .menu-drawer {
+    top: 0 !important;
+    height: 100vh !important;
+  }
+  .js menu-drawer > details > summary::before,
+  .js menu-drawer > details[open]:not(.menu-opening) > summary::before {
+    top: 0 !important;
+    height: 100vh !important;
+  }
+
+  /* Adjust drawer width on mobile so the close button fits perfectly */
+  @media screen and (max-width: 749px) {
+    .menu-drawer {
+      width: calc(100vw - 53px) !important;
     }
   }
 </style>
