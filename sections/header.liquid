@@ -52,6 +52,37 @@
     }
   {%- endif -%}
 
+  /* Mobile specific overrides */
+  @media screen and (max-width: 989px) {
+    /* Hide the left-side search icon on mobile */
+    .header > .header__search {
+      display: none !important;
+    }
+    /* Force show the right-side search icon on mobile */
+    .header__icons .header__search {
+      display: inline-flex !important;
+    }
+    
+    /* Ensure header grid is perfectly symmetrical so the logo is centered */
+    .header {
+      grid-template-columns: 1fr auto 1fr !important;
+    }
+    .header__heading,
+    .header__heading-link {
+      justify-self: center !important;
+      text-align: center !important;
+    }
+    
+    /* Make the logo smaller on mobile */
+    .header__heading-logo-wrapper {
+      max-width: 120px !important;
+    }
+    .header__heading-logo {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
