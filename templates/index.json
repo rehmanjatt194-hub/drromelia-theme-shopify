@@ -147,6 +147,7 @@
         "feature_xFVJ7q",
         "feature_C4PUTY"
       ],
+      "disabled": true,
       "name": "Difference Features",
       "settings": {
         "color_scheme": "scheme-1",
@@ -279,6 +280,7 @@
         "buy_buttons_F8A8VF",
         "payment_UfDnAK"
       ],
+      "disabled": true,
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "shilajit-premium",
@@ -351,6 +353,7 @@
         "feature_pD6A8q",
         "button_9eMmhT"
       ],
+      "disabled": true,
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "media_type": "image",
@@ -462,6 +465,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "FEATURES",
+        "center_image": "shopify://shop_images/IMG_2189.png",
         "center_image_alt": "",
         "center_image_width": 400,
         "heading_font_size": 32,
@@ -494,6 +498,7 @@
     },
     "image_with_circle_orbit_NTCijz": {
       "type": "image-with-circle-orbit",
+      "disabled": true,
       "name": "Image with Circle Orbit",
       "settings": {
         "color_scheme": "scheme-1",
@@ -599,6 +604,7 @@
         "ingredients_8NdwGi",
         "usage_MDkAmE"
       ],
+      "disabled": true,
       "name": "Custom Tabs - Default",
       "settings": {
         "bg_color": "#ffffff",
@@ -663,6 +669,7 @@
         "text_9aJ7Bz",
         "button_jNmLRc"
       ],
+      "disabled": true,
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "media_type": "image",
