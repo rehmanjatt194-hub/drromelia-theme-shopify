@@ -93,13 +93,12 @@
     text-decoration: none;
     margin-bottom: 8px;
   }
-  /* === Floating Close Button === */
-  #drawer-close-btn {
+  /* === Close Button - will be injected by JS === */
+  #lx-drawer-close-btn {
     display: none;
     position: fixed;
     top: 0;
-    left: calc(100vw - 53px);
-    z-index: 99999;
+    z-index: 999999;
     background: #111;
     width: 53px;
     height: 53px;
@@ -109,14 +108,13 @@
     border: none;
     outline: none;
   }
-  @media screen and (min-width: 750px) {
-    #drawer-close-btn {
-      left: 40rem;
-    }
-  }
 
-  /* Hide inner close button that was inside the drawer header */
+  /* Hide the inner custom close and the default Dawn close icon */
   .drawer__custom-header .drawer__custom-close {
+    display: none !important;
+  }
+  .js .icon-close,
+  details[open] > summary .icon-close {
     display: none !important;
   }
 
@@ -135,23 +133,50 @@
   }
 </style>
 
-<!-- Floating Close Button (outside the drawer) -->
-<div id="drawer-close-btn" onclick="document.querySelector('#Details-menu-drawer-container > summary').click()" role="button" aria-label="Close menu">
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
-    <path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-</div>
-
 <script>
-(function() {
-  var btn = document.getElementById('drawer-close-btn');
+document.addEventListener('DOMContentLoaded', function() {
+  // Create the close button and append to body
+  var btn = document.createElement('div');
+  btn.id = 'lx-drawer-close-btn';
+  btn.setAttribute('role', 'button');
+  btn.setAttribute('aria-label', 'Close menu');
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px;"><path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>';
+  document.body.appendChild(btn);
+
   var details = document.getElementById('Details-menu-drawer-container');
-  if (!btn || !details) return;
-  var observer = new MutationObserver(function() {
-    btn.style.display = details.hasAttribute('open') ? 'flex' : 'none';
+  var drawer = document.getElementById('menu-drawer');
+
+  function positionBtn() {
+    if (!drawer) return;
+    var rect = drawer.getBoundingClientRect();
+    btn.style.left = (rect.right) + 'px';
+    btn.style.top = '0px';
+  }
+
+  btn.addEventListener('click', function() {
+    var summary = document.querySelector('#Details-menu-drawer-container > summary');
+    if (summary) summary.click();
   });
-  observer.observe(details, { attributes: true, attributeFilter: ['open', 'class'] });
-})();
+
+  // Watch for drawer open/close
+  if (details) {
+    var observer = new MutationObserver(function() {
+      var isOpen = details.hasAttribute('open') || details.classList.contains('menu-opening');
+      if (details.hasAttribute('open')) {
+        positionBtn();
+        btn.style.display = 'flex';
+      } else {
+        btn.style.display = 'none';
+      }
+    });
+    observer.observe(details, { attributes: true, attributeFilter: ['open', 'class'] });
+  }
+
+  // Reposition on resize
+  window.addEventListener('resize', function() {
+    if (btn.style.display === 'flex') positionBtn();
+  });
+});
 </script>
 
 <header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
@@ -167,6 +192,7 @@
     </summary>
 
     <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
+
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
           {% comment %} <div class="menu_drawer-mega_images">
