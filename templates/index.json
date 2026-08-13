@@ -36,6 +36,7 @@
       "blocks": {
         "heading_rWEc3q": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "heading": "<p>Brighter, Healthier-Looking<br/>Skin, Every Day<br/></p>",
             "heading_size": "medium"
@@ -43,6 +44,7 @@
         },
         "text_K7xYdb": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<p>Dr. Romelia’s Whitening Cream and Serum are formulated with Kojic Acid, Niacinamide and Alpha Arbutin to help brighten skin tone and even out your complexion, a simple daily routine, made for Pakistani skin.</p>",
             "text_style": "body",
@@ -53,6 +55,7 @@
         },
         "buttons_JLWeTc": {
           "type": "buttons",
+          "disabled": true,
           "settings": {
             "button_label_1": "Shop The Range",
             "button_link_1": "shopify://collections",
@@ -70,6 +73,8 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
+        "image": "shopify://shop_images/IMG_2205.png",
+        "image_m": "shopify://shop_images/IMG_2205.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
