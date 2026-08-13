@@ -1,0 +1,164 @@
+{% comment %}
+  Top Countdown Bar
+{% endcomment %}
+
+<style>
+  .countdown-bar {
+    width: 100%;
+    background: linear-gradient(90deg, #3B4B70 0%, #2A3B8B 50%, #1A28A8 100%);
+    color: #ffffff;
+    text-align: center;
+    padding: 8px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Inter', sans-serif; /* Fallback */
+  }
+
+  .countdown-bar__text {
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+
+  .countdown-bar__timer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .countdown-box {
+    background: #ffffff;
+    color: #000000;
+    border-radius: 4px;
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 45px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .countdown-box__number {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .countdown-box__label {
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 750px) {
+    .countdown-bar {
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+    }
+    .countdown-bar__text {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<div class="countdown-bar section-{{ section.id }}">
+  <div class="countdown-bar__text">
+    {{ section.settings.text }}
+  </div>
+  <div class="countdown-bar__timer" id="countdown-timer-{{ section.id }}" data-end-time="{{ section.settings.end_time }}">
+    <div class="countdown-box">
+      <span class="countdown-box__number" id="days-{{ section.id }}">00</span>
+      <span class="countdown-box__label">Days</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-box__number" id="hours-{{ section.id }}">00</span>
+      <span class="countdown-box__label">Hrs</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-box__number" id="minutes-{{ section.id }}">00</span>
+      <span class="countdown-box__label">Min</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-box__number" id="seconds-{{ section.id }}">00</span>
+      <span class="countdown-box__label">Sec</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const timerElement = document.getElementById("countdown-timer-{{ section.id }}");
+    const endTimeString = timerElement.getAttribute("data-end-time");
+    
+    // Parse the end time, or default to a future date if not set properly
+    let countDownDate = new Date(endTimeString).getTime();
+    
+    // Fallback if date is invalid: set it to 1 day from now
+    if (isNaN(countDownDate)) {
+      countDownDate = new Date().getTime() + (1000 * 60 * 60 * 24 * 1); // 1 day
+    }
+
+    const daysEl = document.getElementById("days-{{ section.id }}");
+    const hoursEl = document.getElementById("hours-{{ section.id }}");
+    const minutesEl = document.getElementById("minutes-{{ section.id }}");
+    const secondsEl = document.getElementById("seconds-{{ section.id }}");
+
+    const x = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      if (distance < 0) {
+        clearInterval(x);
+        daysEl.innerHTML = "00";
+        hoursEl.innerHTML = "00";
+        minutesEl.innerHTML = "00";
+        secondsEl.innerHTML = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.innerHTML = days < 10 ? "0" + days : days;
+      hoursEl.innerHTML = hours < 10 ? "0" + hours : hours;
+      minutesEl.innerHTML = minutes < 10 ? "0" + minutes : minutes;
+      secondsEl.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+    }, 1000);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Countdown Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "SUMMER CLEARANCE: FLAT 50% OFF — ENDS IN"
+    },
+    {
+      "type": "text",
+      "id": "end_time",
+      "label": "End Date and Time",
+      "info": "Format: YYYY-MM-DDTHH:MM:SS (e.g. 2024-12-31T23:59:59)",
+      "default": "2024-12-31T23:59:59"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Bar",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

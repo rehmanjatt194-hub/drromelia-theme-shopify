@@ -2,6 +2,10 @@
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
  *
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
  * This file may be updated by the Shopify admin theme editor
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
@@ -11,67 +15,79 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "countdown_bar_1": {
+      "type": "countdown-bar",
+      "settings": {
+        "text": "SUMMER CLEARANCE: FLAT 50% OFF — ENDS IN",
+        "end_time": "2026-12-31T23:59:59"
+      }
+    },
     "lx_announcement_bar_3FWccE": {
       "type": "lx-announcement-bar",
       "blocks": {
         "text_block_QUwYwN": {
           "type": "text_block",
           "settings": {
-            "text": "Nationwide Delivery Across Pakistan",
+            "icon": "shopify://shop_images/Vector_35.svg",
+            "text": "Fast Nationwide Delivery (2-4 Working Days)",
             "link": "",
             "text_color": "#ffffff",
-            "font_size": 14
+            "font_size": 12
           }
         },
         "text_block_7jmkKk": {
           "type": "text_block",
           "settings": {
-            "text": "Pakistan’s Own Brightening Skincare",
+            "icon": "shopify://shop_images/Vector_35.svg",
+            "text": "We Will Call You for Confirmation Before Dispatch",
             "link": "",
             "text_color": "#ffffff",
-            "font_size": 14
+            "font_size": 12
           }
         },
         "text_block_NyHYQC": {
           "type": "text_block",
           "settings": {
-            "text": "New: Dr. Romelia Whitening Cream & Serum",
+            "icon": "shopify://shop_images/Vector_35.svg",
+            "text": "PK AZADI SALE | EXTRA 14% OFF on Orders Rs 4000+ (Use Code: AZADI)",
             "link": "",
             "text_color": "#ffffff",
-            "font_size": 14
+            "font_size": 12
           }
         },
         "text_block_eMMAMP": {
           "type": "text_block",
           "settings": {
-            "text": "30-Day Energy Guarantee",
+            "icon": "shopify://shop_images/Vector_35.svg",
+            "text": "FREE Delivery on Orders Rs. 2,999+",
             "link": "",
             "text_color": "#ffffff",
-            "font_size": 14
+            "font_size": 12
           }
         },
         "text_block_Af9xwG": {
           "type": "text_block",
           "settings": {
-            "text": "30-Day Energy Guarantee",
+            "icon": "shopify://shop_images/Vector_35.svg",
+            "text": "Fast Nationwide Delivery (2-4 Working Days)",
             "link": "",
             "text_color": "#ffffff",
-            "font_size": 14
+            "font_size": 12
           }
         }
       },
       "block_order": [
+        "text_block_eMMAMP",
         "text_block_QUwYwN",
         "text_block_7jmkKk",
         "text_block_NyHYQC",
-        "text_block_eMMAMP",
         "text_block_Af9xwG"
       ],
       "name": "Custom Announcement Bar",
       "settings": {
-        "bg_color": "#6f2c91",
-        "padding_y_desktop": 18,
-        "padding_y_mobile": 15,
+        "bg_color": "#333333",
+        "padding_y_desktop": 8,
+        "padding_y_mobile": 8,
         "enable_desktop_slider": true,
         "desktop_slides": 3,
         "desktop_autoplay": true,
@@ -135,7 +151,7 @@
           "settings": {
             "trigger": "Shilajit",
             "title_1": "",
-            "menu_1": "",
+            "menu_1": "header-menu",
             "title_2": "",
             "menu_2": "",
             "title_3": "",
@@ -143,6 +159,7 @@
             "image_1_title": "",
             "image_1_text": "",
             "image_1_link": "",
+            "image_2": "shopify://shop_images/image_320_2.png",
             "image_2_title": "",
             "image_2_text": "",
             "image_2_link": "shopify://products/shilajit-premium",
@@ -177,8 +194,8 @@
       "settings": {
         "logo_position": "middle-center",
         "mobile_logo_position": "left",
-        "menu": "",
-        "menu_type_desktop": "mega",
+        "menu": "header-menu",
+        "menu_type_desktop": "drawer",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
         "color_scheme": "scheme-1",
@@ -186,8 +203,10 @@
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_search": true,
+        "search_icon": "shopify://shop_images/iuiu.svg",
         "acount_enable": false,
         "enable_customer_avatar": true,
+        "acount_icon": "shopify://shop_images/accco.svg",
         "enable_cart": true,
         "margin_bottom": 0,
         "padding_top": 20,
@@ -196,6 +215,7 @@
     }
   },
   "order": [
+    "countdown_bar_1",
     "lx_announcement_bar_3FWccE",
     "header"
   ]
