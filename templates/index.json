@@ -465,6 +465,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "FEATURES",
+        "center_image": "shopify://shop_images/IMG_2189.png",
         "center_image_alt": "",
         "center_image_width": 400,
         "heading_font_size": 32,
