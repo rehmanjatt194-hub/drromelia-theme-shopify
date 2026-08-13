@@ -93,6 +93,27 @@
     text-decoration: none;
     margin-bottom: 8px;
   }
+  .drawer__custom-close--floating {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 40rem;
+    z-index: 101;
+    background: #111;
+    width: 53px;
+    height: 53px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  @media screen and (min-width: 750px) {
+    details[open] .drawer__custom-close--floating {
+      display: flex;
+    }
+    .drawer__custom-header .drawer__custom-close {
+      display: none !important;
+    }
+  }
 </style>
 
 <header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
@@ -106,6 +127,11 @@
         {{- 'icon-close.svg' | inline_asset_content -}}
       </span>
     </summary>
+    <div class="drawer__custom-close--floating" onclick="document.querySelector('#Details-menu-drawer-container > summary').click()">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+        <path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
     <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
