@@ -1,0 +1,331 @@
+{% comment %}
+  Trust Badges / Features Bar Section
+  Shows icon cards with title and subtitle — e.g. "Cash on Delivery", "Free Shipping", etc.
+{% endcomment %}
+
+{%- style -%}
+  .lx-trust-badges-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px;
+  }
+
+  .lx-trust-badges-{{ section.id }} .lx-tb-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .lx-trust-badges-{{ section.id }} .lx-tb-card {
+    background: #fff;
+    border: 1px solid #f0e8e8;
+    border-radius: 14px;
+    padding: 28px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1 1 160px;
+    min-width: 140px;
+    max-width: 220px;
+    gap: 14px;
+    box-shadow: 0 2px 12px rgba(200,60,60,0.06);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .lx-trust-badges-{{ section.id }} .lx-tb-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(200,60,60,0.12);
+  }
+
+  /* Icon circle */
+  .lx-trust-badges-{{ section.id }} .lx-tb-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: {{ section.settings.icon_bg_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .lx-trust-badges-{{ section.id }} .lx-tb-icon svg,
+  .lx-trust-badges-{{ section.id }} .lx-tb-icon img {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+    color: #fff;
+  }
+
+  .lx-trust-badges-{{ section.id }} .lx-tb-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .lx-trust-badges-{{ section.id }} .lx-tb-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .lx-trust-badges-{{ section.id }} .lx-tb-subtitle {
+    font-size: 12.5px;
+    color: {{ section.settings.subtitle_color }};
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 749px) {
+    .lx-trust-badges-{{ section.id }} .lx-tb-inner {
+      gap: 12px;
+    }
+    .lx-trust-badges-{{ section.id }} .lx-tb-card {
+      flex: 1 1 calc(50% - 12px);
+      max-width: calc(50% - 12px);
+      padding: 20px 14px 18px;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .lx-trust-badges-{{ section.id }} .lx-tb-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+{%- endstyle -%}
+
+<div class="lx-trust-badges-{{ section.id }}">
+  <div class="lx-tb-inner">
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'badge' -%}
+        <div class="lx-tb-card" {{ block.shopify_attributes }}>
+
+          <!-- Icon -->
+          <div class="lx-tb-icon">
+            {%- if block.settings.custom_icon != blank -%}
+              <img src="{{ block.settings.custom_icon | img_url: '60x60' }}" alt="{{ block.settings.title | escape }}" width="26" height="26">
+            {%- else -%}
+              {%- case block.settings.icon -%}
+                {%- when 'cash' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2m-3-6h6m-6 0a3 3 0 106 0 3 3 0 00-6 0"/>
+                  </svg>
+                {%- when 'shipping' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                  </svg>
+                {%- when 'return' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+                  </svg>
+                {%- when 'original' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                {%- when 'support' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                  </svg>
+                {%- when 'star' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff" stroke="none">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                {%- when 'gift' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7m0-5C10 2 8 4 8 7h8c0-3-2-5-4-5z"/>
+                  </svg>
+                {%- when 'lock' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                  </svg>
+                {%- when 'tag' -%}
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+                  </svg>
+                {%- else -%}
+                  <!-- Default: checkmark -->
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+              {%- endcase -%}
+            {%- endif -%}
+          </div>
+
+          <!-- Text -->
+          <div class="lx-tb-text">
+            {%- if block.settings.title != blank -%}
+              <p class="lx-tb-title">{{ block.settings.title }}</p>
+            {%- endif -%}
+            {%- if block.settings.subtitle != blank -%}
+              <p class="lx-tb-subtitle">{{ block.settings.subtitle }}</p>
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "tag": "section",
+  "class": "shopify-section--trust-badges",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_bg_color",
+      "label": "Icon circle color",
+      "default": "#d42b2b"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#c0392b"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "cash",     "label": "Cash / Dollar" },
+            { "value": "shipping", "label": "Shipping / Truck" },
+            { "value": "return",   "label": "Return / Refresh" },
+            { "value": "original", "label": "Original / Shield" },
+            { "value": "support",  "label": "Customer Support / Chat" },
+            { "value": "star",     "label": "Star / Rating" },
+            { "value": "gift",     "label": "Gift" },
+            { "value": "lock",     "label": "Secure / Lock" },
+            { "value": "tag",      "label": "Discount / Tag" }
+          ],
+          "default": "cash"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon image",
+          "info": "Overrides the selected icon above if set. Use a white icon on transparent background."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Cash on Delivery"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Pay When You Receive"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "cash",
+            "title": "Cash on Delivery",
+            "subtitle": "Pay When You Receive"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "shipping",
+            "title": "Free Shipping",
+            "subtitle": "Free Shipping on Orders Above Rs. 2,999"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "return",
+            "title": "7 Days Easy Return",
+            "subtitle": "Hassle-Free Exchange"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "original",
+            "title": "100% Original",
+            "subtitle": "Premium Quality Guaranteed"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "support",
+            "title": "24/7 Customer Support",
+            "subtitle": "Always Here to Help"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
