@@ -85,6 +85,7 @@
       ],
       "name": "Custom Announcement Bar",
       "settings": {
+        "enable_marquee": true,
         "bg_color": "#333333",
         "padding_y_desktop": 8,
         "padding_y_mobile": 8,

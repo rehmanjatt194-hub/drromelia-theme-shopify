@@ -211,18 +211,32 @@
 </section>
 
 {% if section.settings.enable_desktop_slider or section.settings.enable_mobile_slider %}
+<style>
+  {% if section.settings.enable_marquee %}
+  .custom-ann-bar__slider .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+  {% endif %}
+</style>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  
+  const isMarquee = {{ section.settings.enable_marquee | json }};
+  
+  const getAutoplayConfig = (autoplayEnabled, delay) => {
+    if (!autoplayEnabled) return false;
+    if (isMarquee) {
+      return { delay: 0, disableOnInteraction: false };
+    }
+    return { delay: delay, disableOnInteraction: false };
+  };
 
   if (window.innerWidth > 800 && {{ section.settings.enable_desktop_slider | json }}) {
     new Swiper(".custom-ann-bar__slider--desktop", {
       slidesPerView: {{ section.settings.desktop_slides }},
       loop: {{ section.settings.desktop_loop }},
-      autoplay: {{ section.settings.desktop_autoplay | json }} ? {
-        delay: {{ section.settings.desktop_autoplay_delay }},
-        disableOnInteraction: false
-      } : false,
-      speed: {{ section.settings.desktop_speed }},
+      autoplay: getAutoplayConfig({{ section.settings.desktop_autoplay | json }}, {{ section.settings.desktop_autoplay_delay }}),
+      speed: isMarquee ? 5000 : {{ section.settings.desktop_speed }},
       navigation: {
         nextEl: '.custom-ann-bar__arrow--next',
         prevEl: '.custom-ann-bar__arrow--prev',
@@ -234,11 +248,8 @@ document.addEventListener("DOMContentLoaded", function () {
     new Swiper(".custom-ann-bar__slider--mobile", {
       slidesPerView: {{ section.settings.mobile_slides }},
       loop: {{ section.settings.mobile_loop }},
-      autoplay: {{ section.settings.mobile_autoplay | json }} ? {
-        delay: {{ section.settings.mobile_autoplay_delay }},
-        disableOnInteraction: false
-      } : false,
-      speed: {{ section.settings.mobile_speed }},
+      autoplay: getAutoplayConfig({{ section.settings.mobile_autoplay | json }}, {{ section.settings.mobile_autoplay_delay }}),
+      speed: isMarquee ? 5000 : {{ section.settings.mobile_speed }},
       navigation: {
         nextEl: '.custom-ann-bar__arrow--next.custom-ann-bar__arrow--mobile',
         prevEl: '.custom-ann-bar__arrow--prev.custom-ann-bar__arrow--mobile',
@@ -257,6 +268,12 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       "type": "header",
       "content": "General Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_marquee",
+      "label": "Enable Marquee Mode (Continuous Scroll)",
+      "default": true
     },
     {
       "type": "color",
