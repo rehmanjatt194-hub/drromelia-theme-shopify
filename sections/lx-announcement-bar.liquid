@@ -135,9 +135,9 @@
 
 <section
   class="custom-ann-bar section-{{ section.id }} {% if section.settings.desktop_slides == 1 %}single-slide{% endif %}"
-  style="background-color: {{ section.settings.bg_color }};"
+  style="background-color: {{ section.settings.bg_color }}; overflow: hidden;"
 >
-  <div class="page-width {% if section.settings.enable_desktop_slider %}desktop_slide_active{% endif %}">
+  <div class="{% if section.settings.enable_marquee %}marquee-container{% else %}page-width{% endif %} {% if section.settings.enable_desktop_slider %}desktop_slide_active{% endif %}">
 
     <!-- ================= DESKTOP ================= -->
     {% if section.settings.enable_desktop_slider %}
@@ -213,8 +213,21 @@
 {% if section.settings.enable_desktop_slider or section.settings.enable_mobile_slider %}
 <style>
   {% if section.settings.enable_marquee %}
+  .marquee-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
   .custom-ann-bar__slider .swiper-wrapper {
     transition-timing-function: linear !important;
+  }
+  .custom-ann-bar__slider .swiper-slide {
+    width: auto !important;
+    padding: 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   {% endif %}
 </style>
@@ -233,8 +246,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (window.innerWidth > 800 && {{ section.settings.enable_desktop_slider | json }}) {
     new Swiper(".custom-ann-bar__slider--desktop", {
-      slidesPerView: {{ section.settings.desktop_slides }},
-      loop: {{ section.settings.desktop_loop }},
+      slidesPerView: isMarquee ? 'auto' : {{ section.settings.desktop_slides }},
+      loopedSlides: isMarquee ? 10 : null,
+      loop: true,
       autoplay: getAutoplayConfig({{ section.settings.desktop_autoplay | json }}, {{ section.settings.desktop_autoplay_delay }}),
       speed: isMarquee ? 5000 : {{ section.settings.desktop_speed }},
       navigation: {
@@ -246,8 +260,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (window.innerWidth <= 800 && {{ section.settings.enable_mobile_slider | json }}) {
     new Swiper(".custom-ann-bar__slider--mobile", {
-      slidesPerView: {{ section.settings.mobile_slides }},
-      loop: {{ section.settings.mobile_loop }},
+      slidesPerView: isMarquee ? 'auto' : {{ section.settings.mobile_slides }},
+      loopedSlides: isMarquee ? 10 : null,
+      loop: true,
       autoplay: getAutoplayConfig({{ section.settings.mobile_autoplay | json }}, {{ section.settings.mobile_autoplay_delay }}),
       speed: isMarquee ? 5000 : {{ section.settings.mobile_speed }},
       navigation: {
