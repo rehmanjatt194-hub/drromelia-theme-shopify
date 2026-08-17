@@ -21,16 +21,14 @@
     color: #111;
   }
   .drawer__custom-close {
-    position: absolute;
-    right: 0;
-    top: 0;
     background: #111;
-    width: 53px;
-    height: 53px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border-radius: 4px;
   }
   .drawer__custom-close svg {
     width: 20px;
@@ -93,26 +91,7 @@
     text-decoration: none;
     margin-bottom: 8px;
   }
-  /* === Close Button - will be injected by JS === */
-  #lx-drawer-close-btn {
-    display: none;
-    position: fixed;
-    top: 0;
-    z-index: 999999;
-    background: #111;
-    width: 53px;
-    height: 53px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    outline: none;
-  }
-
-  /* Hide the inner custom close and the default Dawn close icon */
-  .drawer__custom-header .drawer__custom-close {
-    display: none !important;
-  }
+  /* Hide the default Dawn close icon */
   .js .icon-close,
   details[open] > summary .icon-close {
     display: none !important;
@@ -125,7 +104,7 @@
     height: 100vh !important;
   }
 
-  /* Adjust drawer width on mobile to leave room for close button */
+  /* Adjust drawer width on mobile to leave room for closing by clicking outside */
   @media screen and (max-width: 749px) {
     .menu-drawer {
       width: calc(100% - 53px) !important;
@@ -133,51 +112,6 @@
   }
 </style>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Create the close button and append to body
-  var btn = document.createElement('div');
-  btn.id = 'lx-drawer-close-btn';
-  btn.setAttribute('role', 'button');
-  btn.setAttribute('aria-label', 'Close menu');
-  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px;"><path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>';
-  document.body.appendChild(btn);
-
-  var details = document.getElementById('Details-menu-drawer-container');
-  var drawer = document.getElementById('menu-drawer');
-
-  function positionBtn() {
-    if (!drawer) return;
-    var rect = drawer.getBoundingClientRect();
-    btn.style.left = (rect.right) + 'px';
-    btn.style.top = '0px';
-  }
-
-  btn.addEventListener('click', function() {
-    var summary = document.querySelector('#Details-menu-drawer-container > summary');
-    if (summary) summary.click();
-  });
-
-  // Watch for drawer open/close
-  if (details) {
-    var observer = new MutationObserver(function() {
-      var isOpen = details.hasAttribute('open') || details.classList.contains('menu-opening');
-      if (details.hasAttribute('open')) {
-        positionBtn();
-        btn.style.display = 'flex';
-      } else {
-        btn.style.display = 'none';
-      }
-    });
-    observer.observe(details, { attributes: true, attributeFilter: ['open', 'class'] });
-  }
-
-  // Reposition on resize
-  window.addEventListener('resize', function() {
-    if (btn.style.display === 'flex') positionBtn();
-  });
-});
-</script>
 
 <header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
   <details id="Details-menu-drawer-container" class="menu-drawer-container">
