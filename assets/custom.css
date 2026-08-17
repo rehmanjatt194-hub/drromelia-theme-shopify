@@ -1313,6 +1313,7 @@ a {
 .footer {
   position: relative;
   border-top: none !important;
+  background: linear-gradient(135deg, #ebd1d8 0%, #d498a5 100%) !important;
 }
 
 .footer::before {
