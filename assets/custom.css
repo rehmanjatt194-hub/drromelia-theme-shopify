@@ -1314,6 +1314,7 @@ a {
   position: relative;
   border-top: none !important;
   background: linear-gradient(135deg, #ebd1d8 0%, #d498a5 100%) !important;
+  font-family: 'Inter', sans-serif !important;
 }
 
 .footer::before {
@@ -1347,6 +1348,7 @@ section[id*="trust_badges"] {
 /* ---------- Cart Drawer Polish ---------- */
 .drawer__inner {
   box-shadow: -6px 0 24px rgba(0,0,0,0.12);
+  font-family: 'Inter', sans-serif !important;
 }
 
 .drawer__header {
