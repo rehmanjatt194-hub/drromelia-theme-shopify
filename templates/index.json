@@ -938,6 +938,38 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "instagram_feed_new": {
+      "type": "lx-instagram-feed",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3"
+      ],
+      "settings": {
+        "heading": "Follow us on Instagram",
+        "handle_text": "@juniorfitsofficial"
+      }
     }
   },
   "order": [
@@ -955,6 +987,7 @@
     "lx_tabs_info_t6XRCT",
     "image_with_text_HAWDFH",
     "lx_faqs_box_VNKD3h",
-    "testimonials_ac7mg8"
+    "testimonials_ac7mg8",
+    "instagram_feed_new"
   ]
 }
