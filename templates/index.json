@@ -881,6 +881,63 @@
         "arrow_color": "#222222",
         "dot_active_color": "#222222"
       }
+    },
+    "trust_badges_N8XjP2": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon": "delivery",
+            "title": "Cash on Delivery",
+            "description": "Pay When You Receive"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Shipping",
+            "description": "Free Shipping on Orders Above Rs. 2,999"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon": "return",
+            "title": "7 Days Easy Return",
+            "description": "Hassle-Free Exchange"
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon": "quality",
+            "title": "100% Original",
+            "description": "Premium Quality Guaranteed"
+          }
+        },
+        "badge_5": {
+          "type": "badge",
+          "settings": {
+            "icon": "support",
+            "title": "24/7 Customer Support",
+            "description": "Always Here to Help"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4",
+        "badge_5"
+      ],
+      "settings": {
+        "background_gradient": "linear-gradient(180deg, rgba(244,111,154,0.05) 0%, rgba(111,44,145,0.05) 100%)",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -897,6 +954,7 @@
     "image_with_text_HAWDFH",
     "lx_faqs_box_VNKD3h",
     "testimonials_ac7mg8",
-    "video_carousel_YDpEaK"
+    "video_carousel_YDpEaK",
+    "trust_badges_N8XjP2"
   ]
 }
