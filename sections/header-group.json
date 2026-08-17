@@ -14,7 +14,7 @@
     "countdown_bar_1": {
       "type": "countdown-bar",
       "settings": {
-        "text": "SUMMER CLEARANCE: FLAT 50% OFF — ENDS IN",
+        "text": "DR. ROMELIA EXCLUSIVE: FLAT 50% OFF — ENDS IN",
         "end_time": "2026-12-31T23:59:59"
       }
     },
@@ -35,7 +35,7 @@
           "type": "text_block",
           "settings": {
             "icon": "shopify://shop_images/Vector_35.svg",
-            "text": "We Will Call You for Confirmation Before Dispatch",
+            "text": "Dermatologically Tested & Safe for All Skin Types",
             "link": "",
             "text_color": "#ffffff",
             "font_size": 12
@@ -45,7 +45,7 @@
           "type": "text_block",
           "settings": {
             "icon": "shopify://shop_images/Vector_35.svg",
-            "text": "PK AZADI SALE | EXTRA 14% OFF on Orders Rs 4000+ (Use Code: AZADI)",
+            "text": "DR. ROMELIA SPECIAL | EXTRA 15% OFF on Orders Rs 4000+ (Use Code: GLOW)",
             "link": "",
             "text_color": "#ffffff",
             "font_size": 12
@@ -65,7 +65,7 @@
           "type": "text_block",
           "settings": {
             "icon": "shopify://shop_images/Vector_35.svg",
-            "text": "Fast Nationwide Delivery (2-4 Working Days)",
+            "text": "Clinically Proven Brightening Formula",
             "link": "",
             "text_color": "#ffffff",
             "font_size": 12
