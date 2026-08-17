@@ -1188,3 +1188,388 @@ span.custom___sr-icon img {
 .price__container span.badge, .price span.badge {
     text-transform: uppercase;
 }
+
+/* ============================================================ */
+/* ========== ✦ GLOBAL POLISH — Animations & Gradients ✦ ====== */
+/* ============================================================ */
+
+/* ---------- Fade-In-Up Animation ---------- */
+@keyframes lxFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lxFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Sections animate in on load */
+.content-for-layout > section,
+.content-for-layout > div {
+  animation: lxFadeInUp 0.7s ease-out both;
+}
+
+.content-for-layout > section:nth-child(1) { animation-delay: 0s; }
+.content-for-layout > section:nth-child(2) { animation-delay: 0.08s; }
+.content-for-layout > section:nth-child(3) { animation-delay: 0.16s; }
+.content-for-layout > section:nth-child(4) { animation-delay: 0.24s; }
+.content-for-layout > section:nth-child(5) { animation-delay: 0.32s; }
+
+/* ---------- Subtle Body Background Gradient ---------- */
+body {
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 35%, #ffffff 100%) !important;
+}
+
+/* ---------- Subtle Section Divider Gradient Lines ---------- */
+.content-for-layout > section + section::before {
+  content: '';
+  display: block;
+  height: 1px;
+  max-width: 90%;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent 0%, rgba(178,19,28,0.08) 20%, rgba(178,19,28,0.15) 50%, rgba(178,19,28,0.08) 80%, transparent 100%);
+}
+
+/* ---------- Button Hover Effects ---------- */
+.button,
+.product-form__submit,
+a.pf-btn,
+.banner__buttons .button,
+.lx-hover-global {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.button:hover,
+.product-form__submit:hover,
+a.pf-btn:hover,
+.lx-hover-global:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.button:active,
+.product-form__submit:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ---------- Product Card Hover Effects ---------- */
+.product-card-wrapper {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.product-card-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+
+.product-card-wrapper .card__inner {
+  transition: box-shadow 0.4s ease;
+}
+
+.product-card-wrapper:hover .card__inner {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+/* Card image smooth zoom on hover */
+.card__media img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.product-card-wrapper:hover .card__media img {
+  transform: scale(1.04);
+}
+
+/* ---------- Heading Styles ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', var(--font-heading-family);
+}
+
+h2.footer-block__heading,
+.lx-insta-heading,
+.pf-heading,
+.h2----wrapper,
+.lx-faqs-heading {
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Link Hover Transitions ---------- */
+.footer .footer-block__details-content .list-menu__item,
+.header__menu-item,
+a {
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* ---------- Footer Gradient Accent ---------- */
+.footer {
+  position: relative;
+  border-top: none !important;
+}
+
+.footer::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #b2131c 0%, #e85d68 30%, #f4a0a5 50%, #e85d68 70%, #b2131c 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Footer links hover slide effect */
+.footer .list-menu__item:hover {
+  opacity: 1 !important;
+  padding-left: 5px;
+  color: rgba(var(--color-foreground), 1);
+}
+
+.footer .list-menu__item {
+  transition: padding-left 0.3s ease, color 0.3s ease, opacity 0.3s ease !important;
+}
+
+/* ---------- Trust Badges Section Gradient ---------- */
+.trust-badges-section,
+section[id*="trust_badges"] {
+  position: relative;
+}
+
+/* ---------- Cart Drawer Polish ---------- */
+.drawer__inner {
+  box-shadow: -6px 0 24px rgba(0,0,0,0.12);
+}
+
+.drawer__header {
+  border-bottom: 2px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #b2131c, #e85d68, #b2131c);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  padding: 18px 20px;
+}
+
+.drawer__heading {
+  font-family: 'Poppins', var(--font-heading-family);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+/* Cart item hover */
+.cart-item {
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.cart-item:hover {
+  background-color: rgba(0,0,0,0.015);
+}
+
+/* Cart item image polish */
+.cart-item__image {
+  border-radius: 10px !important;
+  transition: transform 0.3s ease;
+}
+
+.cart-item:hover .cart-item__image {
+  transform: scale(1.03);
+}
+
+/* Checkout button gradient */
+#CartDrawer-Checkout,
+.cart__ctas button[name="checkout"],
+button.cart__checkout-button {
+  background: linear-gradient(135deg, #b2131c 0%, #d42a33 50%, #b2131c 100%) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.4s ease !important;
+  box-shadow: 0 4px 12px rgba(178,19,28,0.25);
+}
+
+#CartDrawer-Checkout:hover,
+.cart__ctas button[name="checkout"]:hover,
+button.cart__checkout-button:hover {
+  background: linear-gradient(135deg, #d42a33 0%, #b2131c 50%, #d42a33 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(178,19,28,0.35);
+}
+
+/* Cart drawer close button */
+.drawer__close {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.drawer__close:hover {
+  transform: rotate(90deg);
+  opacity: 0.7;
+}
+
+/* ---------- Image Hover Shine Effect ---------- */
+.banner__media,
+.pf-image-wrap,
+.image-with-text__media-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.banner__media img,
+.pf-image-wrap img,
+.image-with-text__media-item img {
+  transition: transform 0.6s ease;
+}
+
+.banner__media:hover img,
+.pf-image-wrap:hover img,
+.image-with-text__media-item:hover img {
+  transform: scale(1.03);
+}
+
+/* ---------- FAQ Accordion Smooth ---------- */
+.lx-pro-faq-question {
+  transition: color 0.3s ease;
+}
+
+.lx-pro-faq-question:hover {
+  color: #b2131c;
+}
+
+/* ---------- Instagram Feed Section Gradient Overlay ---------- */
+.lx-insta-grid .lx-insta-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.15) 100%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.lx-insta-grid .lx-insta-item:hover::before {
+  opacity: 1;
+}
+
+/* ---------- Testimonials Card Hover ---------- */
+.testimonial-card,
+[class*="testimonial"] .swiper-slide {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.testimonial-card:hover,
+[class*="testimonial"] .swiper-slide:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* ---------- Video Card Hover ---------- */
+.video-card--wr {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.video-card--wr:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* ---------- Badge Shimmer Animation ---------- */
+@keyframes lxShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+span.badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.price--on-sale span.badge {
+  background-size: 200% 100%;
+}
+
+/* ---------- Gradient Text for Heading Accents ---------- */
+.lx-heading-with-text h2,
+[class*="heading-with-text"] h2 {
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* ---------- Scrollbar Styling (Webkit) ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #b2131c, #e85d68);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8e0f16, #b2131c);
+}
+
+/* ---------- Selection Color ---------- */
+::selection {
+  background: rgba(178,19,28,0.12);
+  color: #1a1a1a;
+}
+
+/* ---------- Focus Visible States (Accessibility) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #b2131c;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Announcement Bar Gradient ---------- */
+.announcement-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.announcement-bar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+/* ---------- Loading Shimmer for Images ---------- */
+img[loading="lazy"] {
+  transition: opacity 0.4s ease;
+}
+
+/* ---------- Mobile Specific Polish ---------- */
+@media (max-width: 750px) {
+  .content-for-layout > section + section::before {
+    max-width: 85%;
+  }
+
+  .product-card-wrapper:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .button:hover,
+  .product-form__submit:hover {
+    transform: none;
+  }
+}
