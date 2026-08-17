@@ -1313,7 +1313,7 @@ a {
 .footer {
   position: relative;
   border-top: none !important;
-  background: linear-gradient(135deg, #ebd1d8 0%, #d498a5 100%) !important;
+  background: linear-gradient(135deg, #FCE5EB 0%, #E9D2E1 50%, #D2B8CE 100%) !important;
   font-family: 'Inter', sans-serif !important;
 }
 
