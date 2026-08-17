@@ -424,6 +424,63 @@
         "dot_active_color": "#222222"
       }
     },
+    "trust_badges_N8XjP2": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon": "delivery",
+            "title": "Cash on Delivery",
+            "description": "Pay When You Receive"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Shipping",
+            "description": "Free Shipping on Orders Above Rs. 2,999"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon": "return",
+            "title": "7 Days Easy Return",
+            "description": "Hassle-Free Exchange"
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon": "quality",
+            "title": "100% Original",
+            "description": "Premium Quality Guaranteed"
+          }
+        },
+        "badge_5": {
+          "type": "badge",
+          "settings": {
+            "icon": "support",
+            "title": "24/7 Customer Support",
+            "description": "Always Here to Help"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4",
+        "badge_5"
+      ],
+      "settings": {
+        "background_gradient": "linear-gradient(180deg, rgba(244,111,154,0.05) 0%, rgba(111,44,145,0.05) 100%)",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "lx_heading_with_text_Vyr8Fi": {
       "type": "lx-heading-with-text",
       "name": "Heading With Text",
@@ -794,6 +851,7 @@
         "faq_block_rdeTLc",
         "faq_block_EcExnC"
       ],
+      "disabled": true,
       "name": "FAQ Accordion",
       "settings": {
         "color_scheme": "scheme-1",
@@ -871,6 +929,7 @@
         "testimonial_tJJEWw",
         "testimonial_K9wpYN"
       ],
+      "disabled": true,
       "name": "Testimonial Carousel",
       "settings": {
         "heading": "FLERE TUSINDE HAR VALGT OS",
@@ -882,79 +941,22 @@
         "padding_bottom": 60
       }
     },
-    "trust_badges_N8XjP2": {
-      "type": "trust-badges",
-      "blocks": {
-        "badge_1": {
-          "type": "badge",
-          "settings": {
-            "icon": "delivery",
-            "title": "Cash on Delivery",
-            "description": "Pay When You Receive"
-          }
-        },
-        "badge_2": {
-          "type": "badge",
-          "settings": {
-            "icon": "truck",
-            "title": "Free Shipping",
-            "description": "Free Shipping on Orders Above Rs. 2,999"
-          }
-        },
-        "badge_3": {
-          "type": "badge",
-          "settings": {
-            "icon": "return",
-            "title": "7 Days Easy Return",
-            "description": "Hassle-Free Exchange"
-          }
-        },
-        "badge_4": {
-          "type": "badge",
-          "settings": {
-            "icon": "quality",
-            "title": "100% Original",
-            "description": "Premium Quality Guaranteed"
-          }
-        },
-        "badge_5": {
-          "type": "badge",
-          "settings": {
-            "icon": "support",
-            "title": "24/7 Customer Support",
-            "description": "Always Here to Help"
-          }
-        }
-      },
-      "block_order": [
-        "badge_1",
-        "badge_2",
-        "badge_3",
-        "badge_4",
-        "badge_5"
-      ],
-      "settings": {
-        "background_gradient": "linear-gradient(180deg, rgba(244,111,154,0.05) 0%, rgba(111,44,145,0.05) 100%)",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "instagram_feed_new": {
+    "lx_instagram_feed_6zzcLU": {
       "type": "lx-instagram-feed",
       "blocks": {
-        "image_1": {
+        "image_nkDxqw": {
           "type": "image",
           "settings": {
             "link": ""
           }
         },
-        "image_2": {
+        "image_BRYgDj": {
           "type": "image",
           "settings": {
             "link": ""
           }
         },
-        "image_3": {
+        "image_QiMy6B": {
           "type": "image",
           "settings": {
             "link": ""
@@ -962,13 +964,30 @@
         }
       },
       "block_order": [
-        "image_1",
-        "image_2",
-        "image_3"
+        "image_nkDxqw",
+        "image_BRYgDj",
+        "image_QiMy6B"
       ],
+      "name": "Instagram Feed",
       "settings": {
+        "color_scheme": "",
+        "full_width": false,
         "heading": "Follow us on Instagram",
-        "handle_text": "@juniorfitsofficial"
+        "heading_size": 32,
+        "heading_color": "#000000",
+        "handle_text": "@juniorfitsofficial",
+        "handle_link": "",
+        "handle_color": "#000000",
+        "columns_desktop": 3,
+        "columns_mobile": 1,
+        "grid_gap": 20,
+        "grid_gap_mobile": 10,
+        "image_radius": 0,
+        "image_ratio": "1/1",
+        "desktop_padding_top": 50,
+        "desktop_padding_bottom": 50,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30
       }
     }
   },
@@ -988,6 +1007,6 @@
     "image_with_text_HAWDFH",
     "lx_faqs_box_VNKD3h",
     "testimonials_ac7mg8",
-    "instagram_feed_new"
+    "lx_instagram_feed_6zzcLU"
   ]
 }
