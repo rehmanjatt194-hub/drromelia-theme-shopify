@@ -402,8 +402,8 @@
           "type": "feature",
           "settings": {
             "position": "left",
-            "title": "Lorem ipsum",
-            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "title": "Brightens Skin Tone",
+            "description": "Kojic Acid helps reduce the look of dark spots and evens skin tone.",
             "show_icon": true
           }
         },
@@ -411,8 +411,8 @@
           "type": "feature",
           "settings": {
             "position": "left",
-            "title": "Lorem ipsum",
-            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "title": "Evens Skin Texture",
+            "description": "Niacinamide works to visibly improve uneven texture and dullness.",
             "show_icon": true
           }
         },
@@ -420,8 +420,8 @@
           "type": "feature",
           "settings": {
             "position": "left",
-            "title": "Lorem ipsum",
-            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "title": "Clinically Proven",
+            "description": "Fast-absorbing, lightweight formula designed to unlock a luminous complexion.",
             "show_icon": true
           }
         },
@@ -429,8 +429,8 @@
           "type": "feature",
           "settings": {
             "position": "right",
-            "title": "Lorem ipsum",
-            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "title": "Daily 3-in-1 Care",
+            "description": "Formulated for face, hands, and feet to give you a complete brightening routine.",
             "show_icon": true
           }
         },
@@ -438,8 +438,8 @@
           "type": "feature",
           "settings": {
             "position": "right",
-            "title": "Lorem ipsum",
-            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "title": "Anti-Ageing Support",
+            "description": "Alpha Arbutin helps improve the appearance of fine lines while keeping skin nourished.",
             "show_icon": true
           }
         },
@@ -447,8 +447,8 @@
           "type": "feature",
           "settings": {
             "position": "right",
-            "title": "Lorem ipsum",
-            "description": "Lorem ipsum dolor sit amet consectetur. Dui ultrices lectus.",
+            "title": "Protects Skin",
+            "description": "Helps defend against everyday environmental stress and pollution.",
             "show_icon": true
           }
         }
