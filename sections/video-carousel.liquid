@@ -25,10 +25,13 @@
 
   #vc-{{ section_id }} .vc-heading {
     text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0 0 40px;
-    color: inherit;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 50px;
+    background: linear-gradient(90deg, #6f2c91, #f46f9a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
   }
 
   /* -- Outer wrapper -- */
@@ -44,32 +47,35 @@
   /* -- Arrow buttons -- */
   #vc-{{ section_id }} .vc-arrow {
     flex-shrink: 0;
-    background: {{ arrow_color }};
-    border: none;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50%;
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 10;
     margin: 0 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   #vc-{{ section_id }} .vc-arrow:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.28);
-    opacity: 0.9;
+    transform: scale(1.1) translateY(-2px);
+    background: #ffffff;
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.25);
+    border-color: #ffffff;
   }
 
   #vc-{{ section_id }} .vc-arrow svg {
     width: 22px;
     height: 22px;
     fill: none;
-    stroke: #fff;
+    stroke: {{ arrow_color }};
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -93,6 +99,8 @@
     position: relative;
     width: 100%;
     height: 520px;
+    perspective: 1200px;
+    transform-style: preserve-3d;
   }
 
   /* -- Each slide card -- */
@@ -127,7 +135,7 @@
     opacity: 1;
     filter: none;
     z-index: 5;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.38);
+    box-shadow: 0 20px 50px rgba(111, 44, 145, 0.4), 0 0 0 2px rgba(255,255,255,0.8);
     cursor: default;
   }
 
@@ -149,22 +157,30 @@
   }
 
   #vc-{{ section_id }} .vc-play-overlay .play-icon {
-    width: 64px;
-    height: 64px;
-    background: rgba(255,255,255,0.85);
+    width: 72px;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    transition: transform 0.2s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   #vc-{{ section_id }} .vc-play-overlay .play-icon svg {
-    width: 28px;
-    height: 28px;
-    fill: #222;
+    width: 32px;
+    height: 32px;
+    fill: #fff;
     margin-left: 4px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+  
+  #vc-{{ section_id }} .vc-card:hover .play-icon {
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.3);
   }
 
   #vc-{{ section_id }} .vc-card.is-playing .vc-play-overlay {
@@ -219,21 +235,22 @@
   }
 
   #vc-{{ section_id }} .vc-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.15);
     border: none;
     padding: 0;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s, width 0.3s;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     flex-shrink: 0;
   }
 
   #vc-{{ section_id }} .vc-dot.is-active {
-    background: {{ dot_active_color }};
-    width: 24px;
-    border-radius: 4px;
+    background: linear-gradient(90deg, #6f2c91, #f46f9a);
+    width: 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(111, 44, 145, 0.3);
   }
 
   /* =============================================
@@ -411,12 +428,12 @@
       var absPos = Math.abs(posInt);
 
       card.style.transition = animate
-        ? 'transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease'
+        ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease, filter 0.6s ease'
         : 'none';
 
       if (posInt === 0) {
         card.classList.add('is-center');
-        card.style.cssText += ';transform:translateX(0) scale(1);opacity:1;filter:none;z-index:5;';
+        card.style.cssText += ';transform:translateX(0) scale(1) rotateY(0deg);opacity:1;filter:none;z-index:5;';
       } else {
         card.classList.remove('is-center');
         var stepSize = cw + self.cardGap;
@@ -424,7 +441,8 @@
         var scale    = Math.max(0.45, 1 - absPos * 0.18);
         var opacity  = absPos > self.sideCount ? 0 : Math.max(0, 0.65 - (absPos - 1) * 0.25);
         var blur     = absPos * 3;
-        card.style.transform  = 'translateX(' + xOffset + 'px) scale(' + scale + ')';
+        var rotateY  = posInt > 0 ? -35 : 35;
+        card.style.transform  = 'translateX(' + xOffset + 'px) scale(' + scale + ') rotateY(' + rotateY + 'deg)';
         card.style.opacity    = opacity;
         card.style.filter     = blur > 0 ? 'blur(' + blur + 'px)' : 'none';
         card.style.zIndex     = Math.max(1, 5 - absPos);
