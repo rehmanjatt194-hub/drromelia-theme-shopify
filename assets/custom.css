@@ -376,9 +376,6 @@ a.button.button--secondary:hover {
     img.banner__media-image-desktop {
         display: none!important;
     }
-    div.banner {
-        height: 100vh;
-    }
     .banner__content--bottom-left .banner__box {
         align-items: end;
         margin-bottom: auto;
