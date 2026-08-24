@@ -120,7 +120,7 @@
         {% assign discount_percent = discount_amount | times: 100 | divided_by: compare_at_price | floor %}
 
         <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
-          {{ discount_percent }}% spare
+          {{ discount_percent }}% OFF
         </span>
       {%- endif -%}
       {%- if product.selected_or_first_available_variant.unit_price_measurement -%}

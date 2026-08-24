@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "dr-shipping-policy",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

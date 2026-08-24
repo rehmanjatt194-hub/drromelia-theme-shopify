@@ -1,1 +1,65 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","blocks":{"brand_information_RKwfhJ":{"type":"brand_information","settings":{"show_social":true}},"link_list_h3kcem":{"type":"link_list","settings":{"heading":"Get help","menu":"get-help","accordion":true}},"link_list_BbzQUf":{"type":"link_list","settings":{"heading":"Information","menu":"information","accordion":true}},"link_list_tEwrCf":{"type":"link_list","settings":{"heading":"Information","menu":"information","accordion":true}}},"block_order":["brand_information_RKwfhJ","link_list_h3kcem","link_list_BbzQUf","link_list_tEwrCf"],"settings":{"color_scheme":"scheme-1","newsletter_enable":false,"newsletter_heading":"Subscribe to our emails","heading_size":32,"heading_m_size":22,"text_size":16,"text_m_size":16,"enable_follow_on_shop":false,"show_social":false,"enable_country_selector":false,"enable_language_selector":false,"payment_enable":false,"show_policy":false,"margin_top":0,"padding_top":52,"padding_bottom":20}}},"order":["footer"]}
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand_information_RKwfhJ": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "link_list_h3kcem": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Get Help",
+            "menu": "get-help",
+            "accordion": true
+          }
+        },
+        "link_list_BbzQUf": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick Links",
+            "menu": "main-menu",
+            "accordion": true
+          }
+        },
+        "newsletter_col_DrRom": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Stay in the Loop",
+            "newsletter_text": "Subscribe for exclusive skincare tips, new launches & special offers."
+          }
+        }
+      },
+      "block_order": [
+        "brand_information_RKwfhJ",
+        "link_list_h3kcem",
+        "link_list_BbzQUf",
+        "newsletter_col_DrRom"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "heading_size": 18,
+        "heading_m_size": 16,
+        "text_size": 14,
+        "text_m_size": 14,
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 52,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": ["footer"]
+}

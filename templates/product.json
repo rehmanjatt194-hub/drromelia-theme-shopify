@@ -67,11 +67,11 @@
           "settings": {
             "use_metaobject_tags": false,
             "tag1_icon": "",
-            "tag1_title": "Lorem ipsum",
+            "tag1_title": "",
             "tag2_icon": "",
-            "tag2_title": "Lorem ipsum",
+            "tag2_title": "",
             "tag3_icon": "",
-            "tag3_title": "Lorem ipsum",
+            "tag3_title": "",
             "tag4_title": "",
             "tag5_title": "",
             "tags_text_color": "#000000",
@@ -184,53 +184,9 @@
             "mobile_dots": false
           }
         },
-        "faq_QBKdxq": {
-          "type": "faq",
-          "settings": {
-            "title": "Description",
-            "text": "{{ product.description }}",
-            "apply": true,
-            "question_color": "#000000",
-            "question_size": 18,
-            "answer_color": "#000000",
-            "answer_size": 14
-          }
-        },
-        "faq_MjrNi4": {
-          "type": "faq",
-          "settings": {
-            "title": "Shipping Policy",
-            "text": "{{ product.description }}",
-            "apply": false,
-            "question_color": "#000000",
-            "question_size": 18,
-            "answer_color": "#000000",
-            "answer_size": 14
-          }
-        },
-        "faq_GgwqJf": {
-          "type": "faq",
-          "settings": {
-            "title": "Return Policy",
-            "text": "{{ product.description }}",
-            "apply": false,
-            "question_color": "#000000",
-            "question_size": 18,
-            "answer_color": "#000000",
-            "answer_size": 14
-          }
-        },
-        "faq_eMHjbb": {
-          "type": "faq",
-          "settings": {
-            "title": "Return Policy",
-            "text": "{{ product.description }}",
-            "apply": false,
-            "question_color": "#000000",
-            "question_size": 18,
-            "answer_color": "#000000",
-            "answer_size": 14
-          }
+        "description_QBKdxq": {
+          "type": "description",
+          "settings": {}
         }
       },
       "block_order": [
@@ -238,7 +194,6 @@
         "review_bwrFnx",
         "title",
         "price",
-        "tags_qCHqwk",
         "divider_g88Tg4",
         "text_QR7imC",
         "multi_icon_wiwFBF",
@@ -247,10 +202,7 @@
         "buy_buttons",
         "payment_mLDAqX",
         "lx_slider_images_RWYXR4",
-        "faq_QBKdxq",
-        "faq_MjrNi4",
-        "faq_GgwqJf",
-        "faq_eMHjbb"
+        "description_QBKdxq"
       ],
       "settings": {
         "enable_sticky_info": true,

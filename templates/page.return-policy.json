@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "dr-return-policy",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
