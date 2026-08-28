@@ -24,58 +24,24 @@
     text-transform: uppercase;
   }
   .drawer__custom-close {
-    background: #111;
-    width: 40px;
-    height: 40px;
+    background: transparent;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.2s ease;
+    transition: transform 0.2s ease;
   }
   .drawer__custom-close:hover {
-    background: #6f2c91;
+    transform: scale(1.1);
   }
   .drawer__custom-close svg {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
   }
-
-  /* ── Search ── */
-  .drawer__custom-search {
-    padding: 10px 20px;
-    border-bottom: 1px solid #eaeaea;
-  }
-  .drawer__custom-search form {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    background: #f7f7f7;
-    border-radius: 8px;
-    padding: 0 12px;
-  }
-  .drawer__custom-search input {
-    border: none;
-    outline: none;
-    font-size: 14px;
-    width: 100%;
-    box-shadow: none;
-    padding: 10px 8px;
-    background: transparent;
-    color: #111;
-  }
-  .drawer__custom-search button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
+  .drawer__custom-close svg path {
+    stroke: #111;
   }
 
   /* ── Nav Container ── */
@@ -381,19 +347,9 @@
             <h2 class="drawer__custom-title">MENU</h2>
             <div class="drawer__custom-close" onclick="document.querySelector('#Details-menu-drawer-container > summary').click()">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M6 6L18 18M18 6L6 18" stroke="#111" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
             </div>
-          </div>
-          <div class="drawer__custom-search">
-            <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-              <button class="search__button field__button" aria-label="Search">
-                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon icon-search">
-                  <path d="M19 19L13 13M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <input class="search__input field__input" type="search" name="q" placeholder="Search">
-            </form>
           </div>
           
           <nav class="menu-drawer__navigation" aria-label="Mobile navigation">

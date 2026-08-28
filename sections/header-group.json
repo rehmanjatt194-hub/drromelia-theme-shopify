@@ -200,7 +200,7 @@
         "enable_language_selector": true,
         "enable_search": true,
         "search_icon": "shopify://shop_images/iuiu.svg",
-        "acount_enable": false,
+        "acount_enable": true,
         "enable_customer_avatar": true,
         "acount_icon": "shopify://shop_images/accco.svg",
         "enable_cart": true,

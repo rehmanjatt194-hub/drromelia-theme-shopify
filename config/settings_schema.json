@@ -1606,7 +1606,7 @@
         "type": "text",
         "id": "upsell__heading",
         "label": "Heading",
-        "default": "Vi anbefaler"
+        "default": "We recommend"
       },
       {
         "type": "product_list",
@@ -1668,7 +1668,7 @@
         "type": "text",
         "id": "upsell__points-heading",
         "label": "Heading",
-        "default": "Inkluderet i dit køb"
+        "default": "Included in your purchase"
       },
     {
       "type": "header",

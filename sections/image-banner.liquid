@@ -101,8 +101,6 @@
             widths: widths,
             fetchpriority: fetch_priority
         }}
-      {%- else -%}
-        <img class="banner__media-image-mobile" src="{{ 'mobile-hero.png' | asset_url }}" alt="Mobile Banner" style="width: 100%; height: 100%; object-fit: contain;">
       {%- endif -%}
     </div>
   {%- elsif section.settings.image_2 == blank -%}

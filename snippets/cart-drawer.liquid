@@ -786,13 +786,13 @@ align-items: center;
           </div>
 
           <div class="totals" role="status">
-            <h2 class="totals__total">Estimeret total</h2>
+            <h2 class="totals__total">Estimated total</h2>
             <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
           </div>
 
           <div class="totals estimate-delivery" role="status">
-            <h2 class="totals__total">Estimeret levering</h2>
-            <p class="totals__total-value">15 Nov 2025</p>
+            <h2 class="totals__total">Estimated delivery</h2>
+            <p class="totals__total-value">{{ "now" | date: "%s" | plus: 259200 | date: "%d %b %Y" }}</p>
           </div>
 
 
