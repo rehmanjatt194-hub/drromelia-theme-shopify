@@ -31,6 +31,27 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+  #Banner-{{ section.id }} {
+    max-height: {{ section.settings.desktop_banner_height | default: 520 }}px;
+    overflow: hidden;
+  }
+  #Banner-{{ section.id }} .banner__media {
+    max-height: {{ section.settings.desktop_banner_height | default: 520 }}px;
+  }
+  #Banner-{{ section.id }} .banner__media img {
+    max-height: {{ section.settings.desktop_banner_height | default: 520 }}px;
+    object-fit: cover;
+    object-position: center;
+  }
+  @media screen and (max-width: 749px) {
+    #Banner-{{ section.id }} {
+      max-height: {{ section.settings.mobile_banner_height | default: 360 }}px;
+    }
+    #Banner-{{ section.id }} .banner__media,
+    #Banner-{{ section.id }} .banner__media img {
+      max-height: {{ section.settings.mobile_banner_height | default: 360 }}px;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -247,6 +268,26 @@
       "unit": "%",
       "label": "t:sections.image-banner.settings.image_overlay_opacity.label",
       "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_banner_height",
+      "min": 250,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Max Height (px)",
+      "default": 520
+    },
+    {
+      "type": "range",
+      "id": "mobile_banner_height",
+      "min": 180,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Max Height (px)",
+      "default": 360
     },
     {
       "type": "select",

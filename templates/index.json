@@ -76,6 +76,8 @@
         "image": "shopify://shop_images/IMG_2205.png",
         "image_m": "",
         "image_overlay_opacity": 0,
+        "desktop_banner_height": 520,
+        "mobile_banner_height": 360,
         "image_height": "adapt",
         "image_behavior": "none",
         "desktop_content_position": "middle-left",
@@ -222,7 +224,7 @@
       "settings": {
         "collection": "frontpage",
         "products_to_show": 10,
-        "title": "Featured collection",
+        "title": "Our Products",
         "heading_size": "h1",
         "description": "",
         "show_description": false,

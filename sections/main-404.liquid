@@ -1,23 +1,51 @@
-<style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
-  }
-
-  @media screen and (min-width: 750px) {
+<div id="normal-404">
+  <style type="text/css">
     .template-404 .title + * {
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
-  }
-</style>
-
-<div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
-  <h1 class="title">
-    {{ 'templates.404.title' | t }}
-  </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+    @media screen and (min-width: 750px) {
+      .template-404 .title + * {
+        margin-top: 2rem;
+      }
+    }
+  </style>
+  <div class="template-404 page-width page-margin center">
+    <p>
+      {{ 'templates.404.subtext' | t }}
+    </p>
+    <h1 class="title">
+      {{ 'templates.404.title' | t }}
+    </h1>
+    <a href="{{ routes.all_products_collection_url }}" class="button">
+      {{ 'general.continue_shopping' | t }}
+    </a>
+  </div>
 </div>
+
+<div id="deals-404" style="display: none;">
+  <style>
+    .deals-coming-soon { padding: 80px 20px; text-align: center; background: linear-gradient(135deg, #fce8f2, #e8d5f2); border-radius: 16px; margin: 40px auto 100px; max-width: 800px; box-shadow: 0 10px 30px rgba(111, 44, 145, 0.1); }
+    .deals-coming-soon h2 { font-size: 48px; color: #111; margin-bottom: 20px; font-weight: 800; }
+    .deals-coming-soon p { font-size: 18px; color: #444; line-height: 1.6; }
+    .deals-coming-soon .dr-deals-badge-cs { display: inline-block; background: #e32636; color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+    @media (max-width: 768px) {
+      .deals-coming-soon h2 { font-size: 36px; }
+      .deals-coming-soon p { font-size: 16px; }
+      .deals-coming-soon { padding: 50px 20px; }
+    }
+  </style>
+  <div class="page-width">
+    <div class="deals-coming-soon">
+      <span class="dr-deals-badge-cs">Exclusive Offers</span>
+      <h2>Coming Soon!</h2>
+      <p>We are bringing some amazing deals and exclusive offers just for you. <br>Stay tuned, the biggest sale is right around the corner!</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  if (window.location.pathname.includes('/deals')) {
+    document.getElementById('normal-404').style.display = 'none';
+    document.getElementById('deals-404').style.display = 'block';
+  }
+</script>

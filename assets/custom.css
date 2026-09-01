@@ -287,29 +287,33 @@ h2.footer-block__heading {
 .footer-nl-row {
     display: flex;
     gap: 0;
-    border-radius: 8px;
+    border-radius: 50px;
     overflow: hidden;
     border: 1px solid rgba(var(--color-foreground), 0.25);
+    background: rgba(255,255,255,0.7);
+    padding: 3px;
+    align-items: center;
 }
 .footer-nl-input {
     flex: 1;
-    background: rgba(255,255,255,0.55);
+    background: transparent;
     border: none;
-    padding: 11px 14px;
-    font-size: 13px;
+    padding: 9px 16px;
+    font-size: 13.5px;
     color: rgba(var(--color-foreground));
     outline: none;
     font-family: inherit;
 }
 .footer-nl-input::placeholder {
-    color: rgba(var(--color-foreground), 0.5);
+    color: rgba(var(--color-foreground), 0.6);
 }
 .footer-nl-btn {
     background: #b2131c;
     color: #fff;
     border: none;
-    padding: 11px 18px;
-    font-size: 13px;
+    border-radius: 50px;
+    padding: 9px 20px;
+    font-size: 13.5px;
     font-weight: 600;
     cursor: pointer;
     font-family: inherit;
@@ -1948,4 +1952,14 @@ img[loading="lazy"] {
   .dr-policy-contact-btn {
     justify-content: center;
   }
+}
+
+/* Fix product description bullet points alignment */
+.product__description.rte li {
+    margin-bottom: 10px;
+}
+.product__description.rte li p, 
+.product__description.rte li br {
+    display: inline;
+    margin: 0;
 }

@@ -12,28 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "marquee_images_8W9h6P": {
-          "type": "marquee-images",
-          "settings": {
-            "title": "Vurderet bedst i test",
-            "title_size": 14,
-            "title_color": "#ffffff",
-            "bg_color": "#6F2C91",
-            "direction": "left",
-            "speed": 10,
-            "logo_height": 32,
-            "img1": "",
-            "img2": "",
-            "img3": "",
-            "img4": "",
-            "img5": "",
-            "img6": "",
-            "img7": "",
-            "img8": "",
-            "img9": "",
-            "img10": ""
-          }
-        },
         "review_bwrFnx": {
           "type": "review",
           "settings": {
@@ -83,56 +61,6 @@
             "tags_gap_horizontal": 15,
             "tags_gap_vertical": 8,
             "tags_icon_size": 16
-          }
-        },
-        "divider_g88Tg4": {
-          "type": "divider",
-          "settings": {}
-        },
-        "text_QR7imC": {
-          "type": "text",
-          "settings": {
-            "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringill",
-            "text_style": "body",
-            "text-size": 14
-          }
-        },
-        "multi_icon_wiwFBF": {
-          "type": "multi-icon",
-          "settings": {
-            "icon-1": "",
-            "icon_size_1": 46,
-            "icon_size_m_1": 30,
-            "text-1": "Lorem ipsum Lorem ipsum Lorem ipsum",
-            "icon-2": "",
-            "icon_size_2": 46,
-            "icon_size_m_2": 30,
-            "text-2": "Lorem ipsum",
-            "icon-3": "",
-            "icon_size_3": 46,
-            "icon_size_m_3": 30,
-            "text-3": "Lorem ipsum",
-            "text-size": 14
-          }
-        },
-        "bundle_product_GQVDWG": {
-          "type": "bundle_product",
-          "settings": {
-            "title": "Add WHITENING SERUM",
-            "heading_s": 18,
-            "icon-size": 30,
-            "text-size": 14,
-            "bg_color": "#f2f4f4",
-            "bundle-image": 92,
-            "bundle-image-m": 70,
-            "bundle_title": 14,
-            "btn_color": "#6F2C91",
-            "price_color": "#000000",
-            "compare_price_color": "#636363",
-            "price_font_desktop": 18,
-            "price_font_mobile": 16,
-            "compare_price_font_desktop": 12,
-            "compare_price_font_mobile": 12
           }
         },
         "stock_PXJn89": {
@@ -190,17 +118,10 @@
         }
       },
       "block_order": [
-        "marquee_images_8W9h6P",
-        "review_bwrFnx",
         "title",
         "price",
-        "divider_g88Tg4",
-        "text_QR7imC",
-        "multi_icon_wiwFBF",
-        "bundle_product_GQVDWG",
         "stock_PXJn89",
         "buy_buttons",
-        "payment_mLDAqX",
         "lx_slider_images_RWYXR4",
         "description_QBKdxq"
       ],
@@ -228,6 +149,38 @@
         "padding_bottom": 12
       }
     },
+    "product_tabs": {
+      "type": "lx-product-tabs",
+      "blocks": {
+        "tab_description": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Description",
+            "line_1": "Dr. Romelia Whitening Serum reduces dark spots, pigmentation and evens out skin tone. ✨",
+            "line_2": "Lightweight, fast-absorbing daily formula for a glowing, healthy and radiant skin. 💜"
+          }
+        },
+        "tab_shipping": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Shipping Information",
+            "line_1": "Fast delivery all over Pakistan within 2 to 4 working days with Cash on Delivery (COD). 🚚",
+            "line_2": "Free shipping on orders above Rs. 2,999 with 7 days hassle-free easy exchange policy. 📦"
+          }
+        }
+      },
+      "block_order": [
+        "tab_description",
+        "tab_shipping"
+      ],
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_top": 36,
+        "padding_bottom": 40,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 30
+      }
+    },
     "product_recommendations": {
       "type": "related-products",
       "settings": {}
@@ -235,6 +188,7 @@
   },
   "order": [
     "main",
+    "product_tabs",
     "product_recommendations"
   ]
 }

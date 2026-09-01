@@ -1,14 +1,76 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "banner": {
+      "type": "image-banner",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
-      }
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "About Dr. Romelia",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Clinically Proven Skincare for Every Skin Type",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ]
+    },
+    "story": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify://shop_images/WhatsApp_Image_2026-06-25_at_16.03.49_d8a6efb9.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "scheme-1",
+        "mobile_content_alignment": "left"
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Story",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Dr. Romelia is Pakistan's premium skincare brand, dedicated to bringing you scientifically backed and clinically proven formulas. We believe that healthy skin is the foundation of confidence, which is why we meticulously select our ingredients to ensure safety and effectiveness for all skin types.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ]
     }
   },
   "order": [
-    "main"
+    "banner",
+    "story"
   ]
 }

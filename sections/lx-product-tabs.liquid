@@ -1,0 +1,287 @@
+<style>
+  #section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    text-align: center;
+  }
+
+  @media (max-width: 750px) {
+    #section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+  }
+
+  .dr-product-tabs-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ===== Pill Tab Navigation (JuniorFits Style) ===== */
+  .dr-tabs-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .dr-tab-btn {
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    color: #444444;
+    border: 1px solid #dcdcdc;
+    transition: all 0.2s ease;
+    outline: none;
+    font-family: inherit;
+  }
+
+  .dr-tab-btn:hover {
+    border-color: #1a1a1a;
+    color: #1a1a1a;
+  }
+
+  .dr-tab-btn.active {
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1.5px solid #1a1a1a;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  /* ===== Tab Panes ===== */
+  .dr-tab-pane {
+    display: none;
+    animation: drFadeIn 0.25s ease;
+  }
+
+  .dr-tab-pane.active {
+    display: block;
+  }
+
+  @keyframes drFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .dr-tab-content-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333333;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .dr-tab-content-text p {
+    margin: 0 0 6px;
+  }
+
+  .dr-tab-content-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 750px) {
+    .dr-tab-content-text {
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .dr-tab-btn {
+      padding: 7px 18px;
+      font-size: 13px;
+    }
+    .dr-tabs-nav {
+      gap: 8px;
+    }
+  }
+</style>
+
+<div id="section-{{ section.id }}" class="dr-product-tabs-section">
+  <div class="dr-product-tabs-wrapper">
+    
+    <!-- Tab Buttons -->
+    <div class="dr-tabs-nav" role="tablist">
+      {%- for block in section.blocks -%}
+        <button
+          class="dr-tab-btn{% if forloop.first %} active{% endif %}"
+          role="tab"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-controls="dr-tab-{{ block.id }}"
+          data-tab-target="dr-tab-{{ block.id }}"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.tab_title | default: "Tab" }}
+        </button>
+      {%- endfor -%}
+    </div>
+
+    <!-- Tab Contents (Short 2 Lines) -->
+    <div class="dr-tabs-body">
+      {%- for block in section.blocks -%}
+        <div
+          id="dr-tab-{{ block.id }}"
+          class="dr-tab-pane{% if forloop.first %} active{% endif %}"
+          role="tabpanel"
+        >
+          <div class="dr-tab-content-text">
+            {%- if block.settings.line_1 != blank -%}
+              <p>{{ block.settings.line_1 }}</p>
+            {%- endif -%}
+            {%- if block.settings.line_2 != blank -%}
+              <p>{{ block.settings.line_2 }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function() {
+    function initTabs() {
+      const section = document.getElementById('section-{{ section.id }}');
+      if (!section) return;
+
+      const buttons = section.querySelectorAll('.dr-tab-btn');
+      const panes = section.querySelectorAll('.dr-tab-pane');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('data-tab-target');
+
+          buttons.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          panes.forEach(p => p.classList.remove('active'));
+
+          this.classList.add('active');
+          this.setAttribute('aria-selected', 'true');
+
+          const targetPane = document.getElementById(targetId);
+          if (targetPane) {
+            targetPane.classList.add('active');
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTabs);
+    } else {
+      initTabs();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product Info Tabs",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop padding bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Description"
+        },
+        {
+          "type": "text",
+          "id": "line_1",
+          "label": "Line 1 Content",
+          "default": "A clinically proven formula to fade dark spots and even out skin tone. ✨"
+        },
+        {
+          "type": "text",
+          "id": "line_2",
+          "label": "Line 2 Content",
+          "default": "Lightweight, fast-absorbing daily serum for a naturally glowing and radiant complexion. 💜"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Info Tabs",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Description",
+            "line_1": "Dr. Romelia Whitening Serum reduces dark spots, pigmentation and evens out skin tone. ✨",
+            "line_2": "Lightweight, fast-absorbing daily formula for a glowing, healthy and radiant skin. 💜"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Shipping Information",
+            "line_1": "Fast delivery all over Pakistan within 2 to 4 working days with Cash on Delivery (COD). 🚚",
+            "line_2": "Free shipping on orders above Rs. 2,999 with 7 days hassle-free easy exchange policy. 📦"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

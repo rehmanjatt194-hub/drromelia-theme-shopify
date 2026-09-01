@@ -36,15 +36,14 @@
   }
   
   .lx-insta-grid {
-      display: grid;
-      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
-      gap: {{ section.settings.grid_gap }}px;
+      column-count: {{ section.settings.columns_desktop }};
+      column-gap: 2px;
   }
   
   @media (max-width: 768px) {
       .lx-insta-grid {
-          grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
-          gap: {{ section.settings.grid_gap_mobile }}px;
+          column-count: {{ section.settings.columns_mobile }};
+          column-gap: 2px;
       }
       .lx-insta-heading {
           font-size: calc({{ section.settings.heading_size }}px * 0.75);
@@ -56,14 +55,20 @@
       overflow: hidden;
       position: relative;
       border-radius: {{ section.settings.image_radius }}px;
+      margin-bottom: 2px;
+      break-inside: avoid;
+  }
+  @media (max-width: 768px) {
+      .lx-insta-item {
+          margin-bottom: 2px;
+      }
   }
   .lx-insta-item img {
       width: 100%;
-      height: 100%;
+      height: auto;
       object-fit: cover;
       display: block;
       transition: transform 0.5s ease;
-      aspect-ratio: {{ section.settings.image_ratio }};
   }
   .lx-insta-item:hover img {
       transform: scale(1.05);
@@ -102,13 +107,41 @@
     {% endif %}
     
     {% if section.settings.handle_text != blank %}
-      <a href="{{ section.settings.handle_link | default: '#' }}" class="lx-insta-handle" target="_blank">
+      {% assign section_insta_link = section.settings.handle_link %}
+      {% if section_insta_link == blank or section_insta_link == '#' %}
+        {% assign section_insta_link = 'https://www.instagram.com/dr.romeliaskincare/' %}
+      {% endif %}
+      <a href="{{ section_insta_link }}" class="lx-insta-handle" target="_blank" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
         {{ section.settings.handle_text }}
       </a>
     {% endif %}
 
-    <div id="insta-feed"></div>
+    <div id="insta-feed">
+      {%- if section.blocks.size > 0 -%}
+        <div class="lx-insta-grid">
+          {%- for block in section.blocks -%}
+            {% assign post_link = block.settings.link %}
+            {% if post_link == blank or post_link == '#' %}
+              {% assign post_link = section.settings.handle_link %}
+            {% endif %}
+            {% if post_link == blank or post_link == '#' %}
+              {% assign post_link = 'https://www.instagram.com/dr.romeliaskincare/' %}
+            {% endif %}
+            <a href="{{ post_link }}" class="lx-insta-item" {{ block.shopify_attributes }} target="_blank" rel="noopener noreferrer">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.image.alt | default: 'Instagram image' }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              <div class="lx-insta-icon-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+              </div>
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
 
   </div>
 </section>

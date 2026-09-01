@@ -3,12 +3,22 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "track": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"max-width: 600px; margin: 0 auto; text-align: center; padding: 20px;\">\n  <h2 style=\"margin-bottom: 15px;\">Track Your Shipment</h2>\n  <p style=\"color: #666; margin-bottom: 25px;\">Please enter your tracking number below. If you haven't received a tracking number via WhatsApp yet, your order is still being processed.</p>\n  <div style=\"display: flex; gap: 10px; justify-content: center; align-items: center;\">\n    <input type=\"text\" id=\"YQNum\" maxlength=\"50\" placeholder=\"Enter tracking number\" style=\"padding: 12px 15px; width: 65%; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; outline: none;\"/>\n    <button type=\"button\" onclick=\"doTrack()\" style=\"padding: 12px 24px; background: #111; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px; transition: background 0.2s ease;\">TRACK</button>\n  </div>\n</div>\n\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">\nfunction doTrack() {\n  var num = document.getElementById('YQNum').value;\n  if(num === '') {\n    alert('Please enter your tracking number.');\n    return;\n  }\n  YQV5.trackSingle({\n    YQ_ContainerId: 'YQContainer',\n    YQ_Height: 560,\n    YQ_Fc: '0',\n    YQ_Lang: 'en',\n    YQ_Num: num\n  });\n}\n</script>\n<div id=\"YQContainer\" style=\"max-width: 800px; margin: 30px auto; min-height: 200px;\"></div>",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "track"
   ]
 }

@@ -56,6 +56,124 @@
     }
     </style>
 
+    <style>
+      /* ===== DR. ROMELIA – Premium Product Page Styles ===== */
+
+      /* Product title */
+      .product__title h1 {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+      }
+      @media (max-width: 750px) {
+        .product__title h1 { font-size: 22px; }
+      }
+
+      /* Price area */
+      .price--large .price__regular .price-item--regular {
+        font-size: 28px !important;
+        font-weight: 700;
+        color: #6f2c91;
+      }
+
+      /* Urgency / In Stock bar */
+      .dr-urgency-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #fff8f0 0%, #fff3f8 100%);
+        border: 1px solid #f4a0c0;
+        border-radius: 10px;
+        padding: 10px 14px;
+        margin: 14px 0;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #c0392b;
+      }
+      .dr-urgency-bar .dot {
+        width: 9px; height: 9px;
+        background: #27ae60;
+        border-radius: 50%;
+        animation: blink 1.4s infinite;
+        flex-shrink: 0;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      /* Trust badge row */
+      .dr-trust-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 14px 0;
+      }
+      .dr-trust-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: #f8f0fd;
+        border: 1px solid #e0c8f5;
+        border-radius: 8px;
+        padding: 7px 12px;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #5a1a7a;
+        flex: 1 1 140px;
+        min-width: 130px;
+      }
+      .dr-trust-badge svg {
+        width: 16px; height: 16px;
+        fill: #6f2c91;
+        flex-shrink: 0;
+      }
+
+      /* Key benefits list (below add-to-cart) */
+      .dr-benefits-list {
+        list-style: none;
+        margin: 16px 0 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .dr-benefits-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #333;
+      }
+      .dr-benefits-list li::before {
+        content: '';
+        display: inline-block;
+        width: 20px; height: 20px;
+        background: linear-gradient(135deg, #6f2c91, #f46f9a);
+        border-radius: 50%;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23fff' d='M8.294 16.998c-.435 0-.847-.203-1.111-.553L3.61 11.724a1.392 1.392 0 0 1 .27-1.951 1.392 1.392 0 0 1 1.953.27l2.351 3.104 6.942-9.299a1.392 1.392 0 0 1 1.952-.27c.613.459.737 1.34.27 1.952l-8.051 10.79a1.39 1.39 0 0 1-1.003.678z'/%3E%3C/svg%3E");
+        background-size: 12px;
+        background-repeat: no-repeat;
+        background-position: center;
+        flex-shrink: 0;
+      }
+
+      /* Product description styling */
+      .product__description {
+        font-size: 14.5px;
+        line-height: 1.75;
+        color: #444;
+        border-top: 1px solid #f0e0f8;
+        padding-top: 14px;
+        margin-top: 14px;
+      }
+      .product__description ul li {
+        margin-bottom: 6px;
+      }
+    </style>
+
 
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -160,6 +278,26 @@
 
               {%- when 'stock' -%}
                 {% render 'stock-info' product: product, block:block %}
+                
+                {%- comment -%} --- DR. ROMELIA TRUST BADGES --- {%- endcomment -%}
+                <div class="dr-trust-row">
+                  <div class="dr-trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.25C17.25 23.15 21 18.25 21 13V7L12 2zm-1 13l-3-3 1.4-1.4 1.6 1.6 4.6-4.6L17 9l-6 6z"/></svg>
+                    Dermatologically Tested
+                  </div>
+                  <div class="dr-trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                    Cash on Delivery
+                  </div>
+                  <div class="dr-trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                    Delivery All Over Pakistan
+                  </div>
+                  <div class="dr-trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/></svg>
+                    7 Days Easy Return
+                  </div>
+                </div>
 
               {%- when 'lx-slider-images' -%}
                 {% render 'lx-slider-images' block: block %}

@@ -20,6 +20,145 @@
   </h1>
   <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     {{ page.content }}
+    
+    {% if page.handle == 'track-order' %}
+      <style>
+        .dr-track-box { max-width: 600px; margin: 40px auto 0; text-align: center; padding: 30px 20px; background: #f9f9f9; border-radius: 12px; }
+        .dr-track-inputs { display: flex; gap: 10px; justify-content: center; align-items: center; }
+        .dr-track-input { padding: 14px 15px; width: 65%; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; outline: none; }
+        .dr-track-btn { padding: 14px 24px; background: #111; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px; transition: background 0.2s ease; }
+        .dr-track-btn:hover { background: #6f2c91; }
+        @media (max-width: 500px) {
+          .dr-track-inputs { flex-direction: column; }
+          .dr-track-input { width: 100%; }
+          .dr-track-btn { width: 100%; }
+        }
+      </style>
+      <div class="dr-track-box">
+        <h2 style="margin-bottom: 15px; font-size: 28px;">Track Your Shipment</h2>
+        <p style="color: #555; margin-bottom: 25px; line-height: 1.6;">Please enter your tracking number below. If you haven't received a tracking number via WhatsApp yet, your order is still being processed.</p>
+        <div class="dr-track-inputs">
+          <input type="text" id="YQNum" class="dr-track-input" maxlength="50" placeholder="Enter tracking number"/>
+          <button type="button" onclick="doTrack()" class="dr-track-btn">TRACK</button>
+        </div>
+      </div>
+      <script type="text/javascript" src="//www.17track.net/externalcall.js"></script>
+      <script type="text/javascript">
+      function doTrack() {
+        var num = document.getElementById('YQNum').value;
+        if(num === '') { alert('Please enter your tracking number.'); return; }
+        YQV5.trackSingle({ YQ_ContainerId: 'YQContainer', YQ_Height: 560, YQ_Fc: '0', YQ_Lang: 'en', YQ_Num: num });
+      }
+      </script>
+      <div id="YQContainer" style="max-width: 800px; margin: 30px auto; min-height: 200px;"></div>
+    {% endif %}
+
+    {% if page.handle == 'faqs' %}
+      <div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+        <h2 style="text-align: center; margin-bottom: 40px; font-size: 32px;">Frequently Asked Questions</h2>
+        
+        <details style="margin-bottom: 15px; background: #f9f9f9; border-radius: 8px; padding: 20px; cursor: pointer; border: 1px solid #eaeaea;">
+          <summary style="font-weight: 600; font-size: 16px; list-style: none; display: flex; justify-content: space-between; align-items: center; color: #111;">
+            When will my order arrive? <span style="font-size: 24px; color: #6f2c91; flex-shrink: 0; margin-left: 15px;">+</span>
+          </summary>
+          <div style="margin-top: 15px; color: #555; line-height: 1.6; font-size: 15px;">
+            All orders are processed within 1-2 business days. Delivery across Pakistan usually takes 2-4 working days depending on your location.
+          </div>
+        </details>
+        
+        <details style="margin-bottom: 15px; background: #f9f9f9; border-radius: 8px; padding: 20px; cursor: pointer; border: 1px solid #eaeaea;">
+          <summary style="font-weight: 600; font-size: 16px; list-style: none; display: flex; justify-content: space-between; align-items: center; color: #111;">
+            Are your products safe for sensitive skin? <span style="font-size: 24px; color: #6f2c91; flex-shrink: 0; margin-left: 15px;">+</span>
+          </summary>
+          <div style="margin-top: 15px; color: #555; line-height: 1.6; font-size: 15px;">
+            Yes, all Dr. Romelia products are dermatologically tested, cruelty-free, and formulated to be gentle on all skin types, including sensitive skin.
+          </div>
+        </details>
+        
+        <details style="margin-bottom: 15px; background: #f9f9f9; border-radius: 8px; padding: 20px; cursor: pointer; border: 1px solid #eaeaea;">
+          <summary style="font-weight: 600; font-size: 16px; list-style: none; display: flex; justify-content: space-between; align-items: center; color: #111;">
+            How can I track my order? <span style="font-size: 24px; color: #6f2c91; flex-shrink: 0; margin-left: 15px;">+</span>
+          </summary>
+          <div style="margin-top: 15px; color: #555; line-height: 1.6; font-size: 15px;">
+            Once your order is dispatched, you will receive a WhatsApp message with your tracking details. You can also use our <a href="/pages/track-order" style="color: #6f2c91; text-decoration: underline; font-weight: bold;">Track Order</a> page.
+          </div>
+        </details>
+        
+        <details style="margin-bottom: 15px; background: #f9f9f9; border-radius: 8px; padding: 20px; cursor: pointer; border: 1px solid #eaeaea;">
+          <summary style="font-weight: 600; font-size: 16px; list-style: none; display: flex; justify-content: space-between; align-items: center; color: #111;">
+            Do you offer refunds or returns? <span style="font-size: 24px; color: #6f2c91; flex-shrink: 0; margin-left: 15px;">+</span>
+          </summary>
+          <div style="margin-top: 15px; color: #555; line-height: 1.6; font-size: 15px;">
+            We offer a hassle-free return policy if you receive a damaged or incorrect item. Please contact our support team via WhatsApp within 48 hours of delivery.
+          </div>
+        </details>
+        
+        <style>
+          details[open] summary span { transform: rotate(45deg); transition: transform 0.3s; }
+          details summary span { transition: transform 0.3s; }
+          details[open] { background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-color: transparent; }
+        </style>
+      </div>
+    {% endif %}
+
+    {% if page.handle == 'about' %}
+      <style>
+        .about-hero {
+          background: linear-gradient(135deg, #fce8f2, #f9cde1);
+          padding: 60px 20px;
+          text-align: center;
+          border-radius: 16px;
+          margin-bottom: 50px;
+          box-shadow: 0 10px 30px rgba(244, 111, 154, 0.15);
+        }
+        .about-hero h1 { font-size: 40px; color: #111; margin-bottom: 15px; font-weight: 800; }
+        .about-hero p { font-size: 18px; color: #444; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        
+        .about-story {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          max-width: 1000px;
+          margin: 0 auto 60px;
+          padding: 0 20px;
+        }
+        .about-story-img img {
+          width: 100%;
+          border-radius: 20px;
+          box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+          object-fit: cover;
+          display: block;
+        }
+        .about-story-text h2 { font-size: 32px; margin-bottom: 20px; color: #111; font-weight: 700; }
+        .about-story-text p { font-size: 16px; line-height: 1.8; color: #555; margin-bottom: 18px; }
+        
+        @media (min-width: 768px) {
+          .about-hero { padding: 80px 20px; }
+          .about-hero h1 { font-size: 46px; }
+          .about-story { flex-direction: row; align-items: center; gap: 50px; }
+          .about-story-img { flex: 1; }
+          .about-story-text { flex: 1; }
+          .about-story-text h2 { font-size: 36px; }
+        }
+      </style>
+      <div class="custom-about-page" style="margin-top: 20px;">
+        <div class="about-hero">
+           <h1>About Dr. Romelia</h1>
+           <p>Clinically Proven Skincare for Every Skin Type. Bringing confidence through healthy, glowing skin.</p>
+        </div>
+        <div class="about-story">
+           <div class="about-story-img">
+             <img src="https://cdn.shopify.com/s/files/1/0879/0815/5688/files/WhatsApp_Image_2026-06-25_at_16.03.49_d8a6efb9.jpg?v=1722867825" alt="Dr. Romelia Story" onerror="this.src='https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png';">
+           </div>
+           <div class="about-story-text">
+             <h2>Our Story</h2>
+             <p>Dr. Romelia is Pakistan's premium skincare brand, dedicated to bringing you scientifically backed and clinically proven formulas.</p>
+             <p>We believe that healthy skin is the foundation of confidence, which is why we meticulously select our ingredients to ensure safety and effectiveness for all skin types.</p>
+             <p>Whether you're dealing with dark spots, uneven tone, or simply want to maintain a radiant glow, our products are crafted to deliver visible results without compromising your skin's natural barrier.</p>
+           </div>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </div>
 
