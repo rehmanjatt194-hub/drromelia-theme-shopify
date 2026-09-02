@@ -111,13 +111,13 @@
                       </ul>
                     {%- else -%}
                       <ul class="footer-block__details-content list-unstyled">
-                        <li><a href="{{ routes.root_url }}" class="link link--text list-menu__item list-menu__item--link">Home page</a></li>
-                        <li><a href="{{ pages['about'].url | default: pages['about-us'].url | default: '/pages/about' }}" class="link link--text list-menu__item list-menu__item--link">About Us</a></li>
-                        <li><a href="{{ pages['contact'].url | default: pages['contact-us'].url | default: '/pages/contact' }}" class="link link--text list-menu__item list-menu__item--link">Contact Us</a></li>
-                        <li><a href="{{ shop.shipping_policy.url | default: pages['shipping-policy'].url | default: '/policies/shipping-policy' }}" class="link link--text list-menu__item list-menu__item--link">Shipping Policy</a></li>
-                        <li><a href="{{ shop.refund_policy.url | default: pages['return-policy'].url | default: '/policies/refund-policy' }}" class="link link--text list-menu__item list-menu__item--link">Refund Policy</a></li>
-                        <li><a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}" class="link link--text list-menu__item list-menu__item--link">Privacy Policy</a></li>
-                        <li><a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}" class="link link--text list-menu__item list-menu__item--link">Terms and Conditions</a></li>
+                        <li><a href="/" class="link link--text list-menu__item list-menu__item--link">Home page</a></li>
+                        <li><a href="/pages/about" class="link link--text list-menu__item list-menu__item--link">About Us</a></li>
+                        <li><a href="/pages/contact" class="link link--text list-menu__item list-menu__item--link">Contact Us</a></li>
+                        <li><a href="/pages/shipping-policy" class="link link--text list-menu__item list-menu__item--link">Shipping Policy</a></li>
+                        <li><a href="/pages/return-policy" class="link link--text list-menu__item list-menu__item--link">Refund Policy</a></li>
+                        <li><a href="/policies/privacy-policy" class="link link--text list-menu__item list-menu__item--link">Privacy Policy</a></li>
+                        <li><a href="/pages/terms" class="link link--text list-menu__item list-menu__item--link">Terms and Conditions</a></li>
                       </ul>
                     {%- endif -%}
                   {%- when 'brand_information' -%}

@@ -1,0 +1,198 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .dr-about-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+  .dr-about-hero {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .dr-about-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #7b2d8b15, #c0478215);
+    border: 1px solid #7b2d8b30;
+    color: #7b2d8b;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+  .dr-about-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #7b2d8b, #c04782);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 16px;
+  }
+  .dr-about-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .dr-about-body h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #7b2d8b;
+    margin: 36px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #7b2d8b20;
+  }
+  .dr-about-body p {
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 1rem;
+  }
+  .dr-about-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+  .dr-about-body ul li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    color: #444;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  .dr-about-body ul li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: #c04782;
+    font-size: 10px;
+    top: 12px;
+  }
+  .dr-about-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+  }
+  .dr-about-value-card {
+    background: linear-gradient(135deg, #7b2d8b08, #c0478208);
+    border: 1px solid #7b2d8b15;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .dr-about-value-card .icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .dr-about-value-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #7b2d8b;
+    margin: 0 0 8px;
+  }
+  .dr-about-value-card p {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .dr-about-contact-box {
+    background: linear-gradient(135deg, #7b2d8b, #c04782);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    margin-top: 50px;
+  }
+  .dr-about-contact-box h2 {
+    color: white;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    font-size: 1.4rem;
+    margin: 0 0 16px;
+    padding-bottom: 16px;
+  }
+  .dr-about-contact-box p {
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 20px;
+  }
+  .dr-about-contact-box a {
+    color: white;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+</style>
+
+<div class="dr-about-page">
+  <div class="dr-about-hero">
+    <div class="dr-about-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      Our Story
+    </div>
+    <h1 class="dr-about-title">About Dr. Romelia</h1>
+    <p class="dr-about-subtitle">Pakistan's trusted skincare brand — clinically formulated for real results on every skin type.</p>
+  </div>
+
+  <div class="dr-about-body rte">
+    <h2>Who We Are</h2>
+    <p><strong>Dr. Romelia</strong> is Pakistan's premium dermatology-inspired skincare brand. Born from a passion for science and beauty, we are dedicated to making effective, safe, and luxurious skincare accessible to everyone across Pakistan.</p>
+    <p>Our formulations are developed using globally recognized active ingredients such as <strong>Kojic Acid</strong>, <strong>Niacinamide</strong>, <strong>Alpha Arbutin</strong>, and <strong>Hyaluronic Acid</strong> — carefully combined to deliver visible results without compromising skin health.</p>
+
+    <h2>Our Mission</h2>
+    <p>Our mission is simple: to give every Pakistani woman and man the confidence of healthy, glowing skin. We believe that great skincare should not be complicated or out of reach — which is why we deliver results-driven products directly to your doorstep, all across Pakistan.</p>
+
+    <h2>Why Choose Dr. Romelia?</h2>
+    <ul>
+      <li><strong>Clinically Tested:</strong> All products are dermatologically tested and safe for all skin types, including sensitive skin.</li>
+      <li><strong>Pakistan-Formulated:</strong> Our formulas are specially designed keeping in mind Pakistan's diverse climate, humidity, and skin concerns like hyperpigmentation and uneven tone.</li>
+      <li><strong>No Harmful Ingredients:</strong> Free from harsh bleaches, steroids, and harmful chemicals.</li>
+      <li><strong>Visible Results:</strong> Customers report visible improvements in skin tone, texture, and clarity within weeks.</li>
+      <li><strong>Nationwide Delivery:</strong> We deliver to every city across Pakistan with secure packaging and fast dispatch.</li>
+    </ul>
+  </div>
+
+  <div class="dr-about-values">
+    <div class="dr-about-value-card">
+      <span class="icon">🔬</span>
+      <h3>Clinically Proven</h3>
+      <p>Science-backed formulations developed with dermatological expertise.</p>
+    </div>
+    <div class="dr-about-value-card">
+      <span class="icon">🌿</span>
+      <h3>Safe Ingredients</h3>
+      <p>No steroids, no harmful bleaches — just clean, effective active ingredients.</p>
+    </div>
+    <div class="dr-about-value-card">
+      <span class="icon">🇵🇰</span>
+      <h3>Made for Pakistan</h3>
+      <p>Formulas designed specifically for Pakistani climate and skin concerns.</p>
+    </div>
+    <div class="dr-about-value-card">
+      <span class="icon">✨</span>
+      <h3>Real Results</h3>
+      <p>Visible improvements in skin tone and texture within just a few weeks.</p>
+    </div>
+  </div>
+
+  <div class="dr-about-contact-box">
+    <h2>Get in Touch With Us</h2>
+    <p>Have questions about our products or need personalized skincare advice? Our team is here to help you find the perfect routine for your skin.</p>
+    <p>📧 <a href="mailto:dr.romeliaskincare@gmail.com">dr.romeliaskincare@gmail.com</a></p>
+    <p>We typically respond within 24 hours.</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Us",
+  "tag": "section",
+  "class": "section"
+}
+{% endschema %}
