@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "coming_soon": {
+      "type": "dr-coming-soon",
+      "settings": {}
+    }
+  },
+  "order": [
+    "coming_soon"
+  ]
+}

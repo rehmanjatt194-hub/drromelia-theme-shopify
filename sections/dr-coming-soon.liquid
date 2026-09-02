@@ -1,0 +1,319 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .dr-coming-soon {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fdf4ff 0%, #fff0f8 50%, #fdf4ff 100%);
+  }
+
+  /* Floating orbs background */
+  .dr-coming-soon::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(123,45,139,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatOrb 6s ease-in-out infinite;
+  }
+  .dr-coming-soon::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(192,71,130,0.10) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatOrb 8s ease-in-out infinite reverse;
+  }
+  @keyframes floatOrb {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  .dr-coming-soon__inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 680px;
+    width: 100%;
+  }
+
+  /* Icon ring */
+  .dr-coming-soon__icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 28px;
+    background: linear-gradient(135deg, #7b2d8b, #c04782);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(123,45,139,0.35);
+    animation: pulseSoft 2.5s ease-in-out infinite;
+  }
+  @keyframes pulseSoft {
+    0%, 100% { box-shadow: 0 8px 32px rgba(123,45,139,0.35); transform: scale(1); }
+    50% { box-shadow: 0 12px 48px rgba(123,45,139,0.5); transform: scale(1.04); }
+  }
+  .dr-coming-soon__icon svg { color: white; }
+
+  /* Badge */
+  .dr-coming-soon__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(123,45,139,0.08);
+    border: 1px solid rgba(123,45,139,0.2);
+    color: #7b2d8b;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* Title */
+  .dr-coming-soon__title {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #7b2d8b, #c04782);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.15;
+    margin: 0 0 16px;
+  }
+  .dr-coming-soon__sub {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.7;
+    margin: 0 0 40px;
+  }
+
+  /* Countdown timer */
+  .dr-coming-soon__timer {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 44px;
+    flex-wrap: wrap;
+  }
+  .dr-timer-box {
+    background: #fff;
+    border: 1px solid rgba(123,45,139,0.15);
+    border-radius: 16px;
+    padding: 18px 22px;
+    min-width: 80px;
+    box-shadow: 0 4px 20px rgba(123,45,139,0.08);
+    transition: transform 0.3s ease;
+  }
+  .dr-timer-box:hover { transform: translateY(-4px); }
+  .dr-timer-box__num {
+    font-size: 2.2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #7b2d8b, #c04782);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    display: block;
+  }
+  .dr-timer-box__label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    font-weight: 600;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* Notify form */
+  .dr-coming-soon__notify {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto 36px;
+    background: #fff;
+    border: 1px solid rgba(123,45,139,0.2);
+    border-radius: 50px;
+    padding: 6px 6px 6px 20px;
+    box-shadow: 0 4px 24px rgba(123,45,139,0.10);
+  }
+  .dr-coming-soon__notify input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: #333;
+    min-width: 0;
+  }
+  .dr-coming-soon__notify input::placeholder { color: #aaa; }
+  .dr-coming-soon__notify button {
+    background: linear-gradient(135deg, #7b2d8b, #c04782);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .dr-coming-soon__notify button:hover { opacity: 0.9; transform: scale(1.02); }
+
+  /* Feature pills */
+  .dr-coming-soon__features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+  .dr-feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid rgba(123,45,139,0.15);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    color: #555;
+    box-shadow: 0 2px 8px rgba(123,45,139,0.06);
+  }
+  .dr-feature-pill span { font-size: 1rem; }
+
+  /* Back link */
+  .dr-coming-soon__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #7b2d8b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  .dr-coming-soon__back:hover { border-color: #7b2d8b; }
+
+  @media (max-width: 480px) {
+    .dr-coming-soon__notify { flex-direction: column; border-radius: 16px; padding: 16px; }
+    .dr-coming-soon__notify button { border-radius: 50px; }
+    .dr-timer-box { min-width: 64px; padding: 14px 14px; }
+    .dr-timer-box__num { font-size: 1.6rem; }
+  }
+</style>
+
+<div class="dr-coming-soon">
+  <div class="dr-coming-soon__inner">
+
+    <div class="dr-coming-soon__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </div>
+
+    <div class="dr-coming-soon__badge">
+      ✨ &nbsp;Something Beautiful is Coming
+    </div>
+
+    <h1 class="dr-coming-soon__title">Best Sellers<br>Coming Soon</h1>
+    <p class="dr-coming-soon__sub">We're curating our most-loved skincare bestsellers just for you. Subscribe to be the first to know when they launch!</p>
+
+    <!-- Countdown Timer -->
+    <div class="dr-coming-soon__timer">
+      <div class="dr-timer-box">
+        <span class="dr-timer-box__num" id="dr-days">00</span>
+        <span class="dr-timer-box__label">Days</span>
+      </div>
+      <div class="dr-timer-box">
+        <span class="dr-timer-box__num" id="dr-hours">00</span>
+        <span class="dr-timer-box__label">Hours</span>
+      </div>
+      <div class="dr-timer-box">
+        <span class="dr-timer-box__num" id="dr-mins">00</span>
+        <span class="dr-timer-box__label">Minutes</span>
+      </div>
+      <div class="dr-timer-box">
+        <span class="dr-timer-box__num" id="dr-secs">00</span>
+        <span class="dr-timer-box__label">Seconds</span>
+      </div>
+    </div>
+
+    <!-- Notify Me -->
+    <div class="dr-coming-soon__notify">
+      <input type="email" id="dr-notify-email" placeholder="Enter your email address..." />
+      <button onclick="drNotifyMe()">Notify Me</button>
+    </div>
+
+    <!-- Feature Pills -->
+    <div class="dr-coming-soon__features">
+      <div class="dr-feature-pill"><span>🔬</span> Clinically Proven</div>
+      <div class="dr-feature-pill"><span>🚚</span> Free Delivery on Rs. 2,999+</div>
+      <div class="dr-feature-pill"><span>⭐</span> Top Rated Products</div>
+      <div class="dr-feature-pill"><span>💜</span> 7-Day Easy Returns</div>
+    </div>
+
+    <a href="/" class="dr-coming-soon__back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Home
+    </a>
+  </div>
+</div>
+
+<script>
+  // Countdown — set launch date here
+  (function () {
+    var launch = new Date('2026-10-01T00:00:00');
+    function tick() {
+      var now  = new Date();
+      var diff = launch - now;
+      if (diff <= 0) { diff = 0; }
+      var d = Math.floor(diff / 864e5);
+      var h = Math.floor((diff % 864e5) / 36e5);
+      var m = Math.floor((diff % 36e5) / 6e4);
+      var s = Math.floor((diff % 6e4) / 1e3);
+      function pad(n) { return n < 10 ? '0' + n : n; }
+      document.getElementById('dr-days').textContent  = pad(d);
+      document.getElementById('dr-hours').textContent = pad(h);
+      document.getElementById('dr-mins').textContent  = pad(m);
+      document.getElementById('dr-secs').textContent  = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  function drNotifyMe() {
+    var email = document.getElementById('dr-notify-email').value.trim();
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    alert('Thank you! We will notify you at ' + email + ' when our Best Sellers launch! 💜');
+    document.getElementById('dr-notify-email').value = '';
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Coming Soon",
+  "tag": "section",
+  "class": "section"
+}
+{% endschema %}

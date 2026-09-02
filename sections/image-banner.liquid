@@ -31,6 +31,7 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+  {%- if section.settings.image_height != 'adapt' -%}
   #Banner-{{ section.id }} {
     max-height: {{ section.settings.desktop_banner_height | default: 520 }}px;
     overflow: hidden;
@@ -52,6 +53,7 @@
       max-height: {{ section.settings.mobile_banner_height | default: 360 }}px;
     }
   }
+  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
