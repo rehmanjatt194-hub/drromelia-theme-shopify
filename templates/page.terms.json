@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "dr-terms",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "dr-privacy-policy",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
