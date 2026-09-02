@@ -1,0 +1,153 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .dr-policy-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px 80px;
+  }
+
+  /* ── Hero badge + title ── */
+  .dr-policy-hero {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .dr-policy-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(123,45,139,.10), rgba(192,71,130,.10));
+    border: 1px solid rgba(123,45,139,.25);
+    color: #7b2d8b;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    margin-bottom: 20px;
+  }
+  .dr-policy-hero__badge svg { flex-shrink: 0; }
+
+  .dr-policy-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #7b2d8b, #c04782);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 14px;
+  }
+  .dr-policy-hero__sub {
+    color: #666;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 10px;
+  }
+  .dr-policy-hero__date {
+    color: #999;
+    font-size: .85rem;
+  }
+
+  /* ── Body content ── */
+  .dr-policy-body {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid rgba(123,45,139,.10);
+    box-shadow: 0 4px 30px rgba(123,45,139,.06);
+    padding: 48px 52px;
+  }
+  @media (max-width: 768px) {
+    .dr-policy-body { padding: 28px 20px; }
+  }
+
+  .dr-policy-body h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #7b2d8b;
+    margin: 36px 0 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(123,45,139,.12);
+  }
+  .dr-policy-body h2:first-child { margin-top: 0; }
+
+  .dr-policy-body p,
+  .dr-policy-body li {
+    color: #444;
+    line-height: 1.85;
+    font-size: 1rem;
+    margin-bottom: 14px;
+  }
+  .dr-policy-body ul,
+  .dr-policy-body ol {
+    padding-left: 0;
+    list-style: none;
+  }
+  .dr-policy-body ul li,
+  .dr-policy-body ol li {
+    padding: 6px 0 6px 26px;
+    position: relative;
+  }
+  .dr-policy-body ul li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: #c04782;
+    font-size: 10px;
+    top: 11px;
+  }
+  .dr-policy-body ol { counter-reset: policy-counter; }
+  .dr-policy-body ol li { counter-increment: policy-counter; }
+  .dr-policy-body ol li::before {
+    content: counter(policy-counter) ".";
+    position: absolute;
+    left: 0;
+    color: #7b2d8b;
+    font-weight: 700;
+    font-size: .9rem;
+    top: 8px;
+  }
+  .dr-policy-body a {
+    color: #7b2d8b;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .dr-policy-body strong { color: #333; }
+
+  /* ── Contact strip ── */
+  .dr-policy-contact {
+    background: linear-gradient(135deg, #7b2d8b, #c04782);
+    border-radius: 16px;
+    padding: 30px 36px;
+    text-align: center;
+    color: #fff;
+    margin-top: 48px;
+  }
+  .dr-policy-contact p { color: rgba(255,255,255,.92); margin: 0 0 10px; font-size: 1rem; }
+  .dr-policy-contact p:last-child { margin: 0; }
+  .dr-policy-contact a { color: #fff; font-weight: 700; }
+</style>
+
+{%- assign policy = page.policy -%}
+
+<div class="dr-policy-wrapper">
+  <div class="dr-policy-hero">
+    <div class="dr-policy-hero__badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      {{ policy.title }}
+    </div>
+    <h1 class="dr-policy-hero__title">{{ policy.title }}</h1>
+    <p class="dr-policy-hero__sub">At Dr. Romelia, we are committed to transparency and protecting your rights.</p>
+    <p class="dr-policy-hero__date">Last updated: {{ 'now' | date: '%B %d, %Y' }}</p>
+  </div>
+
+  <div class="dr-policy-body rte">
+    {{ policy.body }}
+  </div>
+
+  <div class="dr-policy-contact">
+    <p>Questions about this policy?</p>
+    <p>📧 <a href="mailto:dr.romeliaskincare@gmail.com">dr.romeliaskincare@gmail.com</a></p>
+    <p>We typically respond within 24 hours.</p>
+  </div>
+</div>
