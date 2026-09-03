@@ -322,6 +322,8 @@
                 {%- if raw_url contains 'youtube.com' or raw_url contains 'youtu.be' -%}
                   {%- if raw_url contains 'youtu.be/' -%}
                     {%- assign yt_id = raw_url | split: 'youtu.be/' | last | split: '?' | first -%}
+                  {%- elsif raw_url contains '/shorts/' -%}
+                    {%- assign yt_id = raw_url | split: '/shorts/' | last | split: '?' | first -%}
                   {%- else -%}
                     {%- assign yt_id = raw_url | split: 'v=' | last | split: '&' | first -%}
                   {%- endif -%}

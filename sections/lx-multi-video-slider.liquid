@@ -69,6 +69,15 @@
           <swiper-slide {{ block.shopify_attributes }}>
             <div class="video-card" data-block-id="{{ block.id }}">
               {%- comment -%} Thumbnail {%- endcomment -%}
+              {%- comment -%} Detect YouTube URL {%- endcomment -%}
+              {%- assign yt_url = block.settings.youtube_url -%}
+              {%- assign yt_id = '' -%}
+              {%- if yt_url contains 'youtu.be/' -%}
+                {%- assign yt_id = yt_url | split: 'youtu.be/' | last | split: '?' | first -%}
+              {%- elsif yt_url contains 'v=' -%}
+                {%- assign yt_id = yt_url | split: 'v=' | last | split: '&' | first -%}
+              {%- endif -%}
+
               <div class="video-card__thumbnail" data-thumbnail="{{ block.id }}">
                 {%- if block.settings.thumbnail != blank -%}
                   <img 
@@ -82,6 +91,13 @@
                     loading="lazy"
                     width="{{ block.settings.thumbnail.width }}"
                     height="{{ block.settings.thumbnail.height }}"
+                  >
+                {%- elsif yt_id != '' -%}
+                  <img
+                    src="https://img.youtube.com/vi/{{ yt_id }}/hqdefault.jpg"
+                    alt="YouTube Video Thumbnail"
+                    class="video-card__thumbnail-img"
+                    loading="lazy"
                   >
                 {%- elsif block.settings.video_url != blank and block.settings.video_url.preview_image != blank -%}
                   <img 
@@ -97,12 +113,13 @@
                 {%- endif -%}
 
                 {%- comment -%} Play Button {%- endcomment -%}
-                {%- if section.settings.show_play_button -%}
+                {%- if section.settings.show_play_button or yt_id != '' -%}
                   <button 
                     type="button" 
-                    class="video-card__play-btn"
+                    class="video-card__play-btn{% if yt_id != '' %} yt-play-btn{% endif %}"
                     aria-label="Play video"
                     data-play-btn="{{ block.id }}"
+                    {% if yt_id != '' %}data-yt-id="{{ yt_id }}"{% endif %}
                   >
                     <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <mask id="mask-{{ block.id }}" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="54" height="54">
@@ -117,8 +134,20 @@
                 {%- endif -%}
               </div>
 
-              {%- comment -%} Video Element {%- endcomment -%}
-              {%- if block.settings.video_url != blank -%}
+              {%- comment -%} Video Element — YouTube iframe or uploaded video {%- endcomment -%}
+              {%- if yt_id != '' -%}
+                <div class="video-card__video video-card__yt" data-video-wrapper="{{ block.id }}" data-yt-id="{{ yt_id }}">
+                  <iframe
+                    class="video-card__yt-iframe"
+                    src="https://www.youtube.com/embed/{{ yt_id }}?autoplay=1&rel=0&modestbranding=1"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen
+                    loading="lazy"
+                    title="YouTube Video"
+                    style="width:100%;height:100%;border:none;border-radius:inherit;"
+                  ></iframe>
+                </div>
+              {%- elsif block.settings.video_url != blank -%}
                 <div class="video-card__video" data-video-wrapper="{{ block.id }}">
                   {{ block.settings.video_url | video_tag: 
                     autoplay: false, 
@@ -219,9 +248,31 @@
       if (thumbnail) thumbnail.classList.remove('is-hidden');
       if (wrapper) wrapper.classList.remove('is-visible');
 
+      // Pause YouTube iframe by removing src
+      const ytIframe = card.querySelector('.video-card__yt-iframe');
+      if (ytIframe) {
+        ytIframe.src = ytIframe.src; // reset iframe to stop playback
+      }
+
       if (video) video.pause();
     });
   }
+
+  // YouTube play button handler
+  section.querySelectorAll('.yt-play-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const blockId = btn.dataset.playBtn;
+      const card = btn.closest('.video-card');
+      const thumbnail = card.querySelector('[data-thumbnail="' + blockId + '"]');
+      const wrapper = card.querySelector('[data-video-wrapper="' + blockId + '"]');
+
+      pauseAllVideos();
+
+      card.classList.add('is-playing');
+      if (thumbnail) thumbnail.classList.add('is-hidden');
+      if (wrapper) wrapper.classList.add('is-visible');
+    });
+  });
 
   function initVideoCards() {
     section.querySelectorAll('.video-card').forEach(card => {
@@ -648,15 +699,26 @@
       "name": "Video Item",
       "settings": [
         {
+          "type": "text",
+          "id": "youtube_url",
+          "label": "YouTube Video URL",
+          "placeholder": "https://www.youtube.com/watch?v=...",
+          "info": "Paste YouTube link here. If provided, this will be used instead of uploaded video."
+        },
+        {
           "type": "image_picker",
           "id": "thumbnail",
           "label": "Thumbnail Image",
-          "info": "Recommended: 600x800px or 9:16 aspect ratio"
+          "info": "Optional. If empty, YouTube auto-thumbnail will be used."
         },
         {
           "type": "video",
           "id": "video_url",
-          "label": "Upload Video"
+          "label": "Upload Video (if no YouTube URL)"
+        },
+        {
+          "type": "header",
+          "content": "Uploaded Video Options"
         },
         {
           "type": "text",
