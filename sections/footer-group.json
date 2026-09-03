@@ -11,6 +11,14 @@
             "show_social": true
           }
         },
+        "link_list_explore": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Explore",
+            "menu": "main-menu",
+            "accordion": true
+          }
+        },
         "link_list_h3kcem": {
           "type": "link_list",
           "settings": {
@@ -29,6 +37,7 @@
       },
       "block_order": [
         "brand_information_RKwfhJ",
+        "link_list_explore",
         "link_list_h3kcem",
         "newsletter_col_DrRom"
       ],

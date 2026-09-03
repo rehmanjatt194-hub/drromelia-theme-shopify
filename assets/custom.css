@@ -1,3 +1,9 @@
+/* ── Performance Optimizations ── */
+img, video { content-visibility: auto; }
+.lx-multi-video-slider, .lx-multi-videos--row { content-visibility: auto; contain-intrinsic-size: 0 500px; }
+.video-card__video-element { will-change: auto; }
+swiper-container { contain: layout style; }
+
 .template-slider-section .swiper-custom-arrow{cursor:pointer;}
 .template-slider-section .relative-container{position:relative;width:100%;}
 .template-slider-section swiper-container{width:100%;display:block;}

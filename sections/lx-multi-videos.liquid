@@ -57,7 +57,8 @@
                             {{ block.settings.video_url | video_tag:
                                 autoplay: section.settings.video_autoplay,
                                 controls: section.settings.video_controls,
-                                loop: section.settings.video_loop
+                                loop: section.settings.video_loop,
+                                preload: 'none'
                             }}
                         {% endif %}
 

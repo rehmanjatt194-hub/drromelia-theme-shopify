@@ -7,10 +7,11 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
-    {%- comment -%} Google Fonts - Inter for body {%- endcomment -%}
+    {%- comment -%} Google Fonts - Inter for body (async, non-render-blocking) {%- endcomment -%}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -31,17 +32,12 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {% comment %} JQUERY CDN {% endcomment %}
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    {% comment %} JQUERY CDN {% endcomment %}
-
-    {% comment %} SWIPER'S CDN {% endcomment %}
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
-      />
-      <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    {% comment %} SWIPER'S CDN {% endcomment %}
+    {% comment %} JQUERY CDN - deferred to unblock render {% endcomment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    {% comment %} SWIPER CDN - loaded once, deferred {% endcomment %}
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"></noscript>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
 
 
     {% render 'meta-tags' %}
@@ -58,12 +54,12 @@
     {%- endif -%}
 
  
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    {%- comment -%} Swiper element bundle (once, deferred) {%- endcomment -%}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-element-bundle.min.js" defer></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js" defer="defer"></script>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css"></noscript>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js" defer></script>
 
     {{ content_for_header }}
 

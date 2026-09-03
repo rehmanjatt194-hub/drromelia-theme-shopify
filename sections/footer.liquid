@@ -110,14 +110,44 @@
                         {%- endfor -%}
                       </ul>
                     {%- else -%}
-                      <ul class="footer-block__details-content list-unstyled">
-                        <li><a href="/" class="link link--text list-menu__item list-menu__item--link">Home page</a></li>
-                        <li><a href="/pages/about" class="link link--text list-menu__item list-menu__item--link">About Us</a></li>
-                        <li><a href="/pages/contact" class="link link--text list-menu__item list-menu__item--link">Contact Us</a></li>
+                      <ul class="footer-block__details-content list-unstyled dr-footer-nav-list">
+                      {%- if block.settings.heading == 'Explore' -%}
+                        <li>
+                          <a href="/pages/about" class="link link--text list-menu__item list-menu__item--link" style="display: flex; align-items: center; gap: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: #999;"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                            About Dr. Romelia
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pages/track-order" class="link link--text list-menu__item list-menu__item--link" style="display: flex; align-items: center; gap: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: #999;"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            Track Your Order
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/pages/faqs" class="link link--text list-menu__item list-menu__item--link" style="display: flex; align-items: center; gap: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: #999;"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            FAQs
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/collections/all" class="link link--text list-menu__item list-menu__item--link">Shop All</a>
+                        </li>
+                        <li>
+                          <a href="/collections/best-sellers" class="link link--text list-menu__item list-menu__item--link">Best Sellers</a>
+                        </li>
+                        <li>
+                          <a href="/collections/deals" class="link link--text list-menu__item list-menu__item--link dr-deals-link" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                            <span>Deals &amp; Offers</span>
+                            <span class="dr-deals-badge" style="background: linear-gradient(135deg, #fce8f2, #f9cde1); border: 1px solid rgba(244,111,154,0.3); border-radius: 100px; font-size: 10px; font-weight: 700; color: #f46f9a; padding: 2px 8px; text-transform: uppercase;">HOT</span>
+                          </a>
+                        </li>
+                      {%- else -%}
                         <li><a href="/pages/shipping-policy" class="link link--text list-menu__item list-menu__item--link">Shipping Policy</a></li>
                         <li><a href="/pages/return-policy" class="link link--text list-menu__item list-menu__item--link">Refund Policy</a></li>
                         <li><a href="/policies/privacy-policy" class="link link--text list-menu__item list-menu__item--link">Privacy Policy</a></li>
                         <li><a href="/pages/terms" class="link link--text list-menu__item list-menu__item--link">Terms and Conditions</a></li>
+                      {%- endif -%}
                       </ul>
                     {%- endif -%}
                   {%- when 'brand_information' -%}
@@ -146,6 +176,10 @@
                       {%- endif -%}
                       {%- if settings.brand_description != blank -%}
                         <div class="rte">{{ settings.brand_description }}</div>
+                      {%- else -%}
+                        <div class="rte footer-brand-description" style="font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 20px; max-width: 280px; margin-top: 15px;">
+                          Clinically proven skincare solutions designed specifically for Pakistani skin. Safe, effective, and free from harmful chemicals.
+                        </div>
                       {%- endif -%}
                       <div class="footer-brand-contact">
                         <a href="mailto:dr.romeliaskincare@gmail.com" class="footer-contact-link">
@@ -270,23 +304,10 @@
       </div>
     </div>
     <div class="footer__content-bottom-wrapper page-width footer__content-bottom-wrapper--center">
-      <div class="footer__copyright caption">
-        <small class="copyright__content">&copy; 2026, <a href="{{ routes.root_url }}">Dr. Romelia</a></small>
-        <ul class="policies list-unstyled">
-          {%- for policy in shop.policies -%}
-            {%- if policy != blank -%}
-              <li>
-                <small class="copyright__content"
-                  ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
-                >
-              </li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
+      <div class="footer__copyright caption" style="text-align: center; width: 100%;">
+        <small class="copyright__content">Copyright &copy; {{ 'now' | date: "%Y" }} <strong><a href="{{ routes.root_url }}">Dr.Romelia</a></strong> all rights reserved | Designed & Developed by <strong>Qonkar Technologies Pvt Ltd</strong></small>
       </div>
-      <div class="footer__content-social-icons">
-        {%- render 'social-icons', class: 'footer__list-social' -%}
-      </div>
+      {%- comment -%} Removed duplicate bottom social icons {%- endcomment -%}
     </div>
   </div>
 </footer>
